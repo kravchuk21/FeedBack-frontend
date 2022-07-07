@@ -2,6 +2,7 @@ import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import AuthLayout from "../layout/AuthLayout";
+import Button from "../components/Button";
 
 const Home: NextPage = () => {
     return (
@@ -17,6 +18,8 @@ const Home: NextPage = () => {
                 text: 'Login here'
             }}>
                 <h1>AuthLayout</h1>
+                <Button text="hello" onClick={() => console.log("button")}/>
+                <Button text="hello" disabled onClick={() => console.log("disabled")}/>
             </AuthLayout>
         </div>
     )

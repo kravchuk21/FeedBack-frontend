@@ -1,0 +1,19 @@
+.button {
+    background: linear-gradient(114.78deg, #FFA925 -5.11%, #FF7841 125.67%);
+    border-radius: 10px;
+    text-align: center;
+    color: #FAFAFA;
+    font-style: normal;
+    font-weight: 590;
+    font-size: 18px;
+    outline-color: #FF7841;
+    border: none;
+    padding: 20px 40px;
+    width: 100%;
+}
+
+.button:disabled {
+    background: #F6F7FB;
+    color: #d3d3d3;
+    cursor: not-allowed;
+}
