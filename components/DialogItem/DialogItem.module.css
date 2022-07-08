@@ -6,7 +6,7 @@
     align-items: flex-start;
 }
 
-.dialogItem:hover, .dialogItem:focus     {
+.dialogItem:hover, .dialogItem:focus {
     background: var(--light-gray);
 }
 

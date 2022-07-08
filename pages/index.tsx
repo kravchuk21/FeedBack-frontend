@@ -5,6 +5,7 @@ import Avatar from "../components/Avatar";
 import Header from '../layout/Header';
 import IconButton from "../components/IconButton";
 import DialogItem from "../components/DialogItem";
+import DialogItemLoader from "../components/loaders/DialogItemLoader";
 
 const Home: NextPage = () => {
     return (
@@ -27,6 +28,9 @@ const Home: NextPage = () => {
                         lastMessageText={"Hello 📬"}
                         avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}
                         lastMessageTime={new Date()} fullName={"Vladislav Kravchuk"}/>
+            <DialogItemLoader/>
+            <DialogItemLoader/>
+            <DialogItemLoader/>
         </div>
     )
 }
