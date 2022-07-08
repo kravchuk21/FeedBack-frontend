@@ -6,6 +6,7 @@ import IconButton from '../../components/IconButton'
 import Header from '../../layout/Header'
 import Bubble from "../../components/Bubble";
 import styles from "../../styles/Dialog.module.css";
+import DialogInput from "../../components/DialogInput";
 
 const Dialog: NextPage = () => {
     const router = useRouter()
@@ -30,6 +31,7 @@ const Dialog: NextPage = () => {
                 <Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
                 <Bubble text="How are you?" isMe={false}/>
             </div>
+            <DialogInput/>
         </div>
     )
 }
