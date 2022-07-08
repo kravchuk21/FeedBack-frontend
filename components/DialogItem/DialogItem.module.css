@@ -1,0 +1,42 @@
+.dialogItem {
+    display: flex;
+    background: var(--white);
+    padding: 10px 15px;
+    cursor: pointer;
+    align-items: flex-start;
+}
+
+.dialogItem:hover, .dialogItem:focus {
+    background: var(--light-gray);
+}
+
+.dialogItemInfo {
+    margin: 0 12px;
+    flex: 1;
+}
+
+.dialogItemFullName {
+    font-style: normal;
+    font-weight: 590;
+    font-size: 14px;
+    color: var(--black);
+}
+
+.dialogItemLastMessageText {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 13px;
+    color: var(--primary);
+    margin: 3px 0;
+}
+
+.dialogItemLastMessageTime {
+    font-weight: 510;
+    font-size: 10px;
+    color: var(--gray);
+    margin: 0;
+}

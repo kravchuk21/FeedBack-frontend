@@ -1,0 +1,26 @@
+.dialogItemLoader {
+    display: flex;
+    background: var(--white);
+    padding: 10px 15px;
+    align-items: flex-start;
+}
+
+.dialogItemLoaderAvatar {
+    background: var(--light-gray);
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+
+.dialogItemLoaderInfo {
+    margin: 0 12px;
+    flex: 1;
+}
+
+.dialogItemLoaderLine {
+    background: var(--light-gray);
+    height: 14px;
+    width: 200px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
