@@ -1,10 +1,8 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import AuthLayout from "../layout/AuthLayout";
 import Button from "../components/Button";
-import Input from "../components/Input";
-import PasswordInput from "../components/PasswordInput";
+import Link from "next/link";
 
 const Home: NextPage = () => {
     return (
@@ -15,17 +13,11 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
 
-            <AuthLayout title="SIGN In" link={{
-                path: '/auth/register',
-                text: 'Login here'
-            }}>
-                <Button text="hello" onClick={() => console.log(1 + 2)}/>
-                <Button text="hello" disabled onClick={() => console.log("disabled")}/>
-                <h1>AuthLayout</h1>
-                <PasswordInput/>
-                <Input icon='/assets/input_icons/mail.svg' type='email'/>
-                <Input placeholder="input"/>
-            </AuthLayout>
+            <Link href="/auth/login">
+                <a>
+                    <Button text="hello" onClick={() => console.log(1 + 2)}/>
+                </a>
+            </Link>
         </div>
     )
 }
