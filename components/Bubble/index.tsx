@@ -9,7 +9,7 @@ interface Bubble {
 const Bubble: React.FC<Bubble> = ({text, isMe}) => {
     return (
         <div className={`${styles.bubbleBlock} ${isMe && styles.bubbleBlockIsMe}`}>
-            <p>{text}</p>
+            <p className={styles.bubbleBlockText}>{text}</p>
         </div>
     );
 };
