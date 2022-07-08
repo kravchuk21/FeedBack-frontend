@@ -3,8 +3,7 @@
 }
 
 .input {
-    background: #F6F7FB;
-    box-shadow: 0 0 22px rgba(0, 0, 0, 0.02);
+    background: var(--light-gray);
     border-radius: 10px;
     padding-top: 16px;
     padding-bottom: 16px;
@@ -13,11 +12,11 @@
     font-style: normal;
     font-weight: 500;
     font-size: 14px;
-    color: #262626;
+    color: var(--black);
 }
 
 .input::placeholder {
-    color: #E5E5E5;
+    color: var(--gray);
 }
 
 .inputIcon {

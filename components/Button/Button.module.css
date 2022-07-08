@@ -2,7 +2,7 @@
     background: var(--primary-gradient);
     border-radius: 10px;
     text-align: center;
-    color: #FAFAFA;
+    color: var(--white);
     font-style: normal;
     font-weight: 590;
     font-size: 18px;
@@ -13,7 +13,7 @@
 }
 
 .button:disabled {
-    background: #F6F7FB;
-    color: #d3d3d3;
+    background: var(--white);
+    color: var(--gray);
     cursor: not-allowed;
 }
