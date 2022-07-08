@@ -1,0 +1,15 @@
+.dialogHeaderInfo {
+    display: flex;
+    align-items: center;
+}
+
+.dialogHeaderInfoFullName {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--black);
+}
+
+.bubbleBlock {
+    padding: 20px;
+}

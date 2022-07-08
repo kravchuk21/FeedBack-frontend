@@ -5,6 +5,7 @@ import Avatar from '../../components/Avatar'
 import IconButton from '../../components/IconButton'
 import Header from '../../layout/Header'
 import Bubble from "../../components/Bubble";
+import styles from "../../styles/Dialog.module.css";
 
 const Dialog: NextPage = () => {
     const router = useRouter()
@@ -17,13 +18,16 @@ const Dialog: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Header>
-                <IconButton onClick={() => router.back()} iconPath="/assets/icons/search.svg"/>
-                <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
-                        avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
+                <IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg"/>
+                <div className={styles.dialogHeaderInfo}>
+                    <h3 className={styles.dialogHeaderInfoFullName}>Vladislav Kravchuk</h3>
+                </div>
+                    <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
+                            avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
             </Header>
-            <div>
+            <div className={styles.bubbleBlock}>
                 <Bubble text="Hello" isMe/>
-                <Bubble text="Hi✋" isMe={false}/>
+                <Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
                 <Bubble text="How are you?" isMe={false}/>
             </div>
         </div>
