@@ -18,7 +18,7 @@ const Home: NextPage = () => {
                 text: 'Login here'
             }}>
                 <h1>AuthLayout</h1>
-                <Button text="hello" onClick={() => console.log("button")}/>
+                <Button text="hello" onClick={() => console.log(1+2)}/>
                 <Button text="hello" disabled onClick={() => console.log("disabled")}/>
             </AuthLayout>
         </div>
