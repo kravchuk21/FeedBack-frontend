@@ -3,9 +3,10 @@
     background: var(--white);
     padding: 10px 15px;
     cursor: pointer;
+    align-items: flex-start;
 }
 
-.dialogItem:hover {
+.dialogItem:hover, .dialogItem:focus     {
     background: var(--light-gray);
 }
 
@@ -28,8 +29,9 @@
     white-space: nowrap;
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
     color: var(--primary);
+    margin: 3px 0;
 }
 
 .dialogItemLastMessageTime {
