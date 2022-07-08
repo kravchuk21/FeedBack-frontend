@@ -1,11 +1,10 @@
 import type {NextPage} from 'next'
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
-import Button from "../components/Button";
-import Link from "next/link";
 import Avatar from "../components/Avatar";
-import Bubble from "../components/Bubble";
 import Header from '../layout/Header';
+import IconButton from "../components/IconButton";
+import DialogItem from "../components/DialogItem";
 
 const Home: NextPage = () => {
     return (
@@ -16,21 +15,18 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/favicon.ico"/>
             </Head>
             <Header>
-                <span>hello</span>
+                <IconButton iconPath="/assets/icons/search.svg"/>
+                <h3>Home</h3>
+                <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
+                        avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
             </Header>
-            <br/>
-            <Link href="/auth/login">
-                <a>
-                    <Button text="hello" onClick={() => console.log(1 + 2)}/>
-                </a>
-            </Link>
-            <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}/>
-            <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
-                    avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
-            <Bubble
-                text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                isMe/>
-            <Bubble text="Hello world" isMe={false}/>
+            <DialogItem _id={"123k21m1123ouawe"}
+                        lastMessageText={"Loreinguincuincludinguincludinguincludinguincludingversions of Lorem Ipsum."}
+                        lastMessageTime={new Date()} fullName={"Vladislav Kravchuk"}/>
+            <DialogItem _id={"123k21m1123ouawe"}
+                        lastMessageText={"Hello 📬"}
+                        avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}
+                        lastMessageTime={new Date()} fullName={"Vladislav Kravchuk"}/>
         </div>
     )
 }
