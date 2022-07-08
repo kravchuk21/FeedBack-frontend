@@ -1,0 +1,9 @@
+.iconButton {
+    background: none;
+    border: none;
+    outline-color: #FF7841;
+    height: 24px;
+    width: 24px;
+    box-sizing: content-box;
+    padding: 2px;
+}
