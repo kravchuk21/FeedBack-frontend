@@ -24,7 +24,7 @@ const Home: NextPage = () => {
                 <h1>AuthLayout</h1>
                 <PasswordInput/>
                 <Input icon='/assets/input_icons/mail.svg' type='email'/>
-                <Input/>
+                <Input placeholder="input"/>
             </AuthLayout>
         </div>
     )

@@ -10,7 +10,14 @@
     padding-bottom: 16px;
     border: none;
     width: 100%;
-    outline-color: #FF7841;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    color: #262626;
+}
+
+.input::placeholder {
+    color: #E5E5E5;
 }
 
 .inputIcon {
