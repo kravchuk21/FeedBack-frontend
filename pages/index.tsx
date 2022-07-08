@@ -3,6 +3,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Button from "../components/Button";
 import Link from "next/link";
+import Avatar from "../components/Avatar";
 
 const Home: NextPage = () => {
     return (
@@ -18,6 +19,9 @@ const Home: NextPage = () => {
                     <Button text="hello" onClick={() => console.log(1 + 2)}/>
                 </a>
             </Link>
+            <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}/>
+            <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
+                    avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
         </div>
     )
 }
