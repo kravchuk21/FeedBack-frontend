@@ -4,6 +4,7 @@ import styles from '../styles/Home.module.css'
 import AuthLayout from "../layout/AuthLayout";
 import Button from "../components/Button";
 import Input from "../components/Input";
+import PasswordInput from "../components/PasswordInput";
 
 const Home: NextPage = () => {
     return (
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
                 <Button text="hello" onClick={() => console.log(1 + 2)}/>
                 <Button text="hello" disabled onClick={() => console.log("disabled")}/>
                 <h1>AuthLayout</h1>
+                <PasswordInput/>
                 <Input icon='/assets/input_icons/mail.svg' type='email'/>
                 <Input/>
             </AuthLayout>
