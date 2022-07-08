@@ -14,7 +14,7 @@
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
-    color: #FF7841;
+    color: var(--primary);
     text-align: center;
     margin-bottom: 70px;
 }
@@ -37,5 +37,5 @@
 }
 
 .authLayoutLink a {
-    color: #FF7841;
+    color: var(--primary);
 }

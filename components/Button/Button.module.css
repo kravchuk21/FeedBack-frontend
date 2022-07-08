@@ -1,12 +1,12 @@
 .button {
-    background: linear-gradient(114.78deg, #FFA925 -5.11%, #FF7841 125.67%);
+    background: var(--primary-gradient);
     border-radius: 10px;
     text-align: center;
     color: #FAFAFA;
     font-style: normal;
     font-weight: 590;
     font-size: 18px;
-    outline-color: #FF7841;
+    outline-color: var(--primary);
     border: none;
     padding: 20px 40px;
     width: 100%;

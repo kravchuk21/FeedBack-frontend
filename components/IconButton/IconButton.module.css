@@ -1,7 +1,7 @@
 .iconButton {
     background: none;
     border: none;
-    outline-color: #FF7841;
+    outline-color: var(--primary);
     height: 24px;
     width: 24px;
     box-sizing: content-box;
