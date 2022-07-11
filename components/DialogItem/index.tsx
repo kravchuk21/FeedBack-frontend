@@ -10,7 +10,6 @@ interface DialogItem extends Omit<Avatar, 'path'> {
 }
 
 const DialogItem: React.FC<DialogItem> = (props) => {
-    //TODO: path to dialog
     const path = '/dialog/' + props._id
     return (
         <Link href={path}>

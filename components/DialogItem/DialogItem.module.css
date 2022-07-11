@@ -4,6 +4,7 @@
     padding: 10px 15px;
     cursor: pointer;
     align-items: flex-start;
+    transition: var(--transition);
 }
 
 .dialogItem:hover, .dialogItem:focus {
@@ -25,7 +26,7 @@
 .dialogItemLastMessageText {
     text-overflow: ellipsis;
     overflow: hidden;
-    width: 200px;
+    width: 250px;
     white-space: nowrap;
     font-style: normal;
     font-weight: 500;

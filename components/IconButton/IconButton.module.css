@@ -9,4 +9,9 @@
     background: var(--light-gray);
     cursor: pointer;
     border-radius: 6px;
+    transition: var(--transition);
+}
+
+.iconButton:hover, .iconButton:focus {
+    background: var(--gray);
 }
