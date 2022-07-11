@@ -16,10 +16,11 @@ const Login: NextPage = () => {
 
             <AuthLayout title="Sign In" link={{
                 path: '/auth/register',
-                text: 'Login here'
+                linkText: 'Login here',
+                text: 'Want to create an account?'
             }}>
-                <Input className={styles.input} icon='/assets/input_icons/mail.svg' placeholder="E-mail"/>
-                <PasswordInput className={styles.input}/>
+                <Input className={styles.input} icon='/assets/input_icons/mail.svg' placeholder="E-mail" type='email'/>
+                <PasswordInput className={styles.input} placeholder='Password'/>
                 <Button text="Sign In" onClick={() => console.log("Sign In")}/>
             </AuthLayout>
         </div>

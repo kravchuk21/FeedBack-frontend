@@ -15,11 +15,13 @@ const Verify: NextPage = () => {
 			</Head>
 
 			<AuthLayout title="Verify" link={{
-				path: '/auth/login',
-				text: 'Login here'
+				path: '/auth/register',
+				linkText: 'Login here',
+				text: 'Want to create an account?'
 			}}>
-				<Input className={styles.input} placeholder="Enter 4-symbol code" maxLength={4} type='tel'/>
-				<Button text="Verify" onClick={() => console.log('verify')}/>
+				<Input className={styles.input} placeholder="Enter 4-symbol code" maxLength={4} type='tel' icon='/assets/input_icons/key.svg'/>
+				<Button className={styles.button} text="Confirm" onClick={() => console.log('verify')}/>
+				<Button className={styles.button} text="Get a new code" onClick={() => console.log('verify')}/>
 			</AuthLayout>
 		</div>
 	);
