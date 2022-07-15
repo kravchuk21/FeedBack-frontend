@@ -8,5 +8,5 @@
     padding: 7px;
     background: var(--light-gray);
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: var(--radius);
 }

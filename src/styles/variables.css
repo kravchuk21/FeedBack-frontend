@@ -6,4 +6,7 @@
     --gray: #d3d3d3;
     --white-gray: #ededed;
     --white: #FFFFFF;
+    --error: #fb654a;
+    --error-light: #faddd8;
+    --radius: 12px;
 }

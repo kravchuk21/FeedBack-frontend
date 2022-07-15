@@ -22,8 +22,8 @@ const Register: NextPage = () => {
 	const {push} = useRouter();
 	const dispatch = useAppDispatch();
 
-	const {register, handleSubmit, formState, reset} = useForm<IFormInputs>({
-		mode: 'onChange',
+	const {register, handleSubmit, formState: {errors, isSubmitting, isValid}, reset} = useForm<IFormInputs>({
+		mode: 'onBlur',
 		resolver: yupResolver(RegisterFormSchema),
 	});
 
@@ -55,17 +55,20 @@ const Register: NextPage = () => {
 					<Input className={styles.input}
 						   icon="/assets/input_icons/person.svg"
 						   placeholder="Full name"
+						   error={!!errors.fullName?.message}
 						   {...register('fullName')}/>
 					<Input className={styles.input}
 						   icon="/assets/input_icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
+						   error={!!errors.email?.message}
 						   {...register('email')}/>
 					<PasswordInput className={styles.input}
 								   placeholder="Password"
+								   error={!!errors.password?.message}
 								   {...register('password')}/>
 					<Button type="submit"
-							disabled={!formState.isValid || formState.isSubmitting}
+							disabled={!isValid || isSubmitting}
 							text="Sign Up"
 					/>
 				</form>

@@ -21,8 +21,8 @@ interface IFormInputs extends LoginUserDto {
 const Login: NextPage = () => {
 	const {push} = useRouter();
 	const dispatch = useAppDispatch();
-	const {register, handleSubmit, formState, reset} = useForm<IFormInputs>({
-		mode: 'onChange',
+	const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, reset} = useForm<IFormInputs>({
+		mode: 'onBlur',
 		resolver: yupResolver(LoginFormSchema),
 	});
 
@@ -57,12 +57,14 @@ const Login: NextPage = () => {
 						   icon="/assets/input_icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
+						   error={!!errors.email?.message}
 						   {...register('email')}/>
 					<PasswordInput className={styles.input}
 								   placeholder="Password"
+								   error={!!errors.password?.message}
 								   {...register('password')}/>
 					<Button type="submit"
-							disabled={!formState.isValid || formState.isSubmitting}
+							disabled={!isValid || isSubmitting}
 							text="Sign In"
 					/>
 				</form>

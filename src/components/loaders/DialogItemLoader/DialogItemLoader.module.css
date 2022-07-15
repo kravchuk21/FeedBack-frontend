@@ -22,5 +22,5 @@
     height: 14px;
     width: 200px;
     margin-bottom: 10px;
-    border-radius: 8px;
+    border-radius: var(--radius);
 }

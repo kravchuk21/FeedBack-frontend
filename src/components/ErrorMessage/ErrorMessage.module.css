@@ -1,0 +1,9 @@
+.errorMessage {
+    color: var(--white);
+    padding: 10px 20px;
+    width: 100%;
+    display: block;
+    border-radius: var(--radius);
+    background-color: var(--error);
+    margin: 20px 0;
+}

@@ -6,6 +6,7 @@ import {useAppSelector} from '../../store/hooks';
 import {selectError, selectLoadingState} from '../../store/slices/auth';
 import {LoadingState} from '../../store/types';
 import {Routes} from '../../constants/routes';
+import ErrorMessage from '../../components/ErrorMessage';
 
 interface AuthLayout {
 	title: string;
@@ -28,7 +29,7 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
 			<div className={styles.authLayoutBlock}>
 				<h1 className={styles.authLayoutTitle}>{title}</h1>
 				{loadingState === LoadingState.LOADING ? <h1>Loading</h1> : children}
-				{error[0] && <h1>{error}</h1>}
+				{error[0] && <ErrorMessage message={error}/>}
 				<p className={styles.authLayoutLink}>
 					{link.text}
 					<Link href={link.path}>
