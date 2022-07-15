@@ -13,3 +13,5 @@ const Button: React.FC<Button> = ({text, disabled = false, className, ...props})
 );
 
 export default Button;
+
+// TODO: change disabled background
