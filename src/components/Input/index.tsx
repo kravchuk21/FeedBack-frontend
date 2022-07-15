@@ -26,5 +26,3 @@ const Input = React.forwardRef<HTMLInputElement, Input>(function Input({icon, er
 });
 
 export default Input;
-
-// TODO: make error state

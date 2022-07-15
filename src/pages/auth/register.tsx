@@ -78,5 +78,3 @@ const Register: NextPage = () => {
 };
 
 export default Register;
-
-// TODO: Error message component

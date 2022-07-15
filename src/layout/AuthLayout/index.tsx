@@ -7,6 +7,7 @@ import {selectError, selectLoadingState} from '../../store/slices/auth';
 import {LoadingState} from '../../store/types';
 import {Routes} from '../../constants/routes';
 import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/loaders/Loading';
 
 interface AuthLayout {
 	title: string;
@@ -28,7 +29,7 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
 				   alt={'auth bg'}/>
 			<div className={styles.authLayoutBlock}>
 				<h1 className={styles.authLayoutTitle}>{title}</h1>
-				{loadingState === LoadingState.LOADING ? <h1>Loading</h1> : children}
+				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
 				{error[0] && <ErrorMessage message={error}/>}
 				<p className={styles.authLayoutLink}>
 					{link.text}
@@ -40,6 +41,15 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
 		</div>
 	);
 };
+
+
+const AuthLoader = () => {
+	return (
+		<div className={styles.authLayoutLoader}>
+			<Loading/>
+		</div>
+	)
+}
 
 export default AuthLayout;
 
