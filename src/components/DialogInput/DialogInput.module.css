@@ -1,5 +1,5 @@
 .dialogInputBlock {
-    background: var(--light-gray);
+    background: var(--bg-light);
     display: flex;
     align-items: center;
     padding: 20px;
@@ -11,5 +11,5 @@
 }
 
 .dialogInputIconButton {
-    background: var(--white-gray);
+    background: var(--bg-light);
 }

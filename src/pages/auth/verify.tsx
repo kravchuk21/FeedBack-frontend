@@ -22,7 +22,7 @@ interface IFormInputs {
 const Verify: NextPage = () => {
 	const {push} = useRouter();
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid}, reset} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(VerifyFormSchema),
 	});
 	const dispatch = useAppDispatch();
@@ -68,7 +68,7 @@ const Verify: NextPage = () => {
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input} placeholder="Enter 4-symbol code" maxLength={4} type="tel"
-						   icon="/assets/input_icons/key.svg"
+						   icon="/assets/icons/key.svg"
 						   error={!!errors.verificationCode?.message}
 						   {...register('verificationCode')}/>
 					<Button className={styles.button} text="Confirm"

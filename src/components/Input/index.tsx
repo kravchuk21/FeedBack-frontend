@@ -1,10 +1,11 @@
 import React, {DetailedHTMLProps, InputHTMLAttributes} from 'react';
 import styles from './Input.module.css';
 import Image from 'next/image';
+import {pathToIcon} from '../../constants/images';
 
 interface Input extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	error?: boolean;
-	icon?: string;
+	icon?: pathToIcon;
 }
 
 const Input = React.forwardRef<HTMLInputElement, Input>(function Input({icon, error, className, ...props}, ref) {

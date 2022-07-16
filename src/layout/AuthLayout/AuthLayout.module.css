@@ -20,20 +20,17 @@
 }
 
 .authLayoutBlock {
-    background-color: var(--white);
+    background-color: var(--bg);
     border-top-left-radius: 60px;
     padding: 55px 30px;
     position: relative;
     z-index: 2;
-    top: -140px;
+    margin-top: -140px;
 }
 
 .authLayoutLink {
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
+    padding-top: 20px;
     text-align: center;
-    color: var(--black);
 }
 
 .authLayoutLink a {

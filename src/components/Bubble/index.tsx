@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from "./Bubble.module.css";
+import Typography from '../Typography';
 
 interface Bubble {
     text: string;
@@ -9,7 +10,7 @@ interface Bubble {
 const Bubble: React.FC<Bubble> = ({text, isMe}) => {
     return (
         <div className={`${styles.bubbleBlock} ${isMe && styles.bubbleBlockIsMe}`}>
-            <p className={styles.bubbleBlockText}>{text}</p>
+            <Typography className={styles.bubbleBlockText}>{text}</Typography>
         </div>
     );
 };

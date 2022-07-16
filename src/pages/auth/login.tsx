@@ -22,7 +22,7 @@ const Login: NextPage = () => {
 	const {push} = useRouter();
 	const dispatch = useAppDispatch();
 	const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, reset} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(LoginFormSchema),
 	});
 
@@ -54,7 +54,7 @@ const Login: NextPage = () => {
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/mail.svg"
+						   icon="/assets/icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
 						   error={!!errors.email?.message}

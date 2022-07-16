@@ -19,9 +19,9 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInput>(function
 
     return (
         <div className={`${styles.passwordInput} ${className}`}>
-            <Input icon="/assets/input_icons/password.svg" type={type} {...props} ref={ref}/>
+            <Input icon="/assets/icons/password.svg" type={type} {...props} ref={ref}/>
             <IconButton className={styles.passwordInputIconButton}
-                        iconPath="/assets/input_icons/eye.svg"
+                        iconPath="/assets/icons/eye.svg"
                         alt="Watch password"
                         onClick={handleClickIconButton}
                         onMouseOut={handleMouseOutIconButton}
@@ -32,5 +32,3 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInput>(function
 })
 
 export default PasswordInput;
-
-// TODO: change enter event to space

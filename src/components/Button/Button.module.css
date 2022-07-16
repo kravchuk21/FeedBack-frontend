@@ -2,18 +2,22 @@
     background: var(--primary-gradient);
     border-radius: var(--radius);
     text-align: center;
-    color: var(--white);
-    font-style: normal;
-    font-weight: 590;
-    font-size: 18px;
-    outline-color: var(--primary);
     border: none;
-    padding: 20px 40px;
+    padding: 20px;
     width: 100%;
 }
 
+.buttonText {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--typography-light);
+}
+
 .button:disabled {
-    background: var(--light-gray);
-    color: var(--gray);
+    background: var(--bg-light);
     cursor: not-allowed;
+}
+
+.button:disabled .buttonText {
+    color: var(--typography);
 }

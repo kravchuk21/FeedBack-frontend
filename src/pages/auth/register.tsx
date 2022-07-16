@@ -23,7 +23,7 @@ const Register: NextPage = () => {
 	const dispatch = useAppDispatch();
 
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid}, reset} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(RegisterFormSchema),
 	});
 
@@ -53,12 +53,12 @@ const Register: NextPage = () => {
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/person.svg"
+						   icon="/assets/icons/person.svg"
 						   placeholder="Full name"
 						   error={!!errors.fullName?.message}
 						   {...register('fullName')}/>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/mail.svg"
+						   icon="/assets/icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
 						   error={!!errors.email?.message}
