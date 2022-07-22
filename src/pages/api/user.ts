@@ -1,6 +1,7 @@
 import {AxiosInstance} from 'axios';
-import {CreateUserDto, LoginResponse, LoginUserDto, ResponseData, VerifyUserDto} from './types';
+import {LoginResponse, ResponseData} from './types.response';
 import {UserInterface} from '../../interfaces/user.interface';
+import {CreateUserDto, LoginUserDto, SearchUserDto, VerifyUserDto} from './types.dto';
 
 export const UserApi = (instance: AxiosInstance) => ({
 	async register(dto: CreateUserDto) {
@@ -20,7 +21,11 @@ export const UserApi = (instance: AxiosInstance) => ({
 		return data;
 	},
 	async getMe() {
-		const { data } = await instance.get<unknown, ResponseData<UserInterface>>('/user/me');
+		const {data} = await instance.get<unknown, ResponseData<UserInterface>>('/user/me');
 		return data;
 	},
+	async search(dto: SearchUserDto) {
+		const {data} = await instance.get<unknown, ResponseData<UserInterface[]>>('/user/search/' + dto.text);
+		return data;
+	}
 });

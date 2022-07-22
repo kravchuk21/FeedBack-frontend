@@ -6,8 +6,12 @@ import IconButton from "../components/IconButton";
 import DialogItem from "../components/DialogItem";
 import DialogItemLoader from "../components/loaders/DialogItemLoader";
 import Title from '../components/Title';
+import {useRouter} from 'next/router';
+import { Routes } from '../constants/routes';
 
 const Home: NextPage = () => {
+    const router = useRouter();
+
     return (
         <div>
             <Head>
@@ -16,7 +20,7 @@ const Home: NextPage = () => {
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
             <Header>
-                <IconButton iconPath="/assets/icons/search.svg"/>
+                <IconButton onClick={() => router.push(Routes.SEARCH)} iconPath="/assets/icons/search.svg"/>
                 <Title>Home</Title>
                 <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
                         avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>

@@ -9,7 +9,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {RegisterFormSchema} from '../../utils/validation';
 import {useForm} from 'react-hook-form';
 import React from 'react';
-import {CreateUserDto, ResponseError} from '../api/types';
+import {CreateUserDto, ResponseError} from '../api/types.response';
 import {useRouter} from 'next/router';
 import {useAppDispatch} from '../../store/hooks';
 import {fetchRegister} from '../../store/slices/auth';

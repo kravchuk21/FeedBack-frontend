@@ -3,4 +3,5 @@ export enum Routes {
 	LOGIN = '/auth/login',
 	REGISTER = '/auth/register',
 	VERIFY = '/auth/verify',
+	SEARCH = '/search',
 }

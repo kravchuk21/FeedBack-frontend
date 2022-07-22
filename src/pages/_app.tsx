@@ -12,7 +12,9 @@ import {Routes} from '../constants/routes';
 function MyApp({Component, pageProps}: AppProps) {
 
 	return <ThemeProvider defaultTheme="system" themes={['dark', 'light']}>
-		<Component {...pageProps} />
+		<div className="container">
+			<Component {...pageProps} />
+		</div>
 	</ThemeProvider>;
 }
 

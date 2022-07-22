@@ -9,7 +9,7 @@ import {useRouter} from 'next/router';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {VerifyFormSchema} from '../../utils/validation';
-import {ResponseError} from '../api/types';
+import {ResponseError} from '../api/types.response';
 import {fetchGetNewVerify, fetchVerify, selectUserEmail} from '../../store/slices/auth';
 import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {Routes} from '../../constants/routes';

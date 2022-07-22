@@ -9,7 +9,7 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {LoginFormSchema} from '../../utils/validation';
-import {LoginResponse, LoginUserDto, ResponseError} from '../api/types';
+import {LoginResponse, LoginUserDto, ResponseError} from '../api/types.response';
 import {useRouter} from 'next/router';
 import {useAppDispatch} from '../../store/hooks';
 import {fetchLogin} from '../../store/slices/auth';

@@ -2,10 +2,11 @@ import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import {RootState} from '../store';
 import {UserInterface} from '../../interfaces/user.interface';
 import {Api} from '../../pages/api';
-import {CreateUserDto, LoginResponse, LoginUserDto, ResponseError, VerifyUserDto} from '../../pages/api/types';
+import {LoginResponse, ResponseError} from '../../pages/api/types.response';
 import {LoadingState} from '../types';
 import {setCookie} from 'nookies';
 import {SOMETHING_WENT_WRONG} from '../../constants/api';
+import { CreateUserDto, LoginUserDto, VerifyUserDto } from '../../pages/api/types.dto';
 
 export interface AuthState {
 	isAuth: boolean;
