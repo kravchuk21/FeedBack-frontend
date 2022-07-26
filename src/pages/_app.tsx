@@ -1,43 +1,43 @@
-import '../styles/variables.css';
-import '../styles/globals.css';
-import {wrapper} from '../store/store';
-import React from 'react';
-import {AppProps} from 'next/app';
-import {Api} from './api';
-import {setUserData} from '../store/slices/user';
-import {UserInterface} from '../interfaces/user.interface';
-import {ThemeProvider} from 'next-themes';
-import {Routes} from '../constants/routes';
+import '../styles/variables.css'
+import '../styles/globals.css'
+import {wrapper,} from '../store/store'
+import React from 'react'
+import {AppProps,} from 'next/app'
+import {Api,} from './api'
+import {setUserData,} from '../store/slices/user'
+import {UserInterface,} from '../interfaces/user.interface'
+import {ThemeProvider,} from 'next-themes'
+import {Routes,} from '../constants/routes'
 
-function MyApp({Component, pageProps}: AppProps) {
+function MyApp({Component, pageProps,}: AppProps) {
 
-	return <ThemeProvider defaultTheme="system" themes={['dark', 'light']}>
+	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
 		<div className="container">
 			<Component {...pageProps} />
 		</div>
-	</ThemeProvider>;
+	</ThemeProvider>
 }
 
-MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component}) => {
+MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component,}) => {
 	try {
-		const userData = await Api(ctx).user.getMe();
-		store.dispatch(setUserData(userData as UserInterface));
+		const userData = await Api(ctx).user.getMe()
+		store.dispatch(setUserData(userData as UserInterface))
 	} catch (err: any) {
 		if (ctx.asPath?.split('/').some(i => i === 'auth') === false) {
 			if (ctx.res) {
 				ctx.res.writeHead(302, {
 					Location: Routes.LOGIN,
-				});
-				ctx.res.end();
+				})
+				ctx.res.end()
 			}
 		}
 	}
 
 	return {
-		pageProps: Component.getInitialProps ? await Component.getInitialProps({...ctx, store}) : {}
-	};
-});
+		pageProps: Component.getInitialProps ? await Component.getInitialProps({...ctx, store,}) : {},
+	}
+})
 
 
-export default wrapper.withRedux(MyApp);
+export default wrapper.withRedux(MyApp)
 

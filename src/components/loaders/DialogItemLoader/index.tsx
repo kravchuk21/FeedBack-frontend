@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './DialogItemLoader.module.css';
+import React from 'react'
+import styles from './DialogItemLoader.module.css'
 
 const DialogItemLoader = () => {
     return (
@@ -10,7 +10,7 @@ const DialogItemLoader = () => {
                 <div className={styles.dialogItemLoaderLine}/>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default DialogItemLoader;
+export default DialogItemLoader

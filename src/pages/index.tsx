@@ -1,16 +1,16 @@
-import type {NextPage} from 'next'
+import type {NextPage,} from 'next'
 import Head from 'next/head'
-import Avatar from "../components/Avatar";
-import Header from '../layout/Header';
-import IconButton from "../components/IconButton";
-import DialogItem from "../components/DialogItem";
-import DialogItemLoader from "../components/loaders/DialogItemLoader";
-import Title from '../components/Title';
-import {useRouter} from 'next/router';
-import { Routes } from '../constants/routes';
+import Avatar from '../components/Avatar'
+import Header from '../layout/Header'
+import IconButton from '../components/IconButton'
+import DialogItem from '../components/DialogItem'
+import DialogItemLoader from '../components/loaders/DialogItemLoader'
+import Title from '../components/Title'
+import {useRouter,} from 'next/router'
+import { Routes, } from '../constants/routes'
 
 const Home: NextPage = () => {
-    const router = useRouter();
+    const router = useRouter()
 
     return (
         <div>
@@ -22,16 +22,16 @@ const Home: NextPage = () => {
             <Header>
                 <IconButton onClick={() => router.push(Routes.SEARCH)} iconPath="/assets/icons/search.svg"/>
                 <Title>Home</Title>
-                <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
-                        avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>
+                <Avatar path="/auth/register" fullName={'Vladislav Kravchuk'}
+                        avatarUrl={'https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'}/>
             </Header>
-            <DialogItem _id={"123k21m1123ouawe"}
-                        lastMessageText={"Loreinguincuincludinguincludinguincludinguincludingversions of Lorem Ipsum."}
-                        lastMessageTime={new Date()} fullName={"Vladislav Kravchuk"}/>
-            <DialogItem _id={"123k21m1123ouawe"}
-                        lastMessageText={"Hello 📬"}
-                        avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}
-                        lastMessageTime={new Date()} fullName={"Vladislav Kravchuk"}/>
+            <DialogItem _id={'123k21m1123ouawe'}
+                        lastMessageText={'Loreinguincuincludinguincludinguincludinguincludingversions of Lorem Ipsum.'}
+                        lastMessageTime={new Date()} fullName={'Vladislav Kravchuk'}/>
+            <DialogItem _id={'123k21m1123ouawe'}
+                        lastMessageText={'Hello 📬'}
+                        avatarUrl={'https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'}
+                        lastMessageTime={new Date()} fullName={'Vladislav Kravchuk'}/>
             <DialogItemLoader/>
             <DialogItemLoader/>
             <DialogItemLoader/>

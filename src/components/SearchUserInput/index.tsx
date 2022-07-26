@@ -1,27 +1,27 @@
-import React from 'react';
-import {fetchSearchUser} from '../../store/slices/search';
-import Input from '../Input';
-import {useAppDispatch} from '../../store/hooks';
+import React from 'react'
+import {fetchSearchUser,} from '../../store/slices/search'
+import Input from '../Input'
+import {useAppDispatch,} from '../../store/hooks'
 
 const SearchUserInput: React.FC = () => {
-	const dispatch = useAppDispatch();
-	const [searchQuery, setSearchQuery] = React.useState('');
+	const dispatch = useAppDispatch()
+	const [searchQuery, setSearchQuery,] = React.useState('')
 
 	React.useEffect(() => {
 		const getSearchData = () => {
-			dispatch(fetchSearchUser({text: searchQuery.trim()}));
-		};
-		let timer = setTimeout(() => {
+			dispatch(fetchSearchUser({text: searchQuery.trim(),}))
+		}
+		const timer = setTimeout(() => {
 			if (searchQuery) {
-				getSearchData();
+				getSearchData()
 			}
-		}, 500);
+		}, 500)
 
-		return () => clearTimeout(timer);
+		return () => clearTimeout(timer)
 
-	}, [dispatch, searchQuery]);
+	}, [dispatch, searchQuery,])
 
-	return <Input placeholder={'Enter to find'} onChange={e => setSearchQuery(e.currentTarget.value)}/>;
-};
+	return <Input placeholder={'Enter to find'} onChange={e => setSearchQuery(e.currentTarget.value)}/>
+}
 
-export default SearchUserInput;
+export default SearchUserInput

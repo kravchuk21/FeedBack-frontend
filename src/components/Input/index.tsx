@@ -1,7 +1,7 @@
-import React, {DetailedHTMLProps, InputHTMLAttributes} from 'react';
-import styles from './Input.module.css';
-import Image from 'next/image';
-import {pathToIcon} from '../../constants/images';
+import React, {DetailedHTMLProps, InputHTMLAttributes,} from 'react'
+import styles from './Input.module.css'
+import Image from 'next/image'
+import {pathToIcon,} from '../../constants/images'
 
 interface Input extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
 	error?: boolean;
@@ -9,12 +9,12 @@ interface Input extends DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>,
 }
 
 const Input = React.forwardRef<HTMLInputElement, Input>(function Input({icon, error, className, ...props}, ref) {
-	const padding = icon ? 60 : 20;
+	const padding = icon ? 60 : 20
 
 	const inputStyle = {
 		paddingRight: padding,
-		paddingLeft: padding
-	};
+		paddingLeft: padding,
+	}
 
 	return (
 		<div className={`${styles.inputBlock} ${className}`}>
@@ -23,7 +23,7 @@ const Input = React.forwardRef<HTMLInputElement, Input>(function Input({icon, er
             </div>}
 			<input style={inputStyle} className={`${styles.input} ${error && styles.inputError}`} {...props} ref={ref}/>
 		</div>
-	);
-});
+	)
+})
 
-export default Input;
+export default Input

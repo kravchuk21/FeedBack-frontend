@@ -1,5 +1,5 @@
-import React, {DetailedHTMLProps, ParamHTMLAttributes} from 'react';
-import styles from './Typography.module.css';
+import React, {DetailedHTMLProps, ParamHTMLAttributes,} from 'react'
+import styles from './Typography.module.css'
 
 export interface Typography extends DetailedHTMLProps<ParamHTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement> {
 	children: React.ReactNode;
@@ -7,7 +7,7 @@ export interface Typography extends DetailedHTMLProps<ParamHTMLAttributes<HTMLPa
 
 const Typography: React.FC<Typography> = ({className, children, ...props}) => (
 	<p className={`${styles.typography} ${className}`} {...props}>{children}</p>
-);
+)
 
 
-export default Typography;
+export default Typography

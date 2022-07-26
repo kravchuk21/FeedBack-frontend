@@ -1,13 +1,13 @@
-import React from 'react';
-import {LoadingState} from '../../store/types';
-import SearchUserItem from '../SearchUserItem';
-import DialogItemLoader from '../loaders/DialogItemLoader';
-import {useAppSelector} from '../../store/hooks';
-import {selectSearchData, selectSearchLoadingState} from '../../store/slices/search';
+import React from 'react'
+import {LoadingState,} from '../../store/types'
+import SearchUserItem from '../SearchUserItem'
+import DialogItemLoader from '../loaders/DialogItemLoader'
+import {useAppSelector,} from '../../store/hooks'
+import {selectSearchData, selectSearchLoadingState,} from '../../store/slices/search'
 
 const SearchUserItems = () => {
-	const loadingState = useAppSelector(selectSearchLoadingState);
-	const searchData = useAppSelector(selectSearchData);
+	const loadingState = useAppSelector(selectSearchLoadingState)
+	const searchData = useAppSelector(selectSearchData)
 
 	return (
 		<>
@@ -20,7 +20,7 @@ const SearchUserItems = () => {
 				)
 			}
 		</>
-	);
-};
+	)
+}
 
-export default SearchUserItems;
+export default SearchUserItems

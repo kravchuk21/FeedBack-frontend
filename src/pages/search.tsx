@@ -1,16 +1,16 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import Avatar from '../components/Avatar';
-import Header from '../layout/Header';
-import IconButton from '../components/IconButton';
-import Title from '../components/Title';
-import {useRouter} from 'next/router';
-import React from 'react';
-import SearchUserInput from '../components/SearchUserInput';
-import SearchUserItems from '../components/SearchUserItems';
+import type {NextPage,} from 'next'
+import Head from 'next/head'
+import Avatar from '../components/Avatar'
+import Header from '../layout/Header'
+import IconButton from '../components/IconButton'
+import Title from '../components/Title'
+import {useRouter,} from 'next/router'
+import React from 'react'
+import SearchUserInput from '../components/SearchUserInput'
+import SearchUserItems from '../components/SearchUserItems'
 
 const Search: NextPage = () => {
-	const router = useRouter();
+	const router = useRouter()
 
 	return (
 		<div>
@@ -30,7 +30,7 @@ const Search: NextPage = () => {
 			</div>
 			<SearchUserItems/>
 		</div>
-	);
-};
+	)
+}
 
-export default Search;
+export default Search

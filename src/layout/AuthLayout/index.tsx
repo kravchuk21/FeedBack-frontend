@@ -1,15 +1,15 @@
-import React from 'react';
-import styles from './AuthLayout.module.css';
-import Image from 'next/image';
-import Link from 'next/link';
-import {useAppSelector} from '../../store/hooks';
-import {selectError, selectLoadingState} from '../../store/slices/auth';
-import {LoadingState} from '../../store/types';
-import {Routes} from '../../constants/routes';
-import ErrorMessage from '../../components/ErrorMessage';
-import Loading from '../../components/loaders/Loading';
-import ThemeChanger from '../../components/ThemeChanger';
-import Typography from '../../components/Typography';
+import React from 'react'
+import styles from './AuthLayout.module.css'
+import Image from 'next/image'
+import Link from 'next/link'
+import {useAppSelector,} from '../../store/hooks'
+import {selectError, selectLoadingState,} from '../../store/slices/auth'
+import {LoadingState,} from '../../store/types'
+import {Routes,} from '../../constants/routes'
+import ErrorMessage from '../../components/ErrorMessage'
+import Loading from '../../components/loaders/Loading'
+import ThemeChanger from '../../components/ThemeChanger'
+import Typography from '../../components/Typography'
 
 interface AuthLayout {
 	title: string;
@@ -21,9 +21,9 @@ interface AuthLayout {
 	};
 }
 
-const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
-	const loadingState = useAppSelector(selectLoadingState);
-	const error = useAppSelector(selectError);
+const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
+	const loadingState = useAppSelector(selectLoadingState)
+	const error = useAppSelector(selectError)
 
 	return (
 		<div className={styles.authLayout}>
@@ -37,17 +37,17 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
 				<ThemeChanger/>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
-const AuthLink: React.FC<Pick<AuthLayout, 'link'>> = ({link}) => (
+const AuthLink: React.FC<Pick<AuthLayout, 'link'>> = ({link,}) => (
 	<Typography className={styles.authLayoutLink}>
 		{link.text}
 		<Link href={link.path}>
 			<a> {link.linkText}</a>
 		</Link>
 	</Typography>
-);
+)
 
 
 const AuthLoader = () => {
@@ -55,7 +55,7 @@ const AuthLoader = () => {
 		<div className={styles.authLayoutLoader}>
 			<Loading/>
 		</div>
-	);
-};
+	)
+}
 
-export default AuthLayout;
+export default AuthLayout

@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import React from 'react';
-import Avatar from '../Avatar';
-import styles from './DialogItem.module.css';
-import Typography from '../Typography';
-import Title from '../Title';
-import { dateFormat } from '../../utils/dateFormat';
+import Link from 'next/link'
+import React from 'react'
+import Avatar from '../Avatar'
+import styles from './DialogItem.module.css'
+import Typography from '../Typography'
+import Title from '../Title'
+import { dateFormat, } from '../../utils/dateFormat'
 
 interface DialogItem extends Omit<Avatar, 'path'> {
 	_id: string;
@@ -13,7 +13,7 @@ interface DialogItem extends Omit<Avatar, 'path'> {
 }
 
 const DialogItem: React.FC<DialogItem> = (props) => {
-	const path = '/dialog/' + props._id;
+	const path = '/dialog/' + props._id
 
 	return (
 		<Link href={path}>
@@ -26,7 +26,7 @@ const DialogItem: React.FC<DialogItem> = (props) => {
 				<Typography>{dateFormat(props.lastMessageTime)}</Typography>
 			</div>
 		</Link>
-	);
-};
+	)
+}
 
-export default DialogItem;
+export default DialogItem

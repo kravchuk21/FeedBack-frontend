@@ -1,18 +1,18 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import AuthLayout from '../../layout/AuthLayout';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import React from 'react';
-import styles from '../../styles/Auth.module.css';
-import {useRouter} from 'next/router';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {VerifyFormSchema} from '../../utils/validation';
-import {ResponseError} from '../api/types.response';
-import {fetchGetNewVerify, fetchVerify, selectUserEmail} from '../../store/slices/auth';
-import {useAppDispatch, useAppSelector} from '../../store/hooks';
-import {Routes} from '../../constants/routes';
+import type {NextPage,} from 'next'
+import Head from 'next/head'
+import AuthLayout from '../../layout/AuthLayout'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
+import React from 'react'
+import styles from '../../styles/Auth.module.css'
+import {useRouter,} from 'next/router'
+import {useForm,} from 'react-hook-form'
+import {yupResolver,} from '@hookform/resolvers/yup'
+import {VerifyFormSchema,} from '../../utils/validation'
+import {ResponseError,} from '../api/types.response'
+import {fetchGetNewVerify, fetchVerify, selectUserEmail,} from '../../store/slices/auth'
+import {useAppDispatch, useAppSelector,} from '../../store/hooks'
+import {Routes,} from '../../constants/routes'
 
 interface IFormInputs {
 	verificationCode: string;
@@ -20,39 +20,39 @@ interface IFormInputs {
 
 
 const Verify: NextPage = () => {
-	const {push} = useRouter();
-	const {register, handleSubmit, formState: {errors, isSubmitting, isValid}, reset} = useForm<IFormInputs>({
+	const {push,} = useRouter()
+	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(VerifyFormSchema),
-	});
-	const dispatch = useAppDispatch();
-	const email = useAppSelector(selectUserEmail);
+	})
+	const dispatch = useAppDispatch()
+	const email = useAppSelector(selectUserEmail)
 
 	React.useEffect(() => {
 		if (!email) {
-			push(Routes.LOGIN).then(() => null);
+			push(Routes.LOGIN).then(() => null)
 		}
-	}, [email, push]);
+	}, [email, push,])
 
 	const onSubmit = async (dto: IFormInputs) => {
 		if (email) {
-			dispatch(fetchVerify({email, verificationCode: dto.verificationCode})).then(async ({payload}) => {
+			dispatch(fetchVerify({email, verificationCode: dto.verificationCode,})).then(async ({payload,}) => {
 				if ((payload as ResponseError)?.error === undefined) {
-					await push(Routes.HOME);
+					await push(Routes.HOME)
 				} else {
-					reset();
+					reset()
 				}
-			});
+			})
 		}
-	};
+	}
 
 	const onGetNewVerificationCode = async () => {
 		if (email) {
-			dispatch(fetchGetNewVerify({email})).then(() => {
-				reset();
-			});
+			dispatch(fetchGetNewVerify({email,})).then(() => {
+				reset()
+			})
 		}
-	};
+	}
 
 	return (
 		<div>
@@ -64,7 +64,7 @@ const Verify: NextPage = () => {
 			<AuthLayout title="Verify" link={{
 				path: Routes.REGISTER,
 				linkText: 'Login here',
-				text: 'Want to create an account?'
+				text: 'Want to create an account?',
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input} placeholder="Enter 4-symbol code" maxLength={4} type="tel"
@@ -78,7 +78,7 @@ const Verify: NextPage = () => {
 				</form>
 			</AuthLayout>
 		</div>
-	);
-};
+	)
+}
 
-export default Verify;
+export default Verify
