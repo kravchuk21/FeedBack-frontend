@@ -9,14 +9,14 @@ import React from 'react'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {LoginFormSchema,} from '../../utils/validation'
-import {LoginResponse, LoginUserDto, ResponseError,} from '../api/types.response'
+import {LoginResponse, ResponseError,} from '../api/types.response'
 import {useRouter,} from 'next/router'
 import {useAppDispatch,} from '../../store/hooks'
 import {fetchLogin,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
+import {LoginUserDto,} from '../api/types.dto'
 
-interface IFormInputs extends LoginUserDto {
-}
+type IFormInputs = LoginUserDto
 
 const Login: NextPage = () => {
 	const {push,} = useRouter()

@@ -11,7 +11,7 @@ const SearchUserInput: React.FC = () => {
 		const getSearchData = () => {
 			dispatch(fetchSearchUser({text: searchQuery.trim(),}))
 		}
-		let timer = setTimeout(() => {
+		const timer = setTimeout(() => {
 			if (searchQuery) {
 				getSearchData()
 			}
