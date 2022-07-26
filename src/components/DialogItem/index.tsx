@@ -4,6 +4,7 @@ import Avatar from '../Avatar';
 import styles from './DialogItem.module.css';
 import Typography from '../Typography';
 import Title from '../Title';
+import { dateFormat } from '../../utils/dateFormat';
 
 interface DialogItem extends Omit<Avatar, 'path'> {
 	_id: string;
@@ -22,7 +23,7 @@ const DialogItem: React.FC<DialogItem> = (props) => {
 					<Title>{props.fullName}</Title>
 					<Typography className={styles.dialogItemLastMessageText}>{props.lastMessageText}</Typography>
 				</div>
-				<Typography>{props.lastMessageTime.getMinutes().toString()}</Typography>
+				<Typography>{dateFormat(props.lastMessageTime)}</Typography>
 			</div>
 		</Link>
 	);

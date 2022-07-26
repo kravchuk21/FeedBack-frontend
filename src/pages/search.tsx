@@ -3,20 +3,14 @@ import Head from 'next/head';
 import Avatar from '../components/Avatar';
 import Header from '../layout/Header';
 import IconButton from '../components/IconButton';
-import DialogItemLoader from '../components/loaders/DialogItemLoader';
 import Title from '../components/Title';
 import {useRouter} from 'next/router';
 import React from 'react';
-import {useAppSelector} from '../store/hooks';
-import {selectSearchData, selectSearchLoadingState} from '../store/slices/search';
-import {LoadingState} from '../store/types';
-import SearchUserItem from '../components/SearchUserItem';
 import SearchUserInput from '../components/SearchUserInput';
+import SearchUserItems from '../components/SearchUserItems';
 
 const Search: NextPage = () => {
 	const router = useRouter();
-	const loadingState = useAppSelector(selectSearchLoadingState);
-	const searchData = useAppSelector(selectSearchData);
 
 	return (
 		<div>
@@ -34,14 +28,7 @@ const Search: NextPage = () => {
 			<div className="m-3.5">
 				<SearchUserInput/>
 			</div>
-			{loadingState === LoadingState.LOADED && searchData && searchData.map(item => (
-				<SearchUserItem key={item._id} _id={item._id} email={item.email} fullName={item.fullName}/>
-			))}
-			{
-				loadingState === LoadingState.LOADING && (
-					new Array(5).fill(null).map((_, idx) => <DialogItemLoader key={idx}/>)
-				)
-			}
+			<SearchUserItems/>
 		</div>
 	);
 };

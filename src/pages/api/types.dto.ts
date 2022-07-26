@@ -15,3 +15,7 @@ export type VerifyUserDto = {
 export type SearchUserDto = {
 	text: string;
 };
+
+export type GetUserDto = {
+	userId: string;
+};

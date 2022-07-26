@@ -12,7 +12,7 @@ interface SearchUserItem extends Omit<Avatar, 'path'> {
 }
 
 const SearchUserItem: React.FC<SearchUserItem> = (props) => {
-	const path = '/dialog/' + props._id;
+	const path = '/profile/' + props._id;
 
 	return (
 		<Link href={path}>

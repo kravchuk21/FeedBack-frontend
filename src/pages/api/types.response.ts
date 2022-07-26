@@ -1,5 +1,5 @@
-export type ResponseData<D> = {
-	data: D | ResponseError;
+export type ResponseData<D, E = ResponseError> = {
+	data: D | E;
 }
 
 export type ResponseError = {

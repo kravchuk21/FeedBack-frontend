@@ -9,7 +9,7 @@ const SearchUserInput: React.FC = () => {
 
 	React.useEffect(() => {
 		const getSearchData = () => {
-			dispatch(fetchSearchUser({text: searchQuery}));
+			dispatch(fetchSearchUser({text: searchQuery.trim()}));
 		};
 		let timer = setTimeout(() => {
 			if (searchQuery) {
