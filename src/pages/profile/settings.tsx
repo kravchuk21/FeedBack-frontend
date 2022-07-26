@@ -1,7 +1,7 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import React from 'react';
-import Button from '../../components/Button';
+import type {NextPage,} from 'next'
+import Head from 'next/head'
+import React from 'react'
+import Button from '../../components/Button'
 
 const Settings: NextPage = () => {
 	return (
@@ -16,8 +16,8 @@ const Settings: NextPage = () => {
 				<Button text="Delete account"/>
 			</div>
 		</div>
-	);
-};
+	)
+}
 
 
-export default Settings;
+export default Settings

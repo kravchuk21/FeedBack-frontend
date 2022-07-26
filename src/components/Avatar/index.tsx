@@ -1,8 +1,8 @@
-import Link from 'next/link';
-import React from 'react';
-import styles from './Avatar.module.css';
-import Image from 'next/image';
-import Title from '../Title';
+import Link from 'next/link'
+import React from 'react'
+import styles from './Avatar.module.css'
+import Image from 'next/image'
+import Title from '../Title'
 
 interface Avatar {
 	path: string;
@@ -14,11 +14,11 @@ interface Avatar {
 
 const SIZES = {
 	small: 40,
-	large: 80
-};
+	large: 80,
+}
 
-const Avatar: React.FC<Avatar> = ({path, size = 'small', avatarUrl, fullName, className}) => {
-	const sizeStyle = { "--size": SIZES[size] + 'px' } as React.CSSProperties;
+const Avatar: React.FC<Avatar> = ({path, size = 'small', avatarUrl, fullName, className,}) => {
+	const sizeStyle = { '--size': SIZES[size] + 'px', } as React.CSSProperties
 
 	return (
 		<Link className={className} href={path}>
@@ -32,7 +32,7 @@ const Avatar: React.FC<Avatar> = ({path, size = 'small', avatarUrl, fullName, cl
 				}
 			</a>
 		</Link>
-	);
-};
+	)
+}
 
-export default Avatar;
+export default Avatar

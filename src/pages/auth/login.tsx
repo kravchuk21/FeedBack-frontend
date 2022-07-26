@@ -1,44 +1,44 @@
-import type {NextPage} from 'next';
-import Head from 'next/head';
-import AuthLayout from '../../layout/AuthLayout';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import PasswordInput from '../../components/PasswordInput';
-import styles from '../../styles/Auth.module.css';
-import React from 'react';
-import {useForm} from 'react-hook-form';
-import {yupResolver} from '@hookform/resolvers/yup';
-import {LoginFormSchema} from '../../utils/validation';
-import {LoginResponse, LoginUserDto, ResponseError} from '../api/types.response';
-import {useRouter} from 'next/router';
-import {useAppDispatch} from '../../store/hooks';
-import {fetchLogin} from '../../store/slices/auth';
-import {Routes} from '../../constants/routes';
+import type {NextPage,} from 'next'
+import Head from 'next/head'
+import AuthLayout from '../../layout/AuthLayout'
+import Button from '../../components/Button'
+import Input from '../../components/Input'
+import PasswordInput from '../../components/PasswordInput'
+import styles from '../../styles/Auth.module.css'
+import React from 'react'
+import {useForm,} from 'react-hook-form'
+import {yupResolver,} from '@hookform/resolvers/yup'
+import {LoginFormSchema,} from '../../utils/validation'
+import {LoginResponse, LoginUserDto, ResponseError,} from '../api/types.response'
+import {useRouter,} from 'next/router'
+import {useAppDispatch,} from '../../store/hooks'
+import {fetchLogin,} from '../../store/slices/auth'
+import {Routes,} from '../../constants/routes'
 
 interface IFormInputs extends LoginUserDto {
 }
 
 const Login: NextPage = () => {
-	const {push} = useRouter();
-	const dispatch = useAppDispatch();
-	const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, reset} = useForm<IFormInputs>({
+	const {push,} = useRouter()
+	const dispatch = useAppDispatch()
+	const {register, handleSubmit, formState: {errors, isValid, isSubmitting,}, reset,} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(LoginFormSchema),
-	});
+	})
 
 	const onSubmit = async (dto: IFormInputs) => {
-		dispatch(fetchLogin(dto)).then(async ({payload}) => {
+		dispatch(fetchLogin(dto)).then(async ({payload,}) => {
 			if ((payload as ResponseError)?.error !== undefined) {
-				reset();
+				reset()
 			} else if ((payload as LoginResponse)?.verify === true) {
-				await push(Routes.HOME);
+				await push(Routes.HOME)
 			} else if ((payload as LoginResponse)?.verify === false) {
-				await push(Routes.VERIFY);
+				await push(Routes.VERIFY)
 			} else {
-				reset();
+				reset()
 			}
-		});
-	};
+		})
+	}
 
 	return (
 		<div>
@@ -50,7 +50,7 @@ const Login: NextPage = () => {
 			<AuthLayout title="Sign In" link={{
 				path: Routes.REGISTER,
 				linkText: 'Register here',
-				text: 'Want to create an account?'
+				text: 'Want to create an account?',
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input}
@@ -70,7 +70,7 @@ const Login: NextPage = () => {
 				</form>
 			</AuthLayout>
 		</div>
-	);
-};
+	)
+}
 
-export default Login;
+export default Login

@@ -1,3 +1,10 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "ignorePatterns": ["next.config.js"],
+  "rules": {
+    "no-console": "warn",
+    "quotes": [2, "single", { "avoidEscape": true }],
+    "comma-dangle": ["error", "always"],
+    "semi": [2, "never"]
+  }
 }

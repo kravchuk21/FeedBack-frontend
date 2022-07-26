@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import React from 'react';
-import Avatar from '../Avatar';
-import styles from './SearchUserItem.module.css';
-import Typography from '../Typography';
-import Title from '../Title';
+import Link from 'next/link'
+import React from 'react'
+import Avatar from '../Avatar'
+import styles from './SearchUserItem.module.css'
+import Typography from '../Typography'
+import Title from '../Title'
 
 interface SearchUserItem extends Omit<Avatar, 'path'> {
 	_id: string;
@@ -12,7 +12,7 @@ interface SearchUserItem extends Omit<Avatar, 'path'> {
 }
 
 const SearchUserItem: React.FC<SearchUserItem> = (props) => {
-	const path = '/profile/' + props._id;
+	const path = '/profile/' + props._id
 
 	return (
 		<Link href={path}>
@@ -24,7 +24,7 @@ const SearchUserItem: React.FC<SearchUserItem> = (props) => {
 				</div>
 			</div>
 		</Link>
-	);
-};
+	)
+}
 
-export default SearchUserItem;
+export default SearchUserItem

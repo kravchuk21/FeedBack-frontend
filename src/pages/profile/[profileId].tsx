@@ -1,21 +1,21 @@
-import type {GetServerSidePropsContext, NextPage} from 'next';
-import Head from 'next/head';
-import {Api} from '../api';
-import {UserInterface} from '../../interfaces/user.interface';
-import React from 'react';
-import Avatar from '../../components/Avatar';
-import Title from '../../components/Title';
-import Typography from '../../components/Typography';
-import Link from 'next/link';
-import {Routes} from '../../constants/routes';
-import IconButton from '../../components/IconButton';
-import {dateFormat} from '../../utils/dateFormat';
+import type {GetServerSidePropsContext, NextPage,} from 'next'
+import Head from 'next/head'
+import {Api,} from '../api'
+import {UserInterface,} from '../../interfaces/user.interface'
+import React from 'react'
+import Avatar from '../../components/Avatar'
+import Title from '../../components/Title'
+import Typography from '../../components/Typography'
+import Link from 'next/link'
+import {Routes,} from '../../constants/routes'
+import IconButton from '../../components/IconButton'
+import {dateFormat,} from '../../utils/dateFormat'
 
 interface ProfilePageProps extends Record<string, unknown> {
 	data: UserInterface;
 }
 
-const Profile: NextPage<ProfilePageProps> = ({data}) => {
+const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 	return (
 		<div>
 			<Head>
@@ -38,38 +38,37 @@ const Profile: NextPage<ProfilePageProps> = ({data}) => {
 				<IconButton iconPath="/assets/icons/mail.svg"/>
 			</Link>
 		</div>
-	);
-};
+	)
+}
 
 export async function getServerSideProps(ctx: GetServerSidePropsContext) {
 	if (!ctx.params) {
 		return {
-			notFound: true
-		};
+			notFound: true,
+		}
 	}
-	const userId = ctx.params?.profileId;
+	const userId = ctx.params?.profileId
 
 	if (!userId) {
 		return {
-			notFound: true
-		};
+			notFound: true,
+		}
 	}
 
 	try {
 		if (userId && typeof userId === 'string') {
-			console.log('norm');
-			const data = await Api(ctx).user.getUser({userId});
-			return {props: {data}};
+			const data = await Api(ctx).user.getUser({userId,})
+			return {props: {data,},}
 		} else {
 			return {
-				notFound: true
-			};
+				notFound: true,
+			}
 		}
 	} catch {
 		return {
-			notFound: true
-		};
+			notFound: true,
+		}
 	}
 }
 
-export default Profile;
+export default Profile

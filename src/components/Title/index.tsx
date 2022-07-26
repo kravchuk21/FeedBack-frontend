@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './Title.module.css';
+import React from 'react'
+import styles from './Title.module.css'
 
 interface Title {
 	children: string;
@@ -9,7 +9,7 @@ interface Title {
 const Title: React.FC<Title> = ({children, className, ...props}) => {
 	return (
 		<h1 className={`${styles.title} ${className}`} {...props}>{children}</h1>
-	);
-};
+	)
+}
 
-export default Title;
+export default Title

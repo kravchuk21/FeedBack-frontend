@@ -1,7 +1,7 @@
-import React from 'react';
-import Input from '../Input';
-import IconButton from '../IconButton';
-import styles from './DialogInput.module.css';
+import React from 'react'
+import Input from '../Input'
+import IconButton from '../IconButton'
+import styles from './DialogInput.module.css'
 
 const DialogInput = () => {
 	return (
@@ -9,7 +9,7 @@ const DialogInput = () => {
 			<Input className={styles.dialogInput} placeholder="Type something.."/>
 			<IconButton className={styles.dialogInputIconButton} iconPath="/assets/icons/send.svg"/>
 		</div>
-	);
-};
+	)
+}
 
-export default DialogInput;
+export default DialogInput
