@@ -3,20 +3,21 @@
 }
 
 .input {
-    background: var(--light-gray);
-    border-radius: 10px;
+    background: var(--bg-light);
+    border-radius: var(--radius);
     padding-top: 16px;
     padding-bottom: 16px;
     border: none;
     width: 100%;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 14px;
-    color: var(--black);
+    color: var(--typography);
+}
+
+.inputError {
+    background: var(--error-light);
 }
 
 .input::placeholder {
-    color: var(--gray);
+    color: var(--typography);
 }
 
 .inputIcon {

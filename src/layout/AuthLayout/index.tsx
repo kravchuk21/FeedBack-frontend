@@ -6,6 +6,10 @@ import {useAppSelector} from '../../store/hooks';
 import {selectError, selectLoadingState} from '../../store/slices/auth';
 import {LoadingState} from '../../store/types';
 import {Routes} from '../../constants/routes';
+import ErrorMessage from '../../components/ErrorMessage';
+import Loading from '../../components/loaders/Loading';
+import ThemeChanger from '../../components/ThemeChanger';
+import Typography from '../../components/Typography';
 
 interface AuthLayout {
 	title: string;
@@ -23,25 +27,35 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link}) => {
 
 	return (
 		<div className={styles.authLayout}>
-			<Image className={styles.authLayoutImage} src="/assets/auth_bg.png" width={400} height={400}
+			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpeg" width={400} height={400}
 				   alt={'auth bg'}/>
 			<div className={styles.authLayoutBlock}>
 				<h1 className={styles.authLayoutTitle}>{title}</h1>
-				{loadingState === LoadingState.LOADING ? <h1>Loading</h1> : children}
-				{error[0] && <h1>{error}</h1>}
-				<p className={styles.authLayoutLink}>
-					{link.text}
-					<Link href={link.path}>
-						<a> {link.linkText}</a>
-					</Link>
-				</p>
+				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
+				{error[0] && <ErrorMessage message={error}/>}
+				<AuthLink link={link}/>
+				<ThemeChanger/>
 			</div>
 		</div>
 	);
 };
 
-export default AuthLayout;
+const AuthLink: React.FC<Pick<AuthLayout, 'link'>> = ({link}) => (
+	<Typography className={styles.authLayoutLink}>
+		{link.text}
+		<Link href={link.path}>
+			<a> {link.linkText}</a>
+		</Link>
+	</Typography>
+);
 
-// TODO: add optional description
-// TODO: change authLayout image
-// TODO: loading component
+
+const AuthLoader = () => {
+	return (
+		<div className={styles.authLayoutLoader}>
+			<Loading/>
+		</div>
+	);
+};
+
+export default AuthLayout;

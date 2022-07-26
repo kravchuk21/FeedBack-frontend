@@ -7,6 +7,7 @@ import Header from '../../layout/Header'
 import Bubble from "../../components/Bubble";
 import styles from "../../styles/Dialog.module.css";
 import DialogInput from "../../components/DialogInput";
+import Title from '../../components/Title'
 
 const Dialog: NextPage = () => {
     const router = useRouter()
@@ -21,7 +22,7 @@ const Dialog: NextPage = () => {
             <Header>
                 <IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg"/>
                 <div className={styles.dialogHeaderInfo}>
-                    <h3 className={styles.dialogHeaderInfoFullName}>Vladislav Kravchuk</h3>
+                    <Title>Vladislav Kravchuk</Title>
                 </div>
                 <Avatar path="/auth/register" fullName={"Vladislav Kravchuk"}
                         avatarUrl={"https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"}/>

@@ -1,7 +1,7 @@
 .bubbleBlock {
-    background: var(--light-gray);
-    border-radius: 20px 20px 20px 0;
-    padding: 12px 18px;
+    background: var(--bg-light);
+    border-radius: var(--radius);
+    padding: 12px;
     max-width: 200px;
     width: 100%;
     margin-bottom: 10px;
@@ -9,11 +9,7 @@
 
 .bubbleBlockIsMe {
     background: var(--primary-gradient);
-    border-radius: 20px 20px 0 20px;
-    color: var(--white);
+    border-radius: var(--radius);
+    color: var(--typography-light);
     margin-left: auto;
-}
-
-.bubbleBlockText {
-    margin: 0;
 }

@@ -1,0 +1,8 @@
+.typography {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 14px;
+    color: var(--typography);
+    margin: 0;
+}

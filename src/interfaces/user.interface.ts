@@ -4,6 +4,7 @@ export interface UserInterface extends TimeStems {
 	email: string;
 	verify: boolean;
 	access_token: string;
+	avatar: string | undefined;
 }
 
 export interface TimeStems {

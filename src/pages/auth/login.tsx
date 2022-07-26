@@ -9,7 +9,7 @@ import React from 'react';
 import {useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 import {LoginFormSchema} from '../../utils/validation';
-import {LoginResponse, LoginUserDto, ResponseError} from '../api/types';
+import {LoginResponse, LoginUserDto, ResponseError} from '../api/types.response';
 import {useRouter} from 'next/router';
 import {useAppDispatch} from '../../store/hooks';
 import {fetchLogin} from '../../store/slices/auth';
@@ -21,7 +21,7 @@ interface IFormInputs extends LoginUserDto {
 const Login: NextPage = () => {
 	const {push} = useRouter();
 	const dispatch = useAppDispatch();
-	const {register, handleSubmit, formState, reset} = useForm<IFormInputs>({
+	const {register, handleSubmit, formState: {errors, isValid, isSubmitting}, reset} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(LoginFormSchema),
 	});
@@ -54,15 +54,17 @@ const Login: NextPage = () => {
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/mail.svg"
+						   icon="/assets/icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
+						   error={!!errors.email?.message}
 						   {...register('email')}/>
 					<PasswordInput className={styles.input}
 								   placeholder="Password"
+								   error={!!errors.password?.message}
 								   {...register('password')}/>
 					<Button type="submit"
-							disabled={!formState.isValid || formState.isSubmitting}
+							disabled={!isValid || isSubmitting}
 							text="Sign In"
 					/>
 				</form>

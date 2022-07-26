@@ -1,14 +1,15 @@
 .avatarBlock {
+    --size: 40px;
     border-radius: 50%;
-    height: 40px;
-    width: 40px;
+    height: var(--size);
+    width: var(--size);
     background: var(--primary-gradient);
     text-align: center;
-    line-height: 40px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    color: var(--white);
+}
+
+.avatarBlockText {
+    color: var(--typography-light) !important;
+    line-height: var(--size);
 }
 
 .avatarBlockImage {

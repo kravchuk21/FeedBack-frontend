@@ -9,7 +9,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {RegisterFormSchema} from '../../utils/validation';
 import {useForm} from 'react-hook-form';
 import React from 'react';
-import {CreateUserDto, ResponseError} from '../api/types';
+import {CreateUserDto, ResponseError} from '../api/types.response';
 import {useRouter} from 'next/router';
 import {useAppDispatch} from '../../store/hooks';
 import {fetchRegister} from '../../store/slices/auth';
@@ -22,7 +22,7 @@ const Register: NextPage = () => {
 	const {push} = useRouter();
 	const dispatch = useAppDispatch();
 
-	const {register, handleSubmit, formState, reset} = useForm<IFormInputs>({
+	const {register, handleSubmit, formState: {errors, isSubmitting, isValid}, reset} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(RegisterFormSchema),
 	});
@@ -53,19 +53,22 @@ const Register: NextPage = () => {
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/person.svg"
+						   icon="/assets/icons/person.svg"
 						   placeholder="Full name"
+						   error={!!errors.fullName?.message}
 						   {...register('fullName')}/>
 					<Input className={styles.input}
-						   icon="/assets/input_icons/mail.svg"
+						   icon="/assets/icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
+						   error={!!errors.email?.message}
 						   {...register('email')}/>
 					<PasswordInput className={styles.input}
 								   placeholder="Password"
+								   error={!!errors.password?.message}
 								   {...register('password')}/>
 					<Button type="submit"
-							disabled={!formState.isValid || formState.isSubmitting}
+							disabled={!isValid || isSubmitting}
 							text="Sign Up"
 					/>
 				</form>
@@ -75,5 +78,3 @@ const Register: NextPage = () => {
 };
 
 export default Register;
-
-// TODO: Error message component

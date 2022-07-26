@@ -11,8 +11,6 @@ export const Api = (ctx?: NextPageContext | GetServerSidePropsContext): ApiRetur
 	const cookies = ctx ? Cookies.get(ctx) : parseCookies();
 	const token = cookies.feedBackAuthToken;
 
-	console.log(token);
-
 	const instance = axios.create({
 		baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:7777/api/',
 		headers: {

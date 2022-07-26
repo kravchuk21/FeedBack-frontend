@@ -3,10 +3,12 @@ import {createWrapper, HYDRATE} from 'next-redux-wrapper';
 
 import {userReducer} from './slices/user';
 import {authReducer} from './slices/auth';
+import {searchReducer} from './slices/search';
 
 const combinedReducer = combineReducers({
 	user: userReducer,
-	auth: authReducer
+	auth: authReducer,
+	search: searchReducer,
 });
 
 const reducer = (state: CombinedState<ReturnType<typeof combinedReducer>> | undefined, action: AnyAction) => {

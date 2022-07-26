@@ -1,12 +1,10 @@
 .iconButton {
-    background: none;
+    background: var(--bg-light);
     border: none;
-    outline-color: var(--primary);
     height: 24px;
     width: 24px;
     box-sizing: content-box;
     padding: 7px;
-    background: var(--light-gray);
     cursor: pointer;
-    border-radius: 6px;
+    border-radius: var(--radius);
 }
