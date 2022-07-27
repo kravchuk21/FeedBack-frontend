@@ -2,7 +2,7 @@ import type {NextPage,} from 'next'
 import Head from 'next/head'
 import Avatar from '../components/Avatar'
 import Header from '../layout/Header'
-import IconButton from '../components/IconButton'
+import IconButton from '../components/UI/IconButton'
 import Title from '../components/UI/Title'
 import {useRouter,} from 'next/router'
 import React from 'react'
@@ -20,7 +20,7 @@ const Search: NextPage = () => {
 				<link rel="icon" href="/public/favicon.ico"/>
 			</Head>
 			<Header>
-				<IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg"/>
+				<IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg" alt='go back'/>
 				<Title>Search</Title>
 				<Avatar path="/auth/register" fullName={'Vladislav Kravchuk'}
 						avatarUrl={'https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'}/>

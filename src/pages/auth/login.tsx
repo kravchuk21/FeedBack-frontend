@@ -15,6 +15,7 @@ import {useAppDispatch,} from '../../store/hooks'
 import {fetchLogin,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
 import {LoginUserDto,} from '../api/types.dto'
+import IconButton from '../../components/UI/IconButton'
 
 type IFormInputs = LoginUserDto
 
@@ -65,6 +66,7 @@ const Login: NextPage = () => {
 								   {...register('password')}/>
 					<Button type="submit" disabled={!isValid || isSubmitting}>Sign In</Button>
 					<Button type="submit">Sign In</Button>
+					<IconButton iconPath="/assets/icons/eye.svg" alt="Watch Password"/>
 				</form>
 			</AuthLayout>
 		</div>

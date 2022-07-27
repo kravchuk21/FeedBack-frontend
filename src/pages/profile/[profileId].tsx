@@ -8,7 +8,7 @@ import Title from '../../components/UI/Title'
 import Typography from '../../components/UI/Typography'
 import Link from 'next/link'
 import {Routes,} from '../../constants/routes'
-import IconButton from '../../components/IconButton'
+import IconButton from '../../components/UI/IconButton'
 import {dateFormat,} from '../../utils/dateFormat'
 
 interface ProfilePageProps extends Record<string, unknown> {
@@ -35,7 +35,7 @@ const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 				<Typography>Created account: {dateFormat(data.createdAt)}</Typography>
 			</div>
 			<Link href={Routes.SETTINGS}>
-				<IconButton iconPath="/assets/icons/mail.svg"/>
+				<IconButton iconPath="/assets/icons/mail.svg" alt='meil'/>
 			</Link>
 		</div>
 	)

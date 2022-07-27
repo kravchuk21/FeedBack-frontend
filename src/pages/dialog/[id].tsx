@@ -2,7 +2,7 @@ import type {NextPage,} from 'next'
 import Head from 'next/head'
 import {useRouter,} from 'next/router'
 import Avatar from '../../components/Avatar'
-import IconButton from '../../components/IconButton'
+import IconButton from '../../components/UI/IconButton'
 import Header from '../../layout/Header'
 import Bubble from '../../components/Bubble'
 import styles from '../../styles/Dialog.module.css'
@@ -20,7 +20,7 @@ const Dialog: NextPage = () => {
                 <link rel="icon" href="/public/favicon.ico"/>
             </Head>
             <Header>
-                <IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg"/>
+                <IconButton onClick={() => router.back()} iconPath="/assets/icons/back.svg" alt='go back'/>
                 <div className={styles.dialogHeaderInfo}>
                     <Title>Vladislav Kravchuk</Title>
                 </div>

@@ -1,6 +1,6 @@
 import React, {useState,} from 'react'
 import Input from '../Input'
-import IconButton from '../IconButton'
+import IconButton from '../UI/IconButton'
 import styles from './PasswordInput.module.css'
 
 type PasswordInput = Input
