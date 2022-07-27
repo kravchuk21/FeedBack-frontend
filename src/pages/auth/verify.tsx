@@ -1,7 +1,7 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout from '../../layout/AuthLayout'
-import Button from '../../components/Button'
+import Button from '../../components/UI/Button'
 import Input from '../../components/Input'
 import React from 'react'
 import styles from '../../styles/Auth.module.css'
@@ -71,10 +71,9 @@ const Verify: NextPage = () => {
 						   icon="/assets/icons/key.svg"
 						   error={!!errors.verificationCode?.message}
 						   {...register('verificationCode')}/>
-					<Button className={styles.button} text="Confirm"
-							type="submit"
-							disabled={!isValid || isSubmitting}/>
-					<Button className={styles.button} text="Get a new code" onClick={onGetNewVerificationCode}/>
+					<Button type="submit"
+							disabled={!isValid || isSubmitting}>Confirm</Button>
+					<Button onClick={onGetNewVerificationCode}>Get a new code</Button>
 				</form>
 			</AuthLayout>
 		</div>

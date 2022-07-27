@@ -1,7 +1,7 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout from '../../layout/AuthLayout'
-import Button from '../../components/Button'
+import Button from '../../components/UI/Button'
 import Input from '../../components/Input'
 import PasswordInput from '../../components/PasswordInput'
 import styles from '../../styles/Auth.module.css'
@@ -63,10 +63,8 @@ const Login: NextPage = () => {
 								   placeholder="Password"
 								   error={!!errors.password?.message}
 								   {...register('password')}/>
-					<Button type="submit"
-							disabled={!isValid || isSubmitting}
-							text="Sign In"
-					/>
+					<Button type="submit" disabled={!isValid || isSubmitting}>Sign In</Button>
+					<Button type="submit">Sign In</Button>
 				</form>
 			</AuthLayout>
 		</div>

@@ -1,16 +1,9 @@
 .button {
     background: var(--primary-gradient);
     border-radius: var(--radius);
-    text-align: center;
     border: none;
     padding: 20px;
     width: 100%;
-}
-
-.buttonText {
-    font-size: 18px;
-    font-weight: 600;
-    color: var(--typography-light);
 }
 
 .button:disabled {
@@ -18,6 +11,6 @@
     cursor: not-allowed;
 }
 
-.button:disabled .buttonText {
+.button:disabled {
     color: var(--typography);
 }

@@ -1,3 +1,3 @@
 import {DetailedHTMLProps, ParamHTMLAttributes,} from 'react'
 
-export type HTMLTag<El> = Omit<DetailedHTMLProps<ParamHTMLAttributes<El>, El>, 'className'>
+export type HTMLTag<El, Attr = ParamHTMLAttributes<El>> = Omit<DetailedHTMLProps<Attr, El>, 'className'>

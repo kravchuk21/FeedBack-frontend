@@ -1,7 +1,7 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout from '../../layout/AuthLayout'
-import Button from '../../components/Button'
+import Button from '../../components/UI/Button'
 import Input from '../../components/Input'
 import PasswordInput from '../../components/PasswordInput'
 import styles from '../../styles/Auth.module.css'
@@ -9,7 +9,7 @@ import {yupResolver,} from '@hookform/resolvers/yup'
 import {RegisterFormSchema,} from '../../utils/validation'
 import {useForm,} from 'react-hook-form'
 import React from 'react'
-import { ResponseError,} from '../api/types.response'
+import {ResponseError,} from '../api/types.response'
 import {useRouter,} from 'next/router'
 import {useAppDispatch,} from '../../store/hooks'
 import {fetchRegister,} from '../../store/slices/auth'
@@ -69,8 +69,7 @@ const Register: NextPage = () => {
 								   {...register('password')}/>
 					<Button type="submit"
 							disabled={!isValid || isSubmitting}
-							text="Sign Up"
-					/>
+					>Sign Up</Button>
 				</form>
 			</AuthLayout>
 		</div>
