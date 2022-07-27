@@ -3,7 +3,7 @@ import React from 'react'
 import Avatar from '../Avatar'
 import styles from './SearchUserItem.module.css'
 import Typography from '../UI/Typography'
-import Title from '../Title'
+import Title from '../UI/Title'
 
 interface SearchUserItem extends Omit<Avatar, 'path'> {
 	_id: string;

@@ -10,15 +10,6 @@
     padding: 0;
 }
 
-.authLayoutTitle {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 36px;
-    color: var(--primary);
-    text-align: center;
-    margin-bottom: 70px;
-}
-
 .authLayoutBlock {
     background-color: var(--bg);
     border-top-left-radius: 60px;

@@ -7,7 +7,7 @@ import Header from '../../layout/Header'
 import Bubble from '../../components/Bubble'
 import styles from '../../styles/Dialog.module.css'
 import DialogInput from '../../components/DialogInput'
-import Title from '../../components/Title'
+import Title from '../../components/UI/Title'
 
 const Dialog: NextPage = () => {
     const router = useRouter()

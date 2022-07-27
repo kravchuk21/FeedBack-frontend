@@ -9,6 +9,7 @@ import {Routes,} from '../../constants/routes'
 import ErrorMessage from '../../components/ErrorMessage'
 import Loading from '../../components/loaders/Loading'
 import Typography from '../../components/UI/Typography'
+import Title from '../../components/UI/Title'
 
 interface AuthLayout {
 	title: string;
@@ -29,11 +30,11 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpeg" width={400} height={400}
 				   alt={'auth bg'}/>
 			<div className={styles.authLayoutBlock}>
-				<div>
-					<h1 className={styles.authLayoutTitle}>{title}</h1>
-					{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
-					{error[0] && <ErrorMessage message={error}/>}
+				<div className="mb-5">
+					<Title textAlign="center" fontWeight={700} size={36} color="var(--primary)">{title}</Title>
 				</div>
+				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
+				{error[0] && <ErrorMessage message={error}/>}
 				<div className="mt-3.5 flex justify-center">
 					<Typography>{link.text}</Typography>
 					<Link href={link.path}>

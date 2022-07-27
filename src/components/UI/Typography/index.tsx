@@ -1,16 +1,10 @@
 import React from 'react'
 import styles from './Typography.module.css'
 import {HTMLTag,} from '../@types/HTMLTag'
-import {FS, FW, TA,} from '../@types/styles'
+import {FontStyles,} from '../@types/styles'
 
-export interface Typography extends HTMLTag<HTMLParagraphElement> {
+export interface Typography extends HTMLTag<HTMLParagraphElement>, FontStyles {
 	children: React.ReactNode;
-	size?: number;
-	color?: string;
-	fontFamily?: string;
-	fontWeight?: FW;
-	fontStyle?: FS;
-	textAlign?: TA;
 }
 
 const Typography: React.FC<Typography> = ({children, ...props}) => {

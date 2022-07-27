@@ -3,7 +3,7 @@ import React from 'react'
 import Avatar from '../Avatar'
 import styles from './DialogItem.module.css'
 import Typography from '../UI/Typography'
-import Title from '../Title'
+import Title from '../UI/Title'
 import { dateFormat, } from '../../utils/dateFormat'
 
 interface DialogItem extends Omit<Avatar, 'path'> {

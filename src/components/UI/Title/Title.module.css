@@ -1,0 +1,10 @@
+.title {
+    --size: 14px;
+    color: var(--typography);
+    text-align: left;
+    font-style: normal;
+    font-weight: 600;
+    font-size: var(--size);
+    line-height: var(--size) + 2px;
+    margin: 0;
+}

@@ -5,7 +5,7 @@ import Header from '../layout/Header'
 import IconButton from '../components/IconButton'
 import DialogItem from '../components/DialogItem'
 import DialogItemLoader from '../components/loaders/DialogItemLoader'
-import Title from '../components/Title'
+import Title from '../components/UI/Title'
 import {useRouter,} from 'next/router'
 import { Routes, } from '../constants/routes'
 
