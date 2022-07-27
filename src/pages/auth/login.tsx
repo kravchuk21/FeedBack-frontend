@@ -2,9 +2,7 @@ import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout from '../../layout/AuthLayout'
 import Button from '../../components/UI/Button'
-import Input from '../../components/Input'
-import PasswordInput from '../../components/PasswordInput'
-import styles from '../../styles/Auth.module.css'
+import Input from '../../components/UI/Input'
 import React from 'react'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
@@ -54,16 +52,16 @@ const Login: NextPage = () => {
 				text: 'Want to create an account?',
 			}}>
 				<form onSubmit={handleSubmit(onSubmit)}>
-					<Input className={styles.input}
-						   icon="/assets/icons/mail.svg"
+					<Input icon="/assets/icons/mail.svg"
 						   placeholder="E-mail"
 						   type="email"
 						   error={!!errors.email?.message}
 						   {...register('email')}/>
-					<PasswordInput className={styles.input}
-								   placeholder="Password"
-								   error={!!errors.password?.message}
-								   {...register('password')}/>
+					<Input icon="/assets/icons/password.svg"
+						   placeholder="Password"
+						   type="password"
+						   error={!!errors.password?.message}
+						   {...register('password')}/>
 					<Button type="submit" disabled={!isValid || isSubmitting}>Sign In</Button>
 					<Button type="submit">Sign In</Button>
 					<IconButton iconPath="/assets/icons/eye.svg" alt="Watch Password"/>

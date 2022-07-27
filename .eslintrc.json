@@ -9,6 +9,7 @@
   "root": true,
   "ignorePatterns": ["next.config.js"],
   "rules": {
+    "react/display-name": "off",
     "no-console": "warn",
     "quotes": [2, "single", { "avoidEscape": true }],
     "comma-dangle": ["error", "always"],

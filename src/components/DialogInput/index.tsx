@@ -1,5 +1,5 @@
 import React from 'react'
-import Input from '../Input'
+import Input from '../UI/Input'
 import IconButton from '../UI/IconButton'
 import styles from './DialogInput.module.css'
 
