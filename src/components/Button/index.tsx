@@ -1,6 +1,6 @@
 import React, {ButtonHTMLAttributes, DetailedHTMLProps,} from 'react'
 import styles from './Button.module.css'
-import Typography from '../Typography'
+import Typography from '../UI/Typography'
 
 interface Button extends DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
 	text: string;

@@ -28,15 +28,6 @@
     margin-top: -140px;
 }
 
-.authLayoutLink {
-    padding-top: 20px;
-    text-align: center;
-}
-
-.authLayoutLink a {
-    color: var(--primary);
-}
-
 .authLayoutLoader {
     width: 100%;
     display: flex;

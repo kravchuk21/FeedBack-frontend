@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './Bubble.module.css'
-import Typography from '../Typography'
+import Typography from '../UI/Typography'
 
 interface Bubble {
     text: string;

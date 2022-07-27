@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './ErrorMessage.module.css'
-import Typography from '../Typography'
+import Typography from '../UI/Typography'
 
 export type ErrorMessage = {
 	message: string | string[];

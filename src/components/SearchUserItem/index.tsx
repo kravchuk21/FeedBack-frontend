@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 import Avatar from '../Avatar'
 import styles from './SearchUserItem.module.css'
-import Typography from '../Typography'
+import Typography from '../UI/Typography'
 import Title from '../Title'
 
 interface SearchUserItem extends Omit<Avatar, 'path'> {
