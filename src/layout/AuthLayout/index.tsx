@@ -6,7 +6,7 @@ import {useAppSelector,} from '../../store/hooks'
 import {selectError, selectLoadingState,} from '../../store/slices/auth'
 import {LoadingState,} from '../../store/types'
 import {Routes,} from '../../constants/routes'
-import ErrorMessage from '../../components/ErrorMessage'
+import Toast from '../../components/UI/Toast'
 import Loading from '../../components/loaders/Loading'
 import Typography from '../../components/UI/Typography'
 import Title from '../../components/UI/Title'
@@ -34,7 +34,11 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 					<Title textAlign="center" fontWeight={700} size={36} color="var(--primary)">{title}</Title>
 				</div>
 				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
-				{error[0] && <ErrorMessage message={error}/>}
+				{error[0] && (
+					<div className="mt-3.5">
+						<Toast type={'warning'} message={error} delay={8000}/>
+					</div>)
+				}
 				<div className="mt-3.5 flex justify-center">
 					<Typography>{link.text}</Typography>
 					<Link href={link.path}>

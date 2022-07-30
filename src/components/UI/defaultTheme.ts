@@ -10,4 +10,6 @@ export const defaultTheme: ThemeType = {
 	baseLight: '#F5F5F5',
 	typography: '#262626',
 	typographyLight: '#FAFAFA',
+	warning: '#fff6ab',
+	success: '#2c974b',
 }

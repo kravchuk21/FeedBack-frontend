@@ -1,4 +1,4 @@
-type ThemeType = Partial<{
+type ThemeType = {
 	borderRadius: number | string
 	primary: string,
 	primaryLight: string,
@@ -7,8 +7,10 @@ type ThemeType = Partial<{
 	base: string,
 	baseLight: string,
 	typography: string,
-	typographyLight: string
-}>
+	typographyLight: string,
+	warning: string,
+	success: string,
+}
 
 export type WithUIThemeProps = {
 	theme: ThemeType

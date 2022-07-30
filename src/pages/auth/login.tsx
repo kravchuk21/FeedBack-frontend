@@ -39,7 +39,7 @@ const LoginForm = () => {
 	const {push,} = useRouter()
 	const dispatch = useAppDispatch()
 	const {register, handleSubmit, formState: {errors, isValid, isSubmitting,}, reset,} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(LoginFormSchema),
 	})
 
