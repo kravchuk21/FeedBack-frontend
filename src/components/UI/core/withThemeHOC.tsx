@@ -3,7 +3,7 @@ import {defaultTheme,} from '../defaultTheme'
 import {UIContext,} from './themeContext'
 import ThemeType, {WithUIThemeProps,} from '../@types/Theme'
 
-const getTheme = (theme: Partial<ThemeType> | null): ThemeType => {
+const getTheme = (theme: ThemeType | null): Required<ThemeType> => {
 	return {
 		...defaultTheme,
 		...theme,

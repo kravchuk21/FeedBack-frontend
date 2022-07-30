@@ -63,6 +63,7 @@ const LoginForm = () => {
 				<Input icon="/assets/icons/mail.svg"
 					   placeholder="E-mail"
 					   type="email"
+					   alt='email icon'
 					   error={!!errors.email?.message}
 					   {...register('email')}/>
 			</div>
@@ -70,6 +71,7 @@ const LoginForm = () => {
 				<Input icon="/assets/icons/password.svg"
 					   placeholder="Password"
 					   type="password"
+					   alt='password icon'
 					   error={!!errors.password?.message}
 					   {...register('password')}/>
 			</div>

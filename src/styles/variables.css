@@ -8,10 +8,13 @@
     --typography: #262626;
     --typography-light: #FAFAFA;
     --radius: 12px;
+    --base: #c5c5c7;
+    --base-light: #f5f5f5;
+    --warning: #fff6ab;
 }
 
 [data-theme='dark'] {
-    --primary: #a12e00;
+    --primary: #e94300;
     --primary-gradient: linear-gradient(114.78deg, #b66e00 -5.11%, #a53000 125.67%);
     --bg-light: #1d1f20;
     --bg: #131516;
@@ -20,4 +23,7 @@
     --typography: #d0ccc6;
     --typography-light: #e8e6e3;
     --radius: 12px;
+    --base: #c5c5c7;
+    --base-light: #1e2021;
+    --warning: #a49307;
 }

@@ -1,6 +1,6 @@
 import ThemeType from './@types/Theme'
 
-export const defaultTheme: ThemeType = {
+export const defaultTheme: Required<ThemeType> = {
 	borderRadius: 12,
 	primary: '#FF7841',
 	primaryLight: '#FF7841',

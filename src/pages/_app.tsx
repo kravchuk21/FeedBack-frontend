@@ -9,15 +9,18 @@ import {UserInterface,} from '../interfaces/user.interface'
 import {ThemeProvider,} from 'next-themes'
 import {Routes,} from '../constants/routes'
 import {UIProvider,} from '../components/UI'
+import {Theme,} from '../../theme'
+import ThemeChanger from '../components/ThemeChanger'
 
 function MyApp({Component, pageProps,}: AppProps) {
 
 	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
-		<UIProvider value={null}>
+		<UIProvider value={Theme}>
 			<div className="container">
 				<Component {...pageProps} />
 			</div>
 		</UIProvider>
+		<ThemeChanger/>
 	</ThemeProvider>
 }
 

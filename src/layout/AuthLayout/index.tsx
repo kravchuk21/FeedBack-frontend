@@ -36,7 +36,7 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
 				{error[0] && (
 					<div className="mt-3.5">
-						<Toast type={'warning'} message={error} delay={8000}/>
+						<Toast message={error} delay={8000}/>
 					</div>)
 				}
 				<div className="mt-3.5 flex justify-center">
@@ -48,6 +48,9 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 					</Link>
 				</div>
 			</div>
+			<Toast message={'warning'} type='warning' delay={80000}/>
+			<Toast message={'error'} type='error' delay={80000}/>
+			<Toast message={'success'} type='success' delay={80000}/>
 		</div>
 	)
 }
