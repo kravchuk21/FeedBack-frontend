@@ -3,8 +3,6 @@ import Head from 'next/head'
 import AuthLayout from '../../layout/AuthLayout'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
-import PasswordInput from '../../components/PasswordInput'
-import styles from '../../styles/Auth.module.css'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {RegisterFormSchema,} from '../../utils/validation'
 import {useForm,} from 'react-hook-form'
@@ -16,14 +14,31 @@ import {fetchRegister,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
 import {CreateUserDto,} from '../api/types.dto'
 
+const Register: NextPage = () => (
+	<div>
+		<Head>
+			<title>Register | FeedBack</title>
+			<meta name="description" content="Page of registration"/>
+		</Head>
+
+		<AuthLayout title="Sign Up" link={{
+			path: Routes.LOGIN,
+			text: 'Login here',
+			linkText: 'Do you have a account?',
+		}}>
+			<RegisterForm/>
+		</AuthLayout>
+	</div>
+)
+
 type IFormInputs = CreateUserDto
 
-const Register: NextPage = () => {
+const RegisterForm = () => {
 	const {push,} = useRouter()
 	const dispatch = useAppDispatch()
 
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
-		mode: 'onChange',
+		mode: 'onBlur',
 		resolver: yupResolver(RegisterFormSchema),
 	})
 
@@ -38,41 +53,33 @@ const Register: NextPage = () => {
 		})
 	}
 
-
 	return (
-		<div>
-			<Head>
-				<title>Register | FeedBack</title>
-				<meta name="description" content="Page of registration"/>
-			</Head>
-
-			<AuthLayout title="Sign Up" link={{
-				path: Routes.LOGIN,
-				text: 'Login here',
-				linkText: 'Do you have a account?',
-			}}>
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<Input className={styles.input}
-						   icon="/assets/icons/person.svg"
-						   placeholder="Full name"
-						   error={!!errors.fullName?.message}
-						   {...register('fullName')}/>
-					<Input className={styles.input}
-						   icon="/assets/icons/mail.svg"
-						   placeholder="E-mail"
-						   type="email"
-						   error={!!errors.email?.message}
-						   {...register('email')}/>
-					<PasswordInput className={styles.input}
-								   placeholder="Password"
-								   error={!!errors.password?.message}
-								   {...register('password')}/>
-					<Button type="submit"
-							disabled={!isValid || isSubmitting}
-					>Sign Up</Button>
-				</form>
-			</AuthLayout>
-		</div>
+		<form onSubmit={handleSubmit(onSubmit)}>
+			<div className="mt-3.5">
+				<Input icon="/assets/icons/person.svg"
+					   placeholder="Full name"
+					   error={!!errors.fullName?.message}
+					   {...register('fullName')}/>
+			</div>
+			<div className="mt-3.5">
+				<Input icon="/assets/icons/mail.svg"
+					   placeholder="E-mail"
+					   type="email"
+					   error={!!errors.email?.message}
+					   {...register('email')}/>
+			</div>
+			<div className="mt-3.5">
+				<Input placeholder="Password"
+					   icon="/assets/icons/password.svg"
+					   error={!!errors.password?.message}
+					   {...register('password')}/>
+			</div>
+			<div className="mt-3.5">
+				<Button type="submit"
+						disabled={!isValid || isSubmitting}
+				>Sign Up</Button>
+			</div>
+		</form>
 	)
 }
 

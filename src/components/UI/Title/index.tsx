@@ -1,8 +1,10 @@
 import React from 'react'
 import styles from './Title.module.css'
 import {FontStyles,} from '../@types/styles'
+import {withUITheme,} from '../core/withThemeHOC'
+import {WithUIThemeProps,} from '../@types/Theme'
 
-interface Title extends FontStyles {
+interface Title extends FontStyles, WithUIThemeProps {
 	tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	children: React.ReactNode;
 }
@@ -10,7 +12,7 @@ interface Title extends FontStyles {
 const Title: React.FC<Title> = ({children, tag = 'h1', ...props}) => {
 	const TitleStyles = {
 		fontSize: props.size,
-		color: props.color,
+		color: props.color || props.theme.typography,
 		fontFamily: props.fontFamily,
 		fontWeight: props.fontWeight,
 		fontStyle: props.fontStyle,
@@ -35,4 +37,4 @@ const Title: React.FC<Title> = ({children, tag = 'h1', ...props}) => {
 	}
 }
 
-export default Title
+export default React.memo(withUITheme<Title>(Title))

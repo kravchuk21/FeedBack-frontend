@@ -30,6 +30,7 @@ const ThemeChanger = () => {
 			iconPath = icons.dark
 			break
 	}
+
 	const toggleTheme = () => {
 		if (resolvedTheme === 'dark') {
 			setTheme('light')

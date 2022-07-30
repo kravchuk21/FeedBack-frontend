@@ -10,15 +10,15 @@ interface IconButton extends HTMLTag<HTMLButtonElement, ButtonHTMLAttributes<HTM
 	alt: string;
 }
 
-const IconButton: React.FC<IconButton> = ({iconPath, alt, ...props}) => {
+const IconButton: React.FC<IconButton> = ({iconPath, disabled = false, alt, ...props}) => {
 	const IconButtonStyles = {
 		background: props.color,
 	}
 
 	return (
-		<button {...props} className={styles.iconButton} style={IconButtonStyles}>
+		<button {...props} className={styles.iconButton} style={IconButtonStyles} disabled={disabled}>
 			<Image className={styles.iconButtonImage} src={iconPath} width={24} height={24} alt={alt}/>
 		</button>
 	)
 }
-export default IconButton
+export default React.memo(IconButton)

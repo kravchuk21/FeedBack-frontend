@@ -1,16 +1,11 @@
 .button {
-    background: var(--primary-gradient);
-    border-radius: var(--radius);
     border: none;
     padding: 20px;
     width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .button:disabled {
-    background: var(--bg-light);
     cursor: not-allowed;
-}
-
-.button:disabled {
-    color: var(--typography);
 }

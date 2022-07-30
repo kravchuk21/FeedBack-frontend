@@ -27,7 +27,7 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 
 	return (
 		<div className={styles.authLayout}>
-			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpeg" width={400} height={400}
+			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpg" width={400} height={400}
 				   alt={'auth bg'}/>
 			<div className={styles.authLayoutBlock}>
 				<div className="mb-5">
@@ -56,4 +56,4 @@ const AuthLoader = () => {
 	)
 }
 
-export default AuthLayout
+export default React.memo(AuthLayout)

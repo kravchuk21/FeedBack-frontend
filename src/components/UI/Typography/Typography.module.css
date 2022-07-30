@@ -1,6 +1,5 @@
 .typography {
     --size: 12px;
-    color: var(--typography);
     text-align: left;
     font-style: normal;
     font-weight: 500;
