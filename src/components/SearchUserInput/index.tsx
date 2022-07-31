@@ -1,6 +1,6 @@
 import React from 'react'
 import {fetchSearchUser,} from '../../store/slices/search'
-import Input from '../Input'
+import Input from '../UI/Input'
 import {useAppDispatch,} from '../../store/hooks'
 
 const SearchUserInput: React.FC = () => {

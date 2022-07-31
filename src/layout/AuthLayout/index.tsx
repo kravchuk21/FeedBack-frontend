@@ -6,10 +6,10 @@ import {useAppSelector,} from '../../store/hooks'
 import {selectError, selectLoadingState,} from '../../store/slices/auth'
 import {LoadingState,} from '../../store/types'
 import {Routes,} from '../../constants/routes'
-import ErrorMessage from '../../components/ErrorMessage'
+import Toast from '../../components/UI/Toast'
 import Loading from '../../components/loaders/Loading'
-import ThemeChanger from '../../components/ThemeChanger'
-import Typography from '../../components/Typography'
+import Typography from '../../components/UI/Typography'
+import Title from '../../components/UI/Title'
 
 interface AuthLayout {
 	title: string;
@@ -27,28 +27,33 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 
 	return (
 		<div className={styles.authLayout}>
-			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpeg" width={400} height={400}
+			<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpg" width={400} height={400}
 				   alt={'auth bg'}/>
 			<div className={styles.authLayoutBlock}>
-				<h1 className={styles.authLayoutTitle}>{title}</h1>
+				<div className="mb-5">
+					<Title textAlign="center" fontWeight={700} size={36} color="var(--primary)">{title}</Title>
+				</div>
 				{loadingState === LoadingState.LOADING ? <AuthLoader/> : children}
-				{error[0] && <ErrorMessage message={error}/>}
-				<AuthLink link={link}/>
-				<ThemeChanger/>
+				{error[0] && (
+					<div className="mt-3.5">
+						<Toast message={error} delay={8000}/>
+					</div>)
+				}
+				<div className="mt-3.5 flex justify-center">
+					<Typography>{link.text}</Typography>
+					<Link href={link.path}>
+						<a className="ml-1">
+							<Typography color="var(--primary)">{link.linkText}</Typography>
+						</a>
+					</Link>
+				</div>
 			</div>
+			<Toast message={'warning'} type='warning' delay={80000}/>
+			<Toast message={'error'} type='error' delay={80000}/>
+			<Toast message={'success'} type='success' delay={80000}/>
 		</div>
 	)
 }
-
-const AuthLink: React.FC<Pick<AuthLayout, 'link'>> = ({link,}) => (
-	<Typography className={styles.authLayoutLink}>
-		{link.text}
-		<Link href={link.path}>
-			<a> {link.linkText}</a>
-		</Link>
-	</Typography>
-)
-
 
 const AuthLoader = () => {
 	return (
@@ -58,4 +63,4 @@ const AuthLoader = () => {
 	)
 }
 
-export default AuthLayout
+export default React.memo(AuthLayout)

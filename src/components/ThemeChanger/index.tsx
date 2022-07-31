@@ -1,6 +1,6 @@
 import {useTheme,} from 'next-themes'
 import {useEffect, useState,} from 'react'
-import IconButton from '../IconButton'
+import IconButton from '../UI/IconButton'
 import {pathToIcon,} from '../../constants/images'
 
 const icons: Record<string, pathToIcon> = {
@@ -30,6 +30,7 @@ const ThemeChanger = () => {
 			iconPath = icons.dark
 			break
 	}
+
 	const toggleTheme = () => {
 		if (resolvedTheme === 'dark') {
 			setTheme('light')
@@ -39,7 +40,7 @@ const ThemeChanger = () => {
 	}
 
 	return (
-		<IconButton iconPath={iconPath} onClick={toggleTheme}/>
+		<IconButton iconPath={iconPath} onClick={toggleTheme} alt='toggle theme'/>
 	)
 }
 export default ThemeChanger

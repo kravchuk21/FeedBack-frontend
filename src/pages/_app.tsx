@@ -8,13 +8,19 @@ import {setUserData,} from '../store/slices/user'
 import {UserInterface,} from '../interfaces/user.interface'
 import {ThemeProvider,} from 'next-themes'
 import {Routes,} from '../constants/routes'
+import {UIProvider,} from '../components/UI'
+import {Theme,} from '../../theme'
+import ThemeChanger from '../components/ThemeChanger'
 
 function MyApp({Component, pageProps,}: AppProps) {
 
 	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
-		<div className="container">
-			<Component {...pageProps} />
-		</div>
+		<UIProvider value={Theme}>
+			<div className="container">
+				<Component {...pageProps} />
+			</div>
+		</UIProvider>
+		<ThemeChanger/>
 	</ThemeProvider>
 }
 
@@ -22,7 +28,7 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Compo
 	try {
 		const userData = await Api(ctx).user.getMe()
 		store.dispatch(setUserData(userData as UserInterface))
-	} catch (err: any) {
+	} catch {
 		if (ctx.asPath?.split('/').some(i => i === 'auth') === false) {
 			if (ctx.res) {
 				ctx.res.writeHead(302, {

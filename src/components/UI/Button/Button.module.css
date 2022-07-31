@@ -1,0 +1,11 @@
+.button {
+    border: none;
+    padding: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.button:disabled {
+    cursor: not-allowed;
+}

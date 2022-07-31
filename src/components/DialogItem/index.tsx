@@ -2,8 +2,8 @@ import Link from 'next/link'
 import React from 'react'
 import Avatar from '../Avatar'
 import styles from './DialogItem.module.css'
-import Typography from '../Typography'
-import Title from '../Title'
+import Typography from '../UI/Typography'
+import Title from '../UI/Title'
 import { dateFormat, } from '../../utils/dateFormat'
 
 interface DialogItem extends Omit<Avatar, 'path'> {

@@ -1,13 +1,13 @@
 import React from 'react'
-import Input from '../Input'
-import IconButton from '../IconButton'
+import Input from '../UI/Input'
+import IconButton from '../UI/IconButton'
 import styles from './DialogInput.module.css'
 
 const DialogInput = () => {
 	return (
 		<div className={styles.dialogInputBlock}>
 			<Input className={styles.dialogInput} placeholder="Type something.."/>
-			<IconButton className={styles.dialogInputIconButton} iconPath="/assets/icons/send.svg"/>
+			<IconButton iconPath="/assets/icons/send.svg" alt='send message'/>
 		</div>
 	)
 }
