@@ -6,7 +6,7 @@ import styles from './DialogInput.module.css'
 const DialogInput = () => {
 	return (
 		<div className={styles.dialogInputBlock}>
-			<Input className={styles.dialogInput} placeholder="Type something.."/>
+			<Input placeholder="Type something.."/>
 			<IconButton iconPath="/assets/icons/send.svg" alt='send message'/>
 		</div>
 	)

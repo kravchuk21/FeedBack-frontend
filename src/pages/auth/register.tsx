@@ -13,6 +13,9 @@ import {useAppDispatch,} from '../../store/hooks'
 import {fetchRegister,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
 import {CreateUserDto,} from '../api/types.dto'
+import PersonIcon from '../../../public/assets/icons/person.svg'
+import MailIcon from '../../../public/assets/icons/mail.svg'
+import PasswordIcon from '../../../public/assets/icons/password.svg'
 
 const Register: NextPage = () => (
 	<div>
@@ -38,7 +41,7 @@ const RegisterForm = () => {
 	const dispatch = useAppDispatch()
 
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(RegisterFormSchema),
 	})
 
@@ -56,13 +59,13 @@ const RegisterForm = () => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="mt-3.5">
-				<Input icon="/assets/icons/person.svg"
+				<Input Icon={PersonIcon}
 					   placeholder="Full name"
 					   error={!!errors.fullName?.message}
 					   {...register('fullName')}/>
 			</div>
 			<div className="mt-3.5">
-				<Input icon="/assets/icons/mail.svg"
+				<Input Icon={MailIcon}
 					   placeholder="E-mail"
 					   type="email"
 					   error={!!errors.email?.message}
@@ -70,7 +73,8 @@ const RegisterForm = () => {
 			</div>
 			<div className="mt-3.5">
 				<Input placeholder="Password"
-					   icon="/assets/icons/password.svg"
+					   type="password"
+					   Icon={PasswordIcon}
 					   error={!!errors.password?.message}
 					   {...register('password')}/>
 			</div>

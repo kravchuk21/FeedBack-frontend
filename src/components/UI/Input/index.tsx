@@ -1,11 +1,12 @@
-import React, {InputHTMLAttributes, Ref,} from 'react'
+import React, {InputHTMLAttributes, Ref, SVGProps,} from 'react'
 import styles from './Input.module.css'
-import Image from 'next/image'
-import {pathToIcon,} from '../../../constants/images'
 import {HTMLTag,} from '../@types/HTMLTag'
 import {withUITheme,} from '../core/withThemeHOC'
 import {WithUIThemeProps,} from '../@types/Theme'
 
+type Icon = {
+	Icon: React.ComponentType<SVGProps<SVGAElement>>
+}
 
 interface Input extends HTMLTag<HTMLInputElement, InputHTMLAttributes<HTMLInputElement>>,
 	Partial<Icon> {
@@ -17,20 +18,15 @@ interface InputWithRef extends Input,
 	inputRef: Ref<HTMLInputElement>
 }
 
-type Icon = {
-	icon: pathToIcon;
-	alt?: string
-}
-
-const Input = withUITheme<InputWithRef>(({icon, alt, error, inputRef, ...props}) => {
+const Input = withUITheme<InputWithRef>(({Icon, error, inputRef, theme, ...props}) => {
 	const inputStyle = {
-		paddingLeft: icon ? 60 : 20,
-		background: error ? props.theme.dangerLight : props.theme.baseLight,
+		paddingLeft: !!Icon ? 60 : 20,
+		background: error ? theme.dangerLight : theme.baseLight,
 	}
 
 	return (
 		<div className={styles.inputBlock}>
-			{icon && <InputIcon icon={icon} alt={alt}/>}
+			{Icon && <InputIcon Icon={Icon} color={theme.base}/>}
 
 			<input style={inputStyle}
 				   className={`${styles.input} ${error && styles.inputError}`}
@@ -40,9 +36,9 @@ const Input = withUITheme<InputWithRef>(({icon, alt, error, inputRef, ...props})
 	)
 })
 
-const InputIcon: React.FC<Icon> = React.memo(({icon, alt,}) => (
+const InputIcon: React.FC<Icon & { color: string }> = React.memo(({Icon, color,}) => (
 	<div className={styles.inputIcon}>
-		<Image src={icon} height={24} width={24} alt={alt}/>
+		<Icon fill={color}/>
 	</div>
 ))
 

@@ -27,7 +27,7 @@ const Avatar: React.FC<Avatar> = ({path, size = 'small', avatarUrl, fullName, cl
                     <Image className={styles.avatarBlockImage} src={avatarUrl} width={40} height={40} alt={fullName}/>}
 				{!avatarUrl &&
                     <div style={sizeStyle} className={styles.avatarBlock}>
-                        <Title className={styles.avatarBlockText}>{fullName[0].toUpperCase()}</Title>
+                        <Title>{fullName[0].toUpperCase()}</Title>
                     </div>
 				}
 			</a>
