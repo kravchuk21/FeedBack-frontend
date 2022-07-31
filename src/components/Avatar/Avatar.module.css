@@ -1,0 +1,18 @@
+.avatarBlock {
+    --size: 40px;
+    border-radius: 50%;
+    height: var(--size);
+    width: var(--size);
+    background: var(--primary-gradient);
+    text-align: center;
+}
+
+.avatarBlockText {
+    color: var(--typography-light) !important;
+    line-height: var(--size);
+}
+
+.avatarBlockImage {
+    border-radius: 50%;
+    object-fit: cover;
+}

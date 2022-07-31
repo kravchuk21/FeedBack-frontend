@@ -1,0 +1,17 @@
+.dialog {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.dialogHeaderInfo {
+    display: flex;
+    align-items: center;
+}
+
+.bubbleBlock {
+    padding: 20px;
+    overflow-y: auto;
+    flex: 1;
+}

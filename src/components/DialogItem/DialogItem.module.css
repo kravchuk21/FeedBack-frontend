@@ -1,0 +1,25 @@
+.dialogItem {
+    display: flex;
+    background: var(--bg);
+    padding: 10px 15px;
+    cursor: pointer;
+    align-items: flex-start;
+}
+
+.dialogItem:hover, .dialogItem:focus {
+    background: var(--bg-light);
+}
+
+.dialogItemInfo {
+    margin: 0 12px;
+    flex: 1;
+}
+
+.dialogItemLastMessageText {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 200px;
+    white-space: nowrap;
+    color: var(--primary) !important;
+    margin: 3px 0;
+}
