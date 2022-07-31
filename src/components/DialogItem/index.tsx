@@ -21,7 +21,7 @@ const DialogItem: React.FC<DialogItem> = (props) => {
 				<Avatar path={path} fullName={props.fullName} avatarUrl={props.avatarUrl}/>
 				<div className={styles.dialogItemInfo}>
 					<Title>{props.fullName}</Title>
-					<Typography className={styles.dialogItemLastMessageText}>{props.lastMessageText}</Typography>
+					<Typography>{props.lastMessageText}</Typography>
 				</div>
 				<Typography>{dateFormat(props.lastMessageTime)}</Typography>
 			</div>

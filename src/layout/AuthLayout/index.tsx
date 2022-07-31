@@ -48,9 +48,6 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link,}) => {
 					</Link>
 				</div>
 			</div>
-			<Toast message={'warning'} type='warning' delay={80000}/>
-			<Toast message={'error'} type='error' delay={80000}/>
-			<Toast message={'success'} type='success' delay={80000}/>
 		</div>
 	)
 }

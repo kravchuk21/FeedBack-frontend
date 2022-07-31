@@ -13,6 +13,8 @@ import {useAppDispatch,} from '../../store/hooks'
 import {fetchLogin,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
 import {LoginUserDto,} from '../api/types.dto'
+import MailIcon from '../../../public/assets/icons/mail.svg'
+import PasswordIcon from '../../../public/assets/icons/password.svg'
 
 const Login: NextPage = () => {
 	return (
@@ -60,7 +62,7 @@ const LoginForm = () => {
 	return (
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="mt-3.5">
-				<Input icon="/assets/icons/mail.svg"
+				<Input Icon={MailIcon}
 					   placeholder="E-mail"
 					   type="email"
 					   alt='email icon'
@@ -68,7 +70,7 @@ const LoginForm = () => {
 					   {...register('email')}/>
 			</div>
 			<div className="mt-3.5">
-				<Input icon="/assets/icons/password.svg"
+				<Input Icon={PasswordIcon}
 					   placeholder="Password"
 					   type="password"
 					   alt='password icon'

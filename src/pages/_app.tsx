@@ -10,21 +10,18 @@ import {ThemeProvider,} from 'next-themes'
 import {Routes,} from '../constants/routes'
 import {UIProvider,} from '../components/UI'
 import {Theme,} from '../../theme'
-import ThemeChanger from '../components/ThemeChanger'
 
-function MyApp({Component, pageProps,}: AppProps) {
-
-	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
+const App = ({Component, pageProps,}: AppProps) => (
+	<ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
 		<UIProvider value={Theme}>
 			<div className="container">
 				<Component {...pageProps} />
 			</div>
 		</UIProvider>
-		<ThemeChanger/>
 	</ThemeProvider>
-}
+)
 
-MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component,}) => {
+App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component,}) => {
 	try {
 		const userData = await Api(ctx).user.getMe()
 		store.dispatch(setUserData(userData as UserInterface))
@@ -45,5 +42,5 @@ MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Compo
 })
 
 
-export default wrapper.withRedux(MyApp)
+export default wrapper.withRedux(App)
 

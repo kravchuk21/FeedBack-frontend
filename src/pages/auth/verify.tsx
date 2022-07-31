@@ -12,6 +12,7 @@ import {ResponseError,} from '../api/types.response'
 import {fetchGetNewVerify, fetchVerify, selectUserEmail,} from '../../store/slices/auth'
 import {useAppDispatch, useAppSelector,} from '../../store/hooks'
 import {Routes,} from '../../constants/routes'
+import CodeIcon from '../../../public/assets/icons/key.svg'
 
 const Verify: NextPage = () => (
 	<div>
@@ -38,7 +39,7 @@ interface IFormInputs {
 const VerifyForm = () => {
 	const {push,} = useRouter()
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
-		mode: 'onBlur',
+		mode: 'onChange',
 		resolver: yupResolver(VerifyFormSchema),
 	})
 	const dispatch = useAppDispatch()
@@ -74,7 +75,7 @@ const VerifyForm = () => {
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="mt-3.5">
 				<Input placeholder="Enter 4-symbol code" maxLength={4} type="tel"
-					   icon="/assets/icons/key.svg"
+					   Icon={CodeIcon}
 					   error={!!errors.verificationCode?.message}
 					   {...register('verificationCode')}/>
 			</div>
