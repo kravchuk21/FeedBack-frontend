@@ -5,12 +5,12 @@ import Title from '../UI/Title'
 import {withUITheme,} from '../UI/core/withThemeHOC'
 import {WithUIThemeProps,} from '../UI/@types/Theme'
 
-interface Avatar extends WithUIThemeProps {
+export interface IAvatar {
 	fullName: string;
 	avatarUrl?: string;
 }
 
-const Avatar: React.FC<Avatar> = ({avatarUrl, fullName, theme,}) => {
+const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, theme,}) => {
 	return (
 		<div className={styles.avatarBlock} style={{background: theme.primary,}}>
 			{avatarUrl &&
