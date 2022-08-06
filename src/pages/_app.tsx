@@ -3,13 +3,12 @@ import '../styles/globals.css'
 import {wrapper,} from '../store/store'
 import React from 'react'
 import {AppProps,} from 'next/app'
-import {Api,} from './api'
-import {setUserData,} from '../store/slices/user'
-import {UserInterface,} from '../interfaces/user.interface'
+import {setUserData,} from '../store/reducers/user'
 import {ThemeProvider,} from 'next-themes'
 import {Routes,} from '../constants/routes'
 import {UIProvider,} from '../components/UI'
 import {Theme,} from '../../theme'
+import {me,} from '../store/services/UserService'
 
 const App = ({Component, pageProps,}: AppProps) => (
 	<ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
@@ -22,10 +21,11 @@ const App = ({Component, pageProps,}: AppProps) => (
 )
 
 App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component,}) => {
-	try {
-		const userData = await Api(ctx).user.getMe()
-		store.dispatch(setUserData(userData as UserInterface))
-	} catch {
+	const {data: user,} = await store.dispatch(me.initiate())
+
+	if (user) {
+		store.dispatch(setUserData(user))
+	} else {
 		if (ctx.asPath?.split('/').some(i => i === 'auth') === false) {
 			if (ctx.res) {
 				ctx.res.writeHead(302, {

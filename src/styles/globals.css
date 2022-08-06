@@ -9,6 +9,7 @@ body {
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
+  min-height: 100vh;
 }
 
 html[data-theme='dark'] body {

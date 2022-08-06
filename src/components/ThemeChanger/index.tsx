@@ -1,9 +1,8 @@
 import {useTheme,} from 'next-themes'
 import {useEffect, useState,} from 'react'
 import IconButton from '../UI/IconButton'
-import {pathToIcon,} from '../../constants/images'
 
-const icons: Record<string, pathToIcon> = {
+const icons: Record<string, string> = {
 	light: '/assets/icons/sun.svg',
 	dark: '/assets/icons/moon.svg',
 }
@@ -40,7 +39,7 @@ const ThemeChanger = () => {
 	}
 
 	return (
-		<IconButton iconPath={iconPath} onClick={toggleTheme} alt='toggle theme'/>
+		<IconButton iconPath={iconPath} onClick={toggleTheme} alt="toggle theme"/>
 	)
 }
 export default ThemeChanger

@@ -1,6 +1,6 @@
 import type {GetServerSidePropsContext, NextPage,} from 'next'
 import Head from 'next/head'
-import {Api,} from '../api'
+import {Api,} from '../../api'
 import {UserInterface,} from '../../interfaces/user.interface'
 import React from 'react'
 import Avatar from '../../components/Avatar'

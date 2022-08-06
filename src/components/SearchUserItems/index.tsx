@@ -1,26 +1,18 @@
 import React from 'react'
-import {LoadingState,} from '../../store/types'
 import SearchUserItem from '../SearchUserItem'
-import DialogItemLoader from '../loaders/DialogItemLoader'
-import {useAppSelector,} from '../../store/hooks'
-import {selectSearchData, selectSearchLoadingState,} from '../../store/slices/search'
+import {UserInterface,} from '../../interfaces/user.interface'
 
-const SearchUserItems = () => {
-	const loadingState = useAppSelector(selectSearchLoadingState)
-	const searchData = useAppSelector(selectSearchData)
+interface SearchUserItems {
+	data: UserInterface[]
+}
 
-	return (
-		<>
-			{loadingState === LoadingState.LOADED && searchData && searchData.map(item => (
-				<SearchUserItem key={item._id} _id={item._id} email={item.email} fullName={item.fullName}/>
-			))}
-			{
-				loadingState === LoadingState.LOADING && (
-					new Array(5).fill(null).map((_, idx) => <DialogItemLoader key={idx}/>)
-				)
-			}
-		</>
-	)
+const SearchUserItems: React.FC<SearchUserItems> = ({data,}) => {
+
+	return <>
+		{data && data.map(item => (
+			<SearchUserItem key={item._id} _id={item._id} email={item.email} fullName={item.fullName}/>
+		))}
+	</>
 }
 
 export default SearchUserItems

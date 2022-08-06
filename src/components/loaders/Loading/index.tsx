@@ -1,9 +1,16 @@
-import React from 'react'
+import React, {CSSProperties,} from 'react'
+import {withUITheme,} from '../../UI/core/withThemeHOC'
 import styles from './Loading.module.css'
+import {WithUIThemeProps,} from '../../UI/@types/Theme'
 
-const Loading = () => {
+const Loading: React.FC<WithUIThemeProps> = ({theme,}) => {
+
+	const LoadingStyle = {
+		'--color': theme.primary,
+	} as CSSProperties
+
 	return (
-		<div className={styles.loading}>
+		<div className={styles.loading} style={LoadingStyle}>
 			<div/>
 			<div/>
 			<div/>
@@ -12,4 +19,4 @@ const Loading = () => {
 	)
 }
 
-export default Loading
+export default withUITheme(Loading)
