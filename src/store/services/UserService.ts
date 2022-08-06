@@ -30,7 +30,13 @@ export const UserAPI = createApi({
 				method: 'GET',
 			}),
 		}),
+		getUserById: build.query<UserInterface, string>({
+			query: (id) => ({
+				url: '/getById/' + id,
+				method: 'GET',
+			}),
+		}),
 	}),
 })
 
-export const {me,} = UserAPI.endpoints
+export const {me, getUserById,} = UserAPI.endpoints

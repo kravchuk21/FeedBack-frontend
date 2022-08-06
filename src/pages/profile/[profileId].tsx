@@ -1,6 +1,5 @@
-import type {GetServerSidePropsContext, NextPage,} from 'next'
+import type {NextPage,} from 'next'
 import Head from 'next/head'
-import {Api,} from '../../api'
 import {UserInterface,} from '../../interfaces/user.interface'
 import React from 'react'
 import Avatar from '../../components/Avatar'
@@ -25,7 +24,7 @@ const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 			</Head>
 
 			<div className="flex items-baseline">
-				<Avatar size="large" path={''} fullName={data.fullName} avatarUrl={data.avatar}/>
+				<Avatar fullName={data.fullName} avatarUrl={data.avatar}/>
 				<div className="ml-3.5">
 					<Title>{data.fullName}</Title>
 				</div>
@@ -35,40 +34,40 @@ const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 				<Typography>Created account: {dateFormat(data.createdAt)}</Typography>
 			</div>
 			<Link href={Routes.SETTINGS}>
-				<IconButton iconPath="/assets/icons/mail.svg" alt='meil'/>
+				<IconButton iconPath="/assets/icons/mail.svg" alt="meil"/>
 			</Link>
 		</div>
 	)
 }
 
-export async function getServerSideProps(ctx: GetServerSidePropsContext) {
-	if (!ctx.params) {
-		return {
-			notFound: true,
-		}
-	}
-	const userId = ctx.params?.profileId
-
-	if (!userId) {
-		return {
-			notFound: true,
-		}
-	}
-
-	try {
-		if (userId && typeof userId === 'string') {
-			const data = await Api(ctx).user.getUser({userId,})
-			return {props: {data,},}
-		} else {
-			return {
-				notFound: true,
-			}
-		}
-	} catch {
-		return {
-			notFound: true,
-		}
-	}
-}
+// export async function getServerSideProps(ctx: GetServerSidePropsContext) {
+// 	if (!ctx.params) {
+// 		return {
+// 			notFound: true,
+// 		}
+// 	}
+// 	const userId = ctx.params?.profileId
+//
+// 	if (!userId) {
+// 		return {
+// 			notFound: true,
+// 		}
+// 	}
+//
+// 	try {
+// 		if (userId && typeof userId === 'string') {
+// 			const data = UserAPI.useGetUserByIdQuery(userId)
+// 			return {props: {data,},}
+// 		} else {
+// 			return {
+// 				notFound: true,
+// 			}
+// 		}
+// 	} catch {
+// 		return {
+// 			notFound: true,
+// 		}
+// 	}
+// }
 
 export default Profile
