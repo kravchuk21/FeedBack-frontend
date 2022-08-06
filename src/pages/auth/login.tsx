@@ -1,20 +1,22 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
-import AuthLayout from '../../layout/AuthLayout'
-import Button from '../../components/UI/Button'
+import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
 import Input from '../../components/UI/Input'
 import React from 'react'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {LoginFormSchema,} from '../../utils/validation'
-import {LoginResponse, ResponseError,} from '../api/types.response'
 import {useRouter,} from 'next/router'
 import {useAppDispatch,} from '../../store/hooks'
-import {fetchLogin,} from '../../store/slices/auth'
+import {setUserAuth,} from '../../store/reducers/auth'
 import {Routes,} from '../../constants/routes'
-import {LoginUserDto,} from '../api/types.dto'
+import {LoginUserDto,} from '../../store/services/types.dto'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
+import {AuthAPI,} from '../../store/services/AuthService'
+import Button from '../../components/UI/Button'
+import {ResponseError,} from '../../store/services/types'
+import {setCookie,} from 'nookies'
 
 const Login: NextPage = () => {
 	return (
@@ -44,19 +46,34 @@ const LoginForm = () => {
 		mode: 'onChange',
 		resolver: yupResolver(LoginFormSchema),
 	})
+	const [login, {error, isLoading, isError,},] = AuthAPI.useLoginMutation()
+
+	const errorMessage = (error as ResponseError)?.data?.message
 
 	const onSubmit = async (dto: IFormInputs) => {
-		dispatch(fetchLogin(dto)).then(async ({payload,}) => {
-			if ((payload as ResponseError)?.error !== undefined) {
-				reset()
-			} else if ((payload as LoginResponse)?.verify === true) {
-				await push(Routes.HOME)
-			} else if ((payload as LoginResponse)?.verify === false) {
-				await push(Routes.VERIFY)
-			} else {
-				reset()
+		await login(dto).unwrap().then(async (user) => {
+			dispatch(setUserAuth(user))
+
+			if ('access_token' in user) {
+				setCookie(null, 'feedBackAuthToken', user.access_token, {
+					maxAge: 30 * 24 * 60 * 60,
+					path: '/',
+				})
 			}
+
+			if (user.verify === false) {
+				await push(Routes.VERIFY)
+				return
+			}
+
+			await push(Routes.HOME)
+		}).catch(() => {
+			reset()
 		})
+	}
+
+	if (isLoading) {
+		return <AuthLoader/>
 	}
 
 	return (
@@ -65,7 +82,7 @@ const LoginForm = () => {
 				<Input Icon={MailIcon}
 					   placeholder="E-mail"
 					   type="email"
-					   alt='email icon'
+					   alt="email icon"
 					   error={!!errors.email?.message}
 					   {...register('email')}/>
 			</div>
@@ -73,13 +90,18 @@ const LoginForm = () => {
 				<Input Icon={PasswordIcon}
 					   placeholder="Password"
 					   type="password"
-					   alt='password icon'
+					   alt="password icon"
 					   error={!!errors.password?.message}
 					   {...register('password')}/>
 			</div>
-			<div className="mt-3.5">
+			<div className="mt-3.5 text-center">
 				<Button type="submit" disabled={!isValid || isSubmitting}>Sign In</Button>
 			</div>
+			{isError && (
+				<div className="mt-3.5">
+					<ErrorMessage message={errorMessage}/>
+				</div>
+			)}
 		</form>
 	)
 }

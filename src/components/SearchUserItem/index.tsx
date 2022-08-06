@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import React from 'react'
-import Avatar from '../Avatar'
+import Avatar, {IAvatar,} from '../Avatar'
 import styles from './SearchUserItem.module.css'
 import Typography from '../UI/Typography'
 import Title from '../UI/Title'
 
-interface SearchUserItem extends Omit<Avatar, 'path'> {
+interface SearchUserItem extends IAvatar {
 	_id: string;
 	fullName: string;
 	email: string;
@@ -17,7 +17,7 @@ const SearchUserItem: React.FC<SearchUserItem> = (props) => {
 	return (
 		<Link href={path}>
 			<div className={styles.searchUserItem} tabIndex={0}>
-				<Avatar path={path} fullName={props.fullName} avatarUrl={props.avatarUrl}/>
+				<Avatar fullName={props.fullName} avatarUrl={props.avatarUrl}/>
 				<div className={styles.searchUserItemInfo}>
 					<Title>{props.fullName}</Title>
 					<Typography>{props.email}</Typography>

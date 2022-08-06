@@ -1,21 +1,20 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
-import AuthLayout from '../../layout/AuthLayout'
+import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {RegisterFormSchema,} from '../../utils/validation'
 import {useForm,} from 'react-hook-form'
 import React from 'react'
-import {ResponseError,} from '../api/types.response'
 import {useRouter,} from 'next/router'
-import {useAppDispatch,} from '../../store/hooks'
-import {fetchRegister,} from '../../store/slices/auth'
 import {Routes,} from '../../constants/routes'
-import {CreateUserDto,} from '../api/types.dto'
+import {CreateUserDto,} from '../../store/services/types.dto'
 import PersonIcon from '../../../public/assets/icons/person.svg'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
+import {AuthAPI,} from '../../store/services/AuthService'
+import {ResponseError,} from '../../store/services/types'
 
 const Register: NextPage = () => (
 	<div>
@@ -38,22 +37,25 @@ type IFormInputs = CreateUserDto
 
 const RegisterForm = () => {
 	const {push,} = useRouter()
-	const dispatch = useAppDispatch()
+	const [fetchRegister, {error, isLoading, isError,},] = AuthAPI.useRegisterMutation()
 
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(RegisterFormSchema),
 	})
 
+	const errorMessage = (error as ResponseError)?.data.message
 
 	const onSubmit = async (dto: IFormInputs) => {
-		dispatch(fetchRegister(dto)).then(async ({payload,}) => {
-			if ((payload as ResponseError)?.error === undefined) {
-				await push(Routes.LOGIN)
-			} else {
-				reset()
-			}
+		await fetchRegister(dto).unwrap().then(async () => {
+			await push(Routes.LOGIN)
+		}).catch(() => {
+			reset()
 		})
+	}
+
+	if (isLoading) {
+		return <AuthLoader/>
 	}
 
 	return (
@@ -83,6 +85,11 @@ const RegisterForm = () => {
 						disabled={!isValid || isSubmitting}
 				>Sign Up</Button>
 			</div>
+			{isError && (
+				<div className="mt-3.5">
+					<ErrorMessage message={errorMessage}/>
+				</div>
+			)}
 		</form>
 	)
 }

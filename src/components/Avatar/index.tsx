@@ -1,38 +1,25 @@
-import Link from 'next/link'
 import React from 'react'
 import styles from './Avatar.module.css'
 import Image from 'next/image'
 import Title from '../UI/Title'
+import {withUITheme,} from '../UI/core/withThemeHOC'
+import {WithUIThemeProps,} from '../UI/@types/Theme'
 
-interface Avatar {
-	path: string;
+export interface IAvatar {
 	fullName: string;
 	avatarUrl?: string;
-	className?: string;
-	size?: 'small' | 'large';
 }
 
-const SIZES = {
-	small: 40,
-	large: 80,
-}
-
-const Avatar: React.FC<Avatar> = ({path, size = 'small', avatarUrl, fullName, className,}) => {
-	const sizeStyle = { '--size': SIZES[size] + 'px', } as React.CSSProperties
-
+const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, theme,}) => {
 	return (
-		<Link className={className} href={path}>
-			<a title={fullName}>
-				{avatarUrl &&
-                    <Image className={styles.avatarBlockImage} src={avatarUrl} width={40} height={40} alt={fullName}/>}
-				{!avatarUrl &&
-                    <div style={sizeStyle} className={styles.avatarBlock}>
-                        <Title>{fullName[0].toUpperCase()}</Title>
-                    </div>
-				}
-			</a>
-		</Link>
+		<div className={styles.avatarBlock} style={{background: theme.primary,}}>
+			{avatarUrl &&
+                <Image className={styles.avatarBlockImage} src={avatarUrl} width={40} height={40} alt={fullName}/>}
+			{!avatarUrl &&
+                <Title size={20} color={theme.typographyLight}>{fullName[0].toUpperCase()}</Title>
+			}
+		</div>
 	)
 }
 
-export default Avatar
+export default withUITheme(React.memo(Avatar))

@@ -1,3 +1,5 @@
+import { TimeStems, } from '.'
+
 export interface UserInterface extends TimeStems {
 	_id: string;
 	fullName: string;
@@ -5,9 +7,4 @@ export interface UserInterface extends TimeStems {
 	verify: boolean;
 	access_token: string;
 	avatar: string | undefined;
-}
-
-export interface TimeStems {
-	createdAt: Date;
-	updatedAt: Date;
 }

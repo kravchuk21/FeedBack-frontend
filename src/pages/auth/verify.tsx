@@ -1,6 +1,6 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
-import AuthLayout from '../../layout/AuthLayout'
+import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
 import Button from '../../components/UI/Button'
 import Input from '../../components/UI/Input'
 import React from 'react'
@@ -8,11 +8,12 @@ import {useRouter,} from 'next/router'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {VerifyFormSchema,} from '../../utils/validation'
-import {ResponseError,} from '../api/types.response'
-import {fetchGetNewVerify, fetchVerify, selectUserEmail,} from '../../store/slices/auth'
+import {selectUserEmail, setUserVerify,} from '../../store/reducers/auth'
 import {useAppDispatch, useAppSelector,} from '../../store/hooks'
 import {Routes,} from '../../constants/routes'
 import CodeIcon from '../../../public/assets/icons/key.svg'
+import {AuthAPI,} from '../../store/services/AuthService'
+import { ResponseError, } from '../../store/services/types'
 
 const Verify: NextPage = () => (
 	<div>
@@ -44,6 +45,8 @@ const VerifyForm = () => {
 	})
 	const dispatch = useAppDispatch()
 	const email = useAppSelector(selectUserEmail)
+	const [verify,] = AuthAPI.useVerifyMutation()
+	const [getVerifyCode, {isLoading, error, isError,},] = AuthAPI.useGetVerifyCodeMutation()
 
 	React.useEffect(() => {
 		if (!email) {
@@ -51,24 +54,28 @@ const VerifyForm = () => {
 		}
 	}, [email, push,])
 
+	const errorMessage = (error as ResponseError)?.data.message
+
 	const onSubmit = async (dto: IFormInputs) => {
 		if (email) {
-			dispatch(fetchVerify({email, verificationCode: dto.verificationCode,})).then(async ({payload,}) => {
-				if ((payload as ResponseError)?.error === undefined) {
-					await push(Routes.HOME)
-				} else {
-					reset()
-				}
+			await verify({email, verificationCode: dto.verificationCode,}).unwrap().then(async () => {
+				dispatch(setUserVerify(true))
+				await push(Routes.HOME)
+			}).catch(() => {
+				reset()
 			})
 		}
 	}
 
 	const onGetNewVerificationCode = async () => {
 		if (email) {
-			dispatch(fetchGetNewVerify({email,})).then(() => {
-				reset()
-			})
+			await getVerifyCode({email,}).unwrap()
+			reset()
 		}
+	}
+
+	if (isLoading) {
+		return <AuthLoader/>
 	}
 
 	return (
@@ -86,6 +93,11 @@ const VerifyForm = () => {
 			<div className="mt-3.5">
 				<Button onClick={onGetNewVerificationCode}>Get a new code</Button>
 			</div>
+			{isError && (
+				<div className="mt-3.5">
+					<ErrorMessage message={errorMessage}/>
+				</div>
+			)}
 		</form>
 	)
 }

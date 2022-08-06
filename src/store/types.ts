@@ -4,3 +4,5 @@ export enum LoadingState {
 	LOADED = 'LOADED',
 	ERROR = 'ERROR'
 }
+
+export type Empty = null
