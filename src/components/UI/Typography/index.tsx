@@ -9,10 +9,10 @@ export interface Typography extends HTMLTag<HTMLParagraphElement>, FontStyles, W
 	children: React.ReactNode;
 }
 
-const Typography: React.FC<Typography> = ({children, ...props}) => {
+const Typography: React.FC<Typography> = ({children, theme, ...props}) => {
 	const TypographyStyles = {
 		fontSize: props.size,
-		color: props.color || props.theme.typography,
+		color: props.color || theme.typography,
 		fontFamily: props.fontFamily,
 		fontWeight: props.fontWeight,
 		fontStyle: props.fontStyle,

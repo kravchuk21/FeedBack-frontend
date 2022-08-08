@@ -6,21 +6,14 @@ import {UserAPI,} from '../store/services/UserService'
 import DialogItemLoader from '../components/loaders/DialogItemLoader'
 import Empty from '../components/Empty'
 import SearchUserItems from '../components/SearchUserItems'
-import {useRouter,} from 'next/router'
 import Header from '../layout/Header'
 import Title from '../components/UI/Title'
 import Link from 'next/link'
 import Avatar from '../components/Avatar'
 import {Routes,} from '../constants/routes'
-import IconButton from '../components/UI/IconButton'
+import GoBack from '../components/GoBack'
 
 const Search: NextPage = () => {
-	const router = useRouter()
-
-	const goBackHandler = React.useCallback(() => {
-		router.back()
-	}, [router,])
-
 	return <div>
 		<Head>
 			<title>FeedBack | Search</title>
@@ -28,7 +21,7 @@ const Search: NextPage = () => {
 			<link rel="icon" href="/public/favicon.ico"/>
 		</Head>
 		<Header>
-			<IconButton onClick={goBackHandler} iconPath="/assets/icons/back.svg" alt="go back"/>
+			<GoBack/>
 			<Title>Search</Title>
 			<Link href={Routes.SETTINGS}>
 				<a>

@@ -22,4 +22,4 @@ const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, them
 	)
 }
 
-export default withUITheme(React.memo(Avatar))
+export default React.memo(withUITheme(Avatar))

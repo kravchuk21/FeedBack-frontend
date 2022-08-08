@@ -8,6 +8,7 @@ import {useRouter,} from 'next/router'
 import {Routes,} from '../constants/routes'
 import DialogList from '../components/DialogList'
 import Link from 'next/link'
+import SearchIcon from '../../public/assets/icons/search.svg'
 
 const Home: NextPage = () => {
 	const router = useRouter()
@@ -20,10 +21,9 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/public/favicon.ico"/>
 			</Head>
 			<Header>
-				<IconButton onClick={() => router.push(Routes.SEARCH)} iconPath="/assets/icons/search.svg"
-							alt="search user"/>
+				<IconButton onClick={() => router.push(Routes.SEARCH)} Icon={SearchIcon}/>
 				<Title>Home</Title>
-				<Link href={Routes.SETTINGS}>
+				<Link href={Routes.PROFILE + '62daa8e66b818b9f9349cc2a'}>
 					<a>
 						<Avatar fullName={'Vladislav Kravchuk'}
 								avatarUrl={'https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'}/>

@@ -1,7 +1,8 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import React from 'react'
-import Button from '../../components/UI/Button'
+import ThemeChanger from '../../components/ThemeChanger'
+import GoBack from '../../components/GoBack'
 
 const Settings: NextPage = () => {
 	return (
@@ -12,8 +13,8 @@ const Settings: NextPage = () => {
 				<link rel="icon" href="/public/favicon.ico"/>
 			</Head>
 			<div className="m-3.5">
-				<Button>Log Out</Button>
-				<Button>Delete account</Button>
+				<GoBack/>
+				<ThemeChanger/>
 			</div>
 		</div>
 	)

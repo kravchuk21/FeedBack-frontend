@@ -23,5 +23,6 @@ export const userSlice = createSlice({
 export const {setUserData,} = userSlice.actions
 
 export const selectUserData = (state: RootState) => state.user.data
+export const selectUserId = (state: RootState) => state.user.data?._id
 
 export const userReducer = userSlice.reducer
