@@ -7,7 +7,7 @@ import {WithUIThemeProps,} from '../UI/@types/Theme'
 
 export interface IAvatar {
 	fullName: string;
-	avatarUrl?: string;
+	avatarUrl?: string | undefined;
 }
 
 const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, theme,}) => {

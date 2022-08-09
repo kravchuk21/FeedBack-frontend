@@ -8,10 +8,8 @@ import Empty from '../components/Empty'
 import SearchUserItems from '../components/SearchUserItems'
 import Header from '../layout/Header'
 import Title from '../components/UI/Title'
-import Link from 'next/link'
-import Avatar from '../components/Avatar'
-import {Routes,} from '../constants/routes'
 import GoBack from '../components/GoBack'
+import MyAvatar from '../components/MyAvatar'
 
 const Search: NextPage = () => {
 	return <div>
@@ -23,12 +21,7 @@ const Search: NextPage = () => {
 		<Header>
 			<GoBack/>
 			<Title>Search</Title>
-			<Link href={Routes.SETTINGS}>
-				<a>
-					<Avatar fullName={'Vladislav Kravchuk'}
-							avatarUrl={'https://images.unsplash.com/photo-1657264533870-187e6a18ac42?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80'}/>
-				</a>
-			</Link>
+			<MyAvatar/>
 		</Header>
 		<SearchContent/>
 	</div>

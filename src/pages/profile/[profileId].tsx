@@ -39,7 +39,7 @@ const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 				<div className="mb-3.5">
 					<Avatar fullName={data.fullName} avatarUrl={data.avatar}/>
 				</div>
-				<Title size={20}>{data.fullName}</Title>
+				<Title textAlign='center' size={20}>{data.fullName}</Title>
 				<Typography>Account created at:</Typography>
 				<Typography>{dateFormat(data.createdAt)}</Typography>
 				<TextLink href={`mailto:${data.email}`}>{data.email}</TextLink>
