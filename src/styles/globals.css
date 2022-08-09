@@ -21,6 +21,10 @@ html[data-theme='dark'] body {
   outline-color: var(--primary);
 }
 
+input::placeholder {
+  color: var(--base);
+}
+
 .container {
   max-width: 1000px;
   width: 100%;

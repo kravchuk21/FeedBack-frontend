@@ -22,6 +22,8 @@ const Input = withUITheme<InputWithRef>(({Icon, error, inputRef, theme, ...props
 	const inputStyle = {
 		paddingLeft: !!Icon ? 60 : 20,
 		background: error ? theme.dangerLight : theme.baseLight,
+		borderRadius: theme.borderRadius,
+		color: theme.typography,
 	}
 
 	return (
@@ -29,7 +31,7 @@ const Input = withUITheme<InputWithRef>(({Icon, error, inputRef, theme, ...props
 			{Icon && <InputIcon Icon={Icon} color={theme.base}/>}
 
 			<input style={inputStyle}
-				   className={`${styles.input} ${error && styles.inputError}`}
+				   className={styles.input}
 				   ref={inputRef}
 				   {...props}/>
 		</div>

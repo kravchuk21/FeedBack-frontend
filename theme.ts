@@ -9,4 +9,5 @@ export const Theme: ThemeType = {
 	base: 'var(--base)',
 	baseLight: 'var(--base-light)',
 	warning: 'var(--warning)',
+	bg: 'var(--bg)',
 }

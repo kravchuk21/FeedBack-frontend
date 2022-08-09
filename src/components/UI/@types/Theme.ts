@@ -10,6 +10,7 @@ type ThemeType = Partial<{
 	typographyLight: string,
 	warning: string,
 	success: string,
+	bg: string,
 }>
 
 export type WithUIThemeProps = {

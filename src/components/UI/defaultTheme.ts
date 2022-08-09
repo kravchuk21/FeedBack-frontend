@@ -12,4 +12,5 @@ export const defaultTheme: Required<ThemeType> = {
 	typographyLight: '#FAFAFA',
 	warning: '#fff6ab',
 	success: '#2c974b',
+	bg: '#ffffff',
 }

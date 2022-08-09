@@ -1,16 +1,20 @@
 import React from 'react'
-import styles from './Header.module.css'
+import {WithUIThemeProps,} from '../../components/UI/@types/Theme'
+import {withUITheme,} from '../../components/UI/core/withThemeHOC'
 
 interface Header {
-    children: React.ReactNode
+	children: React.ReactNode
 }
 
-const Header: React.FC<Header> = ({children,}) => {
-    return (
-        <header className={styles.header}>
-            {children}
-        </header>
-    )
+const Header: React.FC<Header & WithUIThemeProps> = ({children, theme,}) => {
+	const HeaderStyles = {
+		background: theme.bg,
+	}
+	return (
+		<header className="flex items-center justify-between p-3.5" style={HeaderStyles}>
+			{children}
+		</header>
+	)
 }
 
-export default Header
+export default withUITheme(Header)

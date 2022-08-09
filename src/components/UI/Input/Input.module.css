@@ -5,21 +5,10 @@
 }
 
 .input {
-    background: var(--bg-light);
-    border-radius: var(--radius);
     padding-top: 16px;
     padding-bottom: 16px;
     border: none;
     width: 100%;
-    color: var(--typography);
-}
-
-.inputError {
-    background: var(--error-light);
-}
-
-.input::placeholder {
-    color: var(--typography);
 }
 
 .inputIcon {
