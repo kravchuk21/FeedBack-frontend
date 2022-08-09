@@ -1,7 +1,8 @@
-import {createSlice, PayloadAction,} from '@reduxjs/toolkit'
+import {createAsyncThunk, createSlice, PayloadAction,} from '@reduxjs/toolkit'
 import {RootState,} from '../store'
 import {UserInterface,} from '../../interfaces/user.interface'
 import {LoginResponse,} from '../services/AuthService'
+import {deleteCookie,} from 'cookies-next'
 
 export interface AuthState {
 	isAuth: boolean;
@@ -14,6 +15,14 @@ const initialState: AuthState = {
 	verify: false,
 	email: null,
 }
+
+export const logout = createAsyncThunk(
+	'auth/logout',
+	() => {
+		deleteCookie('feedBackAuthToken')
+	}
+)
+
 
 export const authSlice = createSlice({
 	name: 'auth',
@@ -28,6 +37,13 @@ export const authSlice = createSlice({
 			state.verify = action.payload
 		},
 	},
+	extraReducers: builder => {
+		builder.addCase(logout.fulfilled, (state) => {
+			state.isAuth = false
+			state.verify = false
+			state.email = null
+		},)
+	},
 })
 
 export const selectUserEmail = (state: RootState) => state.auth.email
@@ -35,3 +51,4 @@ export const selectUserEmail = (state: RootState) => state.auth.email
 export const {setUserAuth, setUserVerify,} = authSlice.actions
 
 export const authReducer = authSlice.reducer
+

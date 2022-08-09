@@ -13,12 +13,19 @@ interface IconButton extends HTMLTag<HTMLButtonElement, ButtonHTMLAttributes<HTM
 	disabled?: boolean;
 }
 
-const IconButton: React.FC<IconButton> = ({disabled = false, Icon, color, theme, ...props}) => (
-	<button {...props} className={styles.iconButton} disabled={disabled}>
-		<ButtonIcon color={color || theme.base} Icon={Icon}/>
-	</button>
-)
+const IconButton: React.FC<IconButton> = ({disabled = false, Icon, color, theme, ...props}) => {
+	const IconButtonStyles = {
+		borderRadius: theme.borderRadius,
+		background: theme.baseLight,
+	}
 
+	return (
+		<button {...props} className={styles.iconButton} style={IconButtonStyles} disabled={disabled}>
+			<ButtonIcon color={color || theme.base} Icon={Icon}/>
+		</button>
+	)
+
+}
 const ButtonIcon: React.FC<Icon> = React.memo(({Icon, color,}) => <Icon fill={color}/>)
 
 

@@ -4,8 +4,22 @@ import React from 'react'
 import ThemeChanger from '../../components/ThemeChanger'
 import GoBack from '../../components/GoBack'
 import Header from '../../layout/Header'
+import Button from '../../components/UI/Button'
+import {useAppDispatch,} from '../../store/hooks'
+import {logout,} from '../../store/reducers/auth'
+import {useRouter,} from 'next/router'
 
 const Settings: NextPage = () => {
+	const dispatch = useAppDispatch()
+
+	const route = useRouter()
+
+	const handleLogout = () => {
+		dispatch(logout()).then(() => {
+			route.reload()
+		})
+	}
+
 	return (
 		<div>
 			<Head>
@@ -17,6 +31,10 @@ const Settings: NextPage = () => {
 				<GoBack/>
 				<ThemeChanger/>
 			</Header>
+
+			<div className="m-3.5">
+				<Button onClick={handleLogout}>Log out</Button>
+			</div>
 		</div>
 	)
 }

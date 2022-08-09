@@ -20,13 +20,27 @@ const App = ({Component, pageProps,}: AppProps) => (
 	</ThemeProvider>
 )
 
+const forbiddenPaths = [
+	Routes.AUTH,
+]
+
 App.getInitialProps = wrapper.getInitialAppProps((store) => async ({ctx, Component,}) => {
 	const {data: user,} = await store.dispatch(me.initiate())
 
+	const route = '/' + ctx.asPath?.substr(1).split('/')[0] + '/'
+
 	if (user) {
 		store.dispatch(setUserData(user))
+		if (forbiddenPaths.some(i => i === route)) {
+			if (ctx.res) {
+				ctx.res.writeHead(302, {
+					Location: Routes.HOME,
+				})
+				ctx.res.end()
+			}
+		}
 	} else {
-		if (ctx.asPath?.split('/').some(i => i === 'auth') === false) {
+		if (!forbiddenPaths.some(i => i === route)) {
 			if (ctx.res) {
 				ctx.res.writeHead(302, {
 					Location: Routes.LOGIN,

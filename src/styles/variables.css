@@ -1,7 +1,5 @@
 :root {
     --primary: #FF7841;
-    --primary-gradient: linear-gradient(114.78deg, #FFA925 -5.11%, #FF7841 125.67%);
-    --bg-light: #F6F7FB;
     --bg: #FFFFFF;
     --error: #fb654a;
     --error-light: #faddd8;
@@ -15,7 +13,6 @@
 
 [data-theme='dark'] {
     --primary: #e94300;
-    --primary-gradient: linear-gradient(114.78deg, #b66e00 -5.11%, #a53000 125.67%);
     --bg-light: #1d1f20;
     --bg: #131516;
     --error: #9e1b04;

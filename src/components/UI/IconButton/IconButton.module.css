@@ -1,12 +1,10 @@
 .iconButton {
-    background: var(--bg-light);
     border: none;
     height: 24px;
     width: 24px;
     box-sizing: content-box;
     padding: 7px;
     cursor: pointer;
-    border-radius: var(--radius);
 }
 
 .iconButton:disabled {

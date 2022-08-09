@@ -3,7 +3,7 @@ import ThemeType from './@types/Theme'
 export const defaultTheme: Required<ThemeType> = {
 	borderRadius: 12,
 	primary: '#FF7841',
-	primaryLight: '#FF7841',
+	primaryLight: '#f88456',
 	danger: '#fb654a',
 	dangerLight: '#faddd8',
 	base: '#d0ccc6',
@@ -12,4 +12,5 @@ export const defaultTheme: Required<ThemeType> = {
 	typographyLight: '#FAFAFA',
 	warning: '#fff6ab',
 	success: '#2c974b',
+	bg: '#ffffff',
 }
