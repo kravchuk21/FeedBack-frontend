@@ -13,4 +13,4 @@ const Header: React.FC<Header> = ({children,}) => {
     )
 }
 
-export default React.memo(Header)
+export default Header

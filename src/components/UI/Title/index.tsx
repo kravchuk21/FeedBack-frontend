@@ -9,10 +9,10 @@ interface Title extends FontStyles, WithUIThemeProps {
 	children: React.ReactNode;
 }
 
-const Title: React.FC<Title> = ({children, tag = 'h1', ...props}) => {
+const Title: React.FC<Title> = ({children, tag = 'h1', theme, ...props}) => {
 	const TitleStyles = {
 		fontSize: props.size,
-		color: props.color || props.theme.typography,
+		color: props.color || theme.typography,
 		fontFamily: props.fontFamily,
 		fontWeight: props.fontWeight,
 		fontStyle: props.fontStyle,

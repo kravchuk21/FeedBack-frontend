@@ -1,32 +1,38 @@
 import {useTheme,} from 'next-themes'
-import {useEffect, useState,} from 'react'
+import React, {useEffect, useState,} from 'react'
 import IconButton from '../UI/IconButton'
+import LightIcon from '../../../public/assets/icons/sun.svg'
+import DarkIcon from '../../../public/assets/icons/moon.svg'
+import { withUITheme, } from '../UI/core/withThemeHOC'
+import {WithUIThemeProps,} from '../UI/@types/Theme'
 
-const icons: Record<string, string> = {
-	light: '/assets/icons/sun.svg',
-	dark: '/assets/icons/moon.svg',
+const icons = {
+	light: LightIcon,
+	dark: DarkIcon,
 }
 
-const ThemeChanger = () => {
+const ThemeChanger: React.FC<WithUIThemeProps> = ({theme,}) => {
 	const [mounted, setMounted,] = useState(false)
 	const {setTheme, resolvedTheme,} = useTheme()
 
-	useEffect(() => setMounted(true), [])
+	useEffect(() => {
+		setMounted(true)
+	}, [])
 
 	if (!mounted) {
 		return null
 	}
 
-	let iconPath
+	let icon
 	switch (resolvedTheme) {
 		case 'light' :
-			iconPath = icons.dark
+			icon = icons.dark
 			break
 		case 'dark':
-			iconPath = icons.light
+			icon = icons.light
 			break
 		default:
-			iconPath = icons.dark
+			icon = icons.dark
 			break
 	}
 
@@ -39,7 +45,7 @@ const ThemeChanger = () => {
 	}
 
 	return (
-		<IconButton iconPath={iconPath} onClick={toggleTheme} alt="toggle theme"/>
+		<IconButton onClick={toggleTheme} Icon={icon} color={theme.primary}/>
 	)
 }
-export default ThemeChanger
+export default React.memo(withUITheme(ThemeChanger))

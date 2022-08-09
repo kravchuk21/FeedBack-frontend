@@ -11,19 +11,19 @@ interface Button extends HTMLTag<HTMLButtonElement, ButtonHTMLAttributes<HTMLBut
 	color?: string;
 }
 
-const Button: React.FC<Button> = ({disabled = false, children, ...props}) => {
+const Button: React.FC<Button> = ({disabled = false, children, theme, ...props}) => {
 	const ButtonStyles = {
 		background: disabled
-			? props.theme.baseLight
+			? theme.baseLight
 			: props.color
-			|| props.theme.primary,
-		borderRadius: props.theme.borderRadius,
+			|| theme.primary,
+		borderRadius: theme.borderRadius,
 	}
 
 	const TypographyStyles = {
 		color: disabled
-			? props.theme.typography
-			: props.theme.base && props.theme.typographyLight,
+			? theme.typography
+			: theme.base && theme.typographyLight,
 	}
 
 	return (

@@ -7,7 +7,7 @@ import {WithUIThemeProps,} from '../UI/@types/Theme'
 
 export interface IAvatar {
 	fullName: string;
-	avatarUrl?: string;
+	avatarUrl?: string | undefined;
 }
 
 const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, theme,}) => {
@@ -22,4 +22,4 @@ const Avatar: React.FC<IAvatar & WithUIThemeProps> = ({avatarUrl, fullName, them
 	)
 }
 
-export default withUITheme(React.memo(Avatar))
+export default React.memo(withUITheme(Avatar))
