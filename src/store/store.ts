@@ -6,15 +6,19 @@ import {authReducer,} from './reducers/auth'
 import {AuthAPI,} from './services/AuthService'
 import {UserAPI,} from './services/UserService'
 import {DialogAPI,} from './services/DialogService'
-import {dialogsReducer,} from './reducers/dialog'
+import {dialogsReducer,} from './reducers/dialogs'
+import {MessagesAPI,} from './services/MessagesService'
+import { dialogReducer, } from './reducers/dialog'
 
 const combinedReducer = combineReducers({
 	'user': userReducer,
 	'auth': authReducer,
-	'dialog': dialogsReducer,
+	'dialogs': dialogsReducer,
+	'dialog': dialogReducer,
 	[AuthAPI.reducerPath]: AuthAPI.reducer,
 	[UserAPI.reducerPath]: UserAPI.reducer,
 	[DialogAPI.reducerPath]: DialogAPI.reducer,
+	[MessagesAPI.reducerPath]: MessagesAPI.reducer,
 })
 
 const reducer = (state: CombinedState<ReturnType<typeof combinedReducer>> | undefined, action: AnyAction) => {
@@ -40,7 +44,8 @@ export const makeStore = (ctx: Context) => {
 				.concat(
 					AuthAPI.middleware,
 					UserAPI.middleware,
-					DialogAPI.middleware
+					DialogAPI.middleware,
+					MessagesAPI.middleware,
 				),
 	})
 }

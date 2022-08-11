@@ -3,38 +3,46 @@ import {DialogAPI,} from '../../store/services/DialogService'
 import DialogItemLoader from '../loaders/DialogItemLoader'
 import DialogItem from '../DialogItem'
 import Empty from '../Empty'
+import {useAppDispatch, useAppSelector,} from '../../store/hooks'
+import {selectUserId,} from '../../store/reducers/user'
+import {selectDialogs, setDialogs,} from '../../store/reducers/dialogs'
+import {socket,} from '../../store/services/socket'
 
 const DialogList = () => {
-	const {data, isSuccess, isLoading,} = DialogAPI.useGetAllUserDialogsQuery()
+	const {data, isSuccess, isLoading, refetch,} = DialogAPI.useGetAllUserDialogsQuery()
+	const dispatch = useAppDispatch()
 
+	const dialogs = useAppSelector(selectDialogs)
+	const myId = useAppSelector(selectUserId)
 
-	if (isLoading) {
-		return <Loaders/>
-	}
+	React.useEffect(() => {
+		socket.on('DIALOG:UPDATED', () => {
+			refetch()
+		})
+	}, [refetch,])
 
-	if (data && data.length === 0) {
-		return <Empty/>
-	}
+	React.useEffect(() => {
+		if (data) {
+			dispatch(setDialogs(data))
+		}
+	}, [data, dispatch,])
 
 	return (
 		<div>
-			{isSuccess && data.length && data.map((dialog) => {
-				return (
-					<DialogItem key={dialog._id} _id={dialog._id}
-								lastMessageText={'last message'}
-								lastMessageTime={new Date()}
-								fullName={dialog.author[0].fullName}/>
-				)
-			})
-			}
+			{isLoading && <Loaders/>}
+			{dialogs && dialogs.length === 0 && <Empty/>}
+			{isSuccess && dialogs && dialogs.length >= 1 && dialogs.map((dialog) => <DialogItem key={dialog._id}
+																						   _id={dialog._id}
+																						   lastMessageText={dialog.lastMessage[0].text}
+																						   lastMessageTime={dialog.lastMessage[0].updatedAt}
+																						   fullName={dialog.author[0]._id !== myId ? dialog.author[0].fullName : dialog.mate[0].fullName}/>
+			)}
 		</div>
 	)
 }
 
 const Loaders = () => <>
-	<DialogItemLoader/>
-	<DialogItemLoader/>
-	<DialogItemLoader/>
-	<DialogItemLoader/>
+	{Array(5).fill(null).map((_, i) => <DialogItemLoader key={i}/>)}
 </>
+
 export default DialogList

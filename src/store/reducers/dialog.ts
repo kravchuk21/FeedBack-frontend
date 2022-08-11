@@ -1,27 +1,42 @@
 import {createSlice, PayloadAction,} from '@reduxjs/toolkit'
+import {MessageInterface,} from '../../interfaces/messsge.interfaxe'
+import {UserInterface,} from '../../interfaces/user.interface'
 import {RootState,} from '../store'
-import {DialogInterface,} from '../../interfaces/dialog.interface'
 
-export interface DialogsState {
-	data: DialogInterface[] | null;
+export interface DialogState {
+	messages: MessageInterface[] | null;
+	mate: UserInterface | null
+	dialogId: string | null
 }
 
-const initialState: DialogsState = {
-	data: null,
+const initialState: DialogState = {
+	messages: null,
+	mate: null,
+	dialogId: null,
 }
 
-export const dialogsSlice = createSlice({
+export const dialogSlice = createSlice({
 	name: 'dialog',
 	initialState,
 	reducers: {
-		setDialogs: (state, action: PayloadAction<DialogInterface[]>) => {
-			state.data = action.payload
+		setMessages: (state, action: PayloadAction<MessageInterface[]>) => {
+			state.messages = action.payload
+		},
+		setMessage: (state, action: PayloadAction<MessageInterface>) => {
+			state.messages = state.messages ? [...state.messages, action.payload,] : [action.payload,]
+		},
+		setMate: (state, action: PayloadAction<UserInterface>) => {
+			state.mate = action.payload
+		},
+		setDialogId: (state, action: PayloadAction<string>) => {
+			state.dialogId = action.payload
 		},
 	},
 })
 
-export const {setDialogs,} = dialogsSlice.actions
+export const {setMessages, setMessage, setMate, setDialogId,} = dialogSlice.actions
 
-export const selectDialogs = (state: RootState) => state.dialog.data
+export const selectDialogId = (state: RootState) => state.dialog.dialogId
+export const selectMate = (state: RootState) => state.dialog.mate
 
-export const dialogsReducer = dialogsSlice.reducer
+export const dialogReducer = dialogSlice.reducer

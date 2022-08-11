@@ -2,6 +2,7 @@ import {createApi, fetchBaseQuery,} from '@reduxjs/toolkit/dist/query/react'
 import {baseUrl, prepareHeadersAuthorization,} from './index'
 import {DialogInterface,} from '../../interfaces/dialog.interface'
 import {HYDRATE,} from 'next-redux-wrapper'
+import {UserInterface,} from '../../interfaces/user.interface'
 
 const baseQuery = fetchBaseQuery({
 	baseUrl: baseUrl + 'dialog',
@@ -25,9 +26,12 @@ export const DialogAPI = createApi({
 				url: '/',
 			}),
 		}),
+		getMate: build.mutation<UserInterface, string>({
+			query: (dialogId) => ({
+				url: '/' + dialogId,
+			}),
+		}),
 	}),
 })
-
-export const {util: {getRunningOperationPromises,},} = DialogAPI
 
 export const {getAllUserDialogs,} = DialogAPI.endpoints

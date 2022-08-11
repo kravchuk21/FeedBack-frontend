@@ -17,6 +17,8 @@ import TextLink from '../../components/Link'
 import Header from '../../layout/Header'
 import Typography from '../../components/UI/Typography'
 import {dateFormat,} from '../../utils/dateFormat'
+import Button from '../../components/UI/Button'
+import {socket,} from '../../store/services/socket'
 
 interface ProfilePageProps {
 	data: UserInterface;
@@ -25,6 +27,12 @@ interface ProfilePageProps {
 const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 	const myId = useAppSelector(selectUserId)
 	const isMe = data._id === myId
+
+	const handleClick = () => {
+		if (data) {
+			socket.emit('MESSAGE:CREATE', {text: 'Hello 👋', mate: data._id,})
+		}
+	}
 
 	return (
 		<div>
@@ -39,10 +47,13 @@ const Profile: NextPage<ProfilePageProps> = ({data,}) => {
 				<div className="mb-3.5">
 					<Avatar fullName={data.fullName} avatarUrl={data.avatar}/>
 				</div>
-				<Title textAlign='center' size={20}>{data.fullName}</Title>
+				<Title textAlign="center" size={20}>{data.fullName}</Title>
 				<Typography>Account created at:</Typography>
 				<Typography>{dateFormat(data.createdAt)}</Typography>
 				<TextLink href={`mailto:${data.email}`}>{data.email}</TextLink>
+				{!isMe && <div className="m-10">
+                    <Button onClick={handleClick}>Say hello 👋</Button>
+                </div>}
 			</div>
 		</div>
 	)
