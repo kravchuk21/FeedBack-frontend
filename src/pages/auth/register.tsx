@@ -13,8 +13,8 @@ import {CreateUserDto,} from '../../store/services/types.dto'
 import PersonIcon from '../../../public/assets/icons/person.svg'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
-import {AuthAPI,} from '../../store/services/AuthService'
-import {ResponseError,} from '../../store/services/types'
+import {Api, isAxiosError,} from '../../services'
+import {SOMETHING_WENT_WRONG,} from '../../constants/api'
 
 const Register: NextPage = () => (
 	<div>
@@ -37,24 +37,36 @@ type IFormInputs = CreateUserDto
 
 const RegisterForm = () => {
 	const {push,} = useRouter()
-	const [fetchRegister, {error, isLoading, isError,},] = AuthAPI.useRegisterMutation()
 
 	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
 		mode: 'onChange',
 		resolver: yupResolver(RegisterFormSchema),
 	})
 
-	const errorMessage = (error as ResponseError)?.data.message
+	const [loading, setLoading,] = React.useState(false)
+	const [error, setError,] = React.useState<string | string[]>('')
 
 	const onSubmit = async (dto: IFormInputs) => {
-		await fetchRegister(dto).unwrap().then(async () => {
+		setLoading(true)
+		try {
+			await Api().auth.register(dto)
+
 			await push(Routes.LOGIN)
-		}).catch(() => {
-			reset()
-		})
+		} catch (err) {
+			let error
+			if (isAxiosError(err)) {
+				error = err.response?.data?.message || SOMETHING_WENT_WRONG
+			} else {
+				error = SOMETHING_WENT_WRONG
+			}
+			setError(error)
+		}
+
+		setLoading(false)
+		reset()
 	}
 
-	if (isLoading) {
+	if (loading) {
 		return <AuthLoader/>
 	}
 
@@ -85,9 +97,9 @@ const RegisterForm = () => {
 						disabled={!isValid || isSubmitting}
 				>Sign Up</Button>
 			</div>
-			{isError && (
+			{!!error && (
 				<div className="mt-3.5">
-					<ErrorMessage message={errorMessage}/>
+					<ErrorMessage message={error}/>
 				</div>
 			)}
 		</form>

@@ -1,8 +1,8 @@
 import {createAsyncThunk, createSlice, PayloadAction,} from '@reduxjs/toolkit'
 import {RootState,} from '../store'
 import {UserInterface,} from '../../interfaces/user.interface'
-import {LoginResponse,} from '../services/AuthService'
 import {deleteCookie,} from 'cookies-next'
+import {LoginResponse,} from '../../services/auth/responce'
 
 export interface AuthState {
 	isAuth: boolean;

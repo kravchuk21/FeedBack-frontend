@@ -3,19 +3,17 @@ import {Context, createWrapper, HYDRATE,} from 'next-redux-wrapper'
 
 import {userReducer,} from './reducers/user'
 import {authReducer,} from './reducers/auth'
-import {AuthAPI,} from './services/AuthService'
 import {UserAPI,} from './services/UserService'
 import {DialogAPI,} from './services/DialogService'
 import {dialogsReducer,} from './reducers/dialogs'
 import {MessagesAPI,} from './services/MessagesService'
-import { dialogReducer, } from './reducers/dialog'
+import {dialogReducer,} from './reducers/dialog'
 
 const combinedReducer = combineReducers({
 	'user': userReducer,
 	'auth': authReducer,
 	'dialogs': dialogsReducer,
 	'dialog': dialogReducer,
-	[AuthAPI.reducerPath]: AuthAPI.reducer,
 	[UserAPI.reducerPath]: UserAPI.reducer,
 	[DialogAPI.reducerPath]: DialogAPI.reducer,
 	[MessagesAPI.reducerPath]: MessagesAPI.reducer,
@@ -42,7 +40,6 @@ export const makeStore = (ctx: Context) => {
 				},
 			})
 				.concat(
-					AuthAPI.middleware,
 					UserAPI.middleware,
 					DialogAPI.middleware,
 					MessagesAPI.middleware,

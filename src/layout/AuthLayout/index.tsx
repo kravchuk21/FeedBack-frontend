@@ -8,7 +8,7 @@ import Title from '../../components/UI/Title'
 import Toast from '../../components/UI/Toast'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
 import Loading from '../../components/loaders/Loading'
-import { withUITheme, } from '../../components/UI/core/withThemeHOC'
+import {withUITheme,} from '../../components/UI/core/withThemeHOC'
 import {WithUIThemeProps,} from '../../components/UI/@types/Theme'
 
 interface AuthLayout extends WithUIThemeProps {
@@ -44,13 +44,13 @@ const AuthLayout: React.FC<AuthLayout> = ({children, title, link, theme,}) => (
 
 
 export const AuthLoader = () => (
-	<div className='flex justify-center content-center'>
+	<div className="flex justify-center content-center m-3.5">
 		<Loading/>
 	</div>
 )
 
 
-type ErrorMessage = {
+export type ErrorMessage = {
 	message: string | string[] | undefined;
 }
 export const ErrorMessage: React.FC<ErrorMessage> = ({message,}) => {
