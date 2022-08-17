@@ -1,5 +1,5 @@
 import {useTheme,} from 'next-themes'
-import React, {useEffect, useState,} from 'react'
+import React from 'react'
 import IconButton from '../UI/IconButton'
 import LightIcon from '../../../public/assets/icons/sun.svg'
 import DarkIcon from '../../../public/assets/icons/moon.svg'
@@ -12,10 +12,10 @@ const icons = {
 }
 
 const ThemeChanger: React.FC<WithUIThemeProps> = ({theme,}) => {
-	const [mounted, setMounted,] = useState(false)
+	const [mounted, setMounted,] = React.useState(false)
 	const {setTheme, resolvedTheme,} = useTheme()
 
-	useEffect(() => {
+	React.useEffect(() => {
 		setMounted(true)
 	}, [])
 

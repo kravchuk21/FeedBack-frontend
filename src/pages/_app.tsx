@@ -25,7 +25,7 @@ const App = ({Component, pageProps,}: AppProps) => {
 			}
 		}
 	}, [userId,])
-
+	
 	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
 		<UIProvider value={Theme}>
 			<div className="container">

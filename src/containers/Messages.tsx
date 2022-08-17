@@ -47,9 +47,7 @@ export const MessagesContainer = () => {
 	}, [dispatch,])
 
 	React.useEffect(() => {
-		if (messagesRef.current) {
-			messagesRef.current.scrollTo(0, 9999)
-		}
+		messagesRef.current?.scrollTo(0, 9999)
 	}, [messages,])
 
 
