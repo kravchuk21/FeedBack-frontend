@@ -3,7 +3,7 @@ import React, {useEffect, useState,} from 'react'
 import IconButton from '../UI/IconButton'
 import LightIcon from '../../../public/assets/icons/sun.svg'
 import DarkIcon from '../../../public/assets/icons/moon.svg'
-import { withUITheme, } from '../UI/core/withThemeHOC'
+import {withUITheme,} from '../UI/core/withThemeHOC'
 import {WithUIThemeProps,} from '../UI/@types/Theme'
 
 const icons = {

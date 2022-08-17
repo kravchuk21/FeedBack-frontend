@@ -1,22 +1,40 @@
 {
   "extends": [
-    "next/core-web-vitals", "plugin:@typescript-eslint/recommended"
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "@typescript-eslint"
   ],
   "root": true,
-  "ignorePatterns": ["next.config.js"],
+  "ignorePatterns": [
+    "next.config.js"
+  ],
   "rules": {
     "react/display-name": "off",
     "no-console": "warn",
-    "quotes": [2, "single", { "avoidEscape": true }],
-    "comma-dangle": ["error", "always"],
-    "semi": [2, "never"],
-
+    "quotes": [
+      2,
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "comma-dangle": [
+      "error",
+      "always"
+    ],
+    "semi": [
+      2,
+      "never"
+    ],
     "space-before-blocks": "off",
-    "@typescript-eslint/space-before-blocks": ["error"],
-    "@typescript-eslint/ban-ts-comment": ["error"]
+    "@typescript-eslint/space-before-blocks": [
+      "error"
+    ],
+    "@typescript-eslint/ban-ts-comment": [
+      "error"
+    ]
   }
 }

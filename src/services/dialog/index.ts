@@ -1,6 +1,6 @@
 import {AxiosInstance,} from 'axios'
 import {MessageInterface,} from '../../interfaces/messsge.interfaxe'
-import { UserInterface, } from '../../interfaces/user.interface'
+import {UserInterface,} from '../../interfaces/user.interface'
 
 export const DialogApi = (instance: AxiosInstance) => ({
 	async getAllDialogMessages(dialogId: string) {

@@ -9,12 +9,12 @@ import {useForm,} from 'react-hook-form'
 import React from 'react'
 import {useRouter,} from 'next/router'
 import {Routes,} from '../../constants/routes'
-import {CreateUserDto,} from '../../store/services/types.dto'
 import PersonIcon from '../../../public/assets/icons/person.svg'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
 import {Api, isAxiosError,} from '../../services'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
+import {CreateUserDto,} from '../../services/auth/dto'
 
 const Register: NextPage = () => (
 	<div>
@@ -50,7 +50,6 @@ const RegisterForm = () => {
 		setLoading(true)
 		try {
 			await Api().auth.register(dto)
-
 			await push(Routes.LOGIN)
 		} catch (err) {
 			let error

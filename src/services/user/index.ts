@@ -1,6 +1,6 @@
 import {AxiosInstance,} from 'axios'
 import {UserInterface,} from '../../interfaces/user.interface'
-import { SearchUserDto, } from './dto'
+import {SearchUserDto,} from './dto'
 
 export const UserApi = (instance: AxiosInstance) => ({
 	async getMe() {

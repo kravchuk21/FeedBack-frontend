@@ -1,5 +1,5 @@
-import { TimeStems, } from '.'
-import { UserInterface, } from './user.interface'
+import {TimeStems,} from '.'
+import {UserInterface,} from './user.interface'
 import {MessageInterface,} from './messsge.interfaxe'
 
 export interface DialogInterface extends TimeStems {

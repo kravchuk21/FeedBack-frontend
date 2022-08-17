@@ -9,7 +9,6 @@ import {LoginFormSchema,} from '../../utils/validation'
 import {useRouter,} from 'next/router'
 import {useAppDispatch,} from '../../store/hooks'
 import {Routes,} from '../../constants/routes'
-import {LoginUserDto,} from '../../store/services/types.dto'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
 import Button from '../../components/UI/Button'
@@ -17,6 +16,7 @@ import {Api, isAxiosError,} from '../../services'
 import {setUserAuth,} from '../../store/reducers/auth'
 import {setCookie,} from 'nookies'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
+import {LoginUserDto,} from '../../services/auth/dto'
 
 const Login: NextPage = () => {
 	return (

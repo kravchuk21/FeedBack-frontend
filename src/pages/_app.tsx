@@ -11,7 +11,7 @@ import {Theme,} from '../../theme'
 import {Api,} from '../services'
 import {UserInterface,} from '../interfaces/user.interface'
 import {useAppSelector,} from '../store/hooks'
-import { socket, } from '../store/socket'
+import {socket,} from '../store/socket'
 
 const App = ({Component, pageProps,}: AppProps) => {
 	const userId = useAppSelector(selectUserId)
