@@ -10,7 +10,7 @@ import {socket,} from '../store/socket'
 export const DialogsContainer = () => {
 	const dispatch = useAppDispatch()
 
-	const [isLoading, setIsLoading,] = React.useState(false)
+	const [isLoading, setIsLoading,] = React.useState(true)
 
 	const userId = useAppSelector(selectUserId)
 	const dialogs = useAppSelector(selectDialogs)
@@ -37,10 +37,10 @@ export const DialogsContainer = () => {
 	}
 
 	React.useEffect(() => {
-		setIsLoading(true)
+		setIsLoading(false)
 		fetchDialogs().then((data) => {
 			dispatch(setDialogs(data))
-			setIsLoading(false)
+			setIsLoading(true)
 		})
 	}, [dispatch,])
 

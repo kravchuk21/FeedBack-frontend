@@ -5,6 +5,7 @@ import Link from 'next/link'
 import {Routes,} from '../../constants/routes'
 import {DialogInterface,} from '../../interfaces/dialog.interface'
 import {UserInterface,} from '../../interfaces/user.interface'
+import DialogItemLoader from '../loaders/DialogItemLoader'
 
 interface DialogsList {
 	items: DialogInterface[];
@@ -14,9 +15,9 @@ interface DialogsList {
 
 const DialogsList: React.FC<DialogsList> = ({items, userId, isLoading,}) => (
 	<div>
-		{isLoading && <h1>Loading...</h1>}
-		{!isLoading && items && items.length === 0 && <Empty/>}
-		{!isLoading && items && items.map((dialog) => (
+		{!isLoading && !items && <DialogListLoader/>}
+		{items && isLoading && items.length === 0 && <Empty/>}
+		{isLoading && items && items.map((dialog) => (
 			<Link href={Routes.DIALOG + dialog._id} key={dialog._id}>
 				<a>
 					<DialogItem
@@ -30,6 +31,6 @@ const DialogsList: React.FC<DialogsList> = ({items, userId, isLoading,}) => (
 	</div>
 )
 
-// TODO: dialogs loading
+const DialogListLoader: React.FC = () => <>{Array(5).fill(null).map((_, i) => <DialogItemLoader key={i}/>)}</>
 
 export default DialogsList

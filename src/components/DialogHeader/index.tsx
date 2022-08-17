@@ -7,6 +7,8 @@ import Title from '../UI/Title'
 import Link from 'next/link'
 import {Routes,} from '../../constants/routes'
 import Avatar from '../Avatar'
+import TextLoader from '../loaders/TextLoader'
+import AvatarLoader from '../loaders/AvatarLoader'
 
 export const DialogHeader: React.FC = React.memo(() => {
 	const mate = useAppSelector(selectMate)
@@ -25,8 +27,9 @@ export const DialogHeader: React.FC = React.memo(() => {
 				</>
 			)
 			}
+			{!mate && <HeaderLoader/>}
 		</Header>
 	)
 })
 
-// TODO: header loading
+const HeaderLoader = () => <><TextLoader/><AvatarLoader/></>

@@ -4,6 +4,7 @@ import Bubble from '../Bubble'
 import {MessageInterface,} from '../../interfaces/messsge.interfaxe'
 import Empty from '../Empty'
 import {UserInterface,} from '../../interfaces/user.interface'
+import BubbleItemLoader from '../loaders/BubbleItemLoader'
 
 interface Messages {
 	isLoading: boolean;
@@ -14,7 +15,7 @@ interface Messages {
 
 const Messages: React.FC<Messages> = ({items, isLoading, messagesRef, userId,}) => (
 	<div className={styles.bubbleBlock} ref={messagesRef}>
-		{isLoading && <h1>Loading...</h1>}
+		{isLoading && <MessagesLoader/>}
 		{!isLoading && items && items.length === 0 && <Empty/>}
 		{!isLoading && items && items.map(message => {
 			return (
@@ -27,6 +28,6 @@ const Messages: React.FC<Messages> = ({items, isLoading, messagesRef, userId,}) 
 	</div>
 )
 
-// TODO: messages loader
+const MessagesLoader: React.FC = () => <>{Array(10).fill(null).map((_, i) => <BubbleItemLoader key={i}/>)}</>
 
 export default Messages
