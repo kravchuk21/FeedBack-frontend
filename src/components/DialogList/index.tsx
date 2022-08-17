@@ -1,48 +1,35 @@
 import React from 'react'
-import {DialogAPI,} from '../../store/services/DialogService'
-import DialogItemLoader from '../loaders/DialogItemLoader'
 import DialogItem from '../DialogItem'
 import Empty from '../Empty'
-import {useAppDispatch, useAppSelector,} from '../../store/hooks'
-import {selectUserId,} from '../../store/reducers/user'
-import {selectDialogs, setDialogs,} from '../../store/reducers/dialogs'
-import {socket,} from '../../store/services/socket'
+import Link from 'next/link'
+import {Routes,} from '../../constants/routes'
+import {DialogInterface,} from '../../interfaces/dialog.interface'
+import {UserInterface,} from '../../interfaces/user.interface'
 
-const DialogList = () => {
-	const {data, isSuccess, isLoading, refetch,} = DialogAPI.useGetAllUserDialogsQuery()
-	const dispatch = useAppDispatch()
-
-	const dialogs = useAppSelector(selectDialogs)
-	const myId = useAppSelector(selectUserId)
-
-	React.useEffect(() => {
-		socket.on('DIALOG:UPDATED', () => {
-			refetch()
-		})
-	}, [refetch,])
-
-	React.useEffect(() => {
-		if (data) {
-			dispatch(setDialogs(data))
-		}
-	}, [data, dispatch,])
-
-	return (
-		<div>
-			{isLoading && <Loaders/>}
-			{dialogs && dialogs.length === 0 && <Empty/>}
-			{isSuccess && dialogs && dialogs.length >= 1 && dialogs.map((dialog) => <DialogItem key={dialog._id}
-																						   _id={dialog._id}
-																						   lastMessageText={dialog.lastMessage[0].text}
-																						   lastMessageTime={dialog.lastMessage[0].updatedAt}
-																						   fullName={dialog.author[0]._id !== myId ? dialog.author[0].fullName : dialog.mate[0].fullName}/>
-			)}
-		</div>
-	)
+interface DialogsList {
+	items: DialogInterface[];
+	isLoading: boolean;
+	userId: UserInterface['_id'] | undefined;
 }
 
-const Loaders = () => <>
-	{Array(5).fill(null).map((_, i) => <DialogItemLoader key={i}/>)}
-</>
+const DialogsList: React.FC<DialogsList> = ({items, userId, isLoading,}) => (
+	<div>
+		{isLoading && <h1>Loading...</h1>}
+		{!isLoading && items && items.length === 0 && <Empty/>}
+		{!isLoading && items && items.map((dialog) => (
+			<Link href={Routes.DIALOG + dialog._id} key={dialog._id}>
+				<a>
+					<DialogItem
+						_id={dialog._id}
+						lastMessageText={dialog.lastMessage.text}
+						lastMessageTime={dialog.lastMessage.updatedAt}
+						fullName={dialog.author._id !== userId ? dialog.author.fullName : dialog.mate.fullName}/>
+				</a>
+			</Link>)
+		)}
+	</div>
+)
 
-export default DialogList
+// TODO: dialogs loading
+
+export default DialogsList

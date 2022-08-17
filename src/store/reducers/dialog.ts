@@ -25,7 +25,7 @@ export const dialogSlice = createSlice({
 		setMessage: (state, action: PayloadAction<MessageInterface>) => {
 			state.messages = state.messages ? [...state.messages, action.payload,] : [action.payload,]
 		},
-		setMate: (state, action: PayloadAction<UserInterface>) => {
+		setMate: (state, action: PayloadAction<UserInterface | null>) => {
 			state.mate = action.payload
 		},
 		setDialogId: (state, action: PayloadAction<string>) => {
@@ -37,6 +37,8 @@ export const dialogSlice = createSlice({
 export const {setMessages, setMessage, setMate, setDialogId,} = dialogSlice.actions
 
 export const selectDialogId = (state: RootState) => state.dialog.dialogId
+export const selectMessages = (state: RootState) => state.dialog.messages
 export const selectMate = (state: RootState) => state.dialog.mate
+export const selectMateId = (state: RootState) => state.dialog.mate?._id
 
 export const dialogReducer = dialogSlice.reducer

@@ -11,6 +11,7 @@ const MyAvatar: React.FC = () => {
 	if (!user) {
 		return null
 	}
+
 	return (
 		<Link href={Routes.PROFILE + user._id}>
 			<a>

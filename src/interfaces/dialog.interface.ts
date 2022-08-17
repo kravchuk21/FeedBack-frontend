@@ -4,7 +4,7 @@ import {MessageInterface,} from './messsge.interfaxe'
 
 export interface DialogInterface extends TimeStems {
 	_id: string;
-	author: [UserInterface];
-	mate: [UserInterface];
-	lastMessage: [MessageInterface];
+	author: UserInterface;
+	mate: UserInterface;
+	lastMessage: MessageInterface;
 }

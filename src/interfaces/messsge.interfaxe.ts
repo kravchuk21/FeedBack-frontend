@@ -1,7 +1,8 @@
 import {TimeStems,} from '.'
+import {UserInterface,} from './user.interface'
 
 export interface MessageInterface extends TimeStems {
 	_id: string;
-	authorId: string;
+	author: UserInterface;
 	text: string;
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import Input from '../UI/Input'
 
 interface SearchUserInput {
-	onSearch: (query: string) => void
+	onSearch: (query: string) => void,
 }
 
 const SearchUserInput: React.FC<SearchUserInput> = ({onSearch,}) => {
@@ -10,9 +10,7 @@ const SearchUserInput: React.FC<SearchUserInput> = ({onSearch,}) => {
 
 	React.useEffect(() => {
 		const timer = setTimeout(() => {
-			if (searchQuery) {
-				onSearch(searchQuery)
-			}
+			onSearch(searchQuery)
 		}, 500)
 
 		return () => clearTimeout(timer)
@@ -24,7 +22,7 @@ const SearchUserInput: React.FC<SearchUserInput> = ({onSearch,}) => {
 		setSearchQuery(query)
 	}
 
-	return <Input placeholder={'Enter to find'} onChange={onChangeHandler}/>
+	return <Input placeholder="Enter to find" onChange={onChangeHandler} value={searchQuery}/>
 }
 
 export default SearchUserInput

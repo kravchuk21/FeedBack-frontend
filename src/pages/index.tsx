@@ -5,26 +5,12 @@ import IconButton from '../components/UI/IconButton'
 import Title from '../components/UI/Title'
 import {useRouter,} from 'next/router'
 import {Routes,} from '../constants/routes'
-import DialogList from '../components/DialogList'
 import SearchIcon from '../../public/assets/icons/search.svg'
 import MyAvatar from '../components/MyAvatar'
 import React from 'react'
-import {socket,} from '../store/services/socket'
-import {useAppSelector,} from '../store/hooks'
-import {selectUserId,} from '../store/reducers/user'
+import {DialogsContainer,} from '../containers/Dialogs'
 
 const Home: NextPage = () => {
-	const myId = useAppSelector(selectUserId)
-
-	React.useEffect(() => {
-		if (myId) {
-			socket.emit('DIALOGS:JOIN', myId)
-		}
-		return () => {
-			socket.close()
-		}
-	}, [myId,])
-
 	return (
 		<div>
 			<Head>
@@ -32,7 +18,7 @@ const Home: NextPage = () => {
 				<link rel="icon" href="/public/favicon.ico"/>
 			</Head>
 			<HomeHeader/>
-			<DialogList/>
+			<DialogsContainer/>
 		</div>
 	)
 }

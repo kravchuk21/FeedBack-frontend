@@ -1,105 +1,53 @@
-import type {GetServerSidePropsContext, NextPage,} from 'next'
+import type {NextPage,} from 'next'
 import Head from 'next/head'
-import Header from '../../layout/Header'
 import styles from '../../styles/Dialog.module.css'
-import DialogInput from '../../components/DialogInput'
-import Title from '../../components/UI/Title'
-import GoBack from '../../components/GoBack'
-import Messages from '../../components/Messages'
-import {MessagesAPI,} from '../../store/services/MessagesService'
 import React from 'react'
-import {socket,} from '../../store/services/socket'
-import {useAppDispatch, useAppSelector,} from '../../store/hooks'
-import {selectMate, setDialogId, setMate, setMessages,} from '../../store/reducers/dialog'
-import {DialogAPI,} from '../../store/services/DialogService'
-import Avatar from '../../components/Avatar'
-import Link from 'next/link'
-import {Routes,} from '../../constants/routes'
+import {useAppDispatch,} from '../../store/hooks'
+import {setDialogId, setMate,} from '../../store/reducers/dialog'
+import {MessagesContainer,} from '../../containers/Messages'
+import {useRouter,} from 'next/router'
+import {DialogInputContainer,} from '../../containers/DialogInput'
+import {Api,} from '../../services'
+import {DialogHeader,} from '../../components/DialogHeader'
 
-export interface DialogPageProps {
-	dialogId: string;
-}
-
-const Dialog: NextPage<DialogPageProps> = ({dialogId,}) => {
-	const [fetchAllMessages, {data, isSuccess,},] = MessagesAPI.useGetAllDialogMessagesMutation()
-	const [fetchMate, {data: mate,},] = DialogAPI.useGetMateMutation()
+const Dialog: NextPage = () => {
 	const dispatch = useAppDispatch()
+	const router = useRouter()
+	const dialogId = router.query.id as string
+
+	const fetchMate = React.useCallback(async (dialogId: string) => {
+		let mate = null
+		if (dialogId) {
+			try {
+				const {data,} = await Api().dialog.getMate(dialogId)
+				mate = data
+			} catch {
+				console.log('error')
+			}
+		}
+		return mate
+	}, [])
 
 	React.useEffect(() => {
 		if (dialogId) {
-			fetchAllMessages(dialogId)
-			fetchMate(dialogId)
-		}
-	}, [dialogId, fetchAllMessages, fetchMate,])
-
-	React.useEffect(() => {
-		if (dialogId && mate) {
 			dispatch(setDialogId(dialogId))
-			dispatch(setMate(mate))
+			fetchMate(dialogId).then(data => {
+				dispatch(setMate(data))
+			})
 		}
-	}, [dialogId, dispatch, mate,])
-
-	React.useEffect(() => {
-		if (dialogId) {
-			socket.emit('JOIN', dialogId)
-		}
-		return () => {
-			socket.close()
-		}
-	}, [dialogId,])
-
-	React.useEffect(() => {
-		if (isSuccess && data) {
-			dispatch(setMessages(data))
-		}
-	}, [data, dispatch, isSuccess,])
-
+	}, [dialogId, dispatch, fetchMate,])
 
 	return (
 		<div className={styles.dialog}>
 			<Head>
 				<title>FeedBack | Dialog</title>
-				<link rel="icon" href="/public/favicon.ico"/>
 			</Head>
 			<DialogHeader/>
-			<Messages/>
-			<DialogInput/>
+			<MessagesContainer/>
+			<DialogInputContainer/>
 		</div>
 	)
 }
 
-const DialogHeader: React.FC = React.memo(() => {
-	const mate = useAppSelector(selectMate)
-
-	return (
-		<Header>
-			<GoBack/>
-			{mate && (
-				<>
-					<Title>{mate.fullName}</Title>
-					<Link href={Routes.PROFILE + mate._id}>
-						<a>
-							<Avatar fullName={mate.fullName} avatarUrl={mate.avatar}/>
-						</a>
-					</Link>
-				</>
-			)
-			}
-		</Header>
-	)
-})
-
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-	const dialogId = context.params?.id
-
-	if (typeof dialogId === 'string') {
-
-		return {
-			props: {dialogId,},
-		}
-	} else {
-		return {notFound: true,}
-	}
-}
 
 export default Dialog
