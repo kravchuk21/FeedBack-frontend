@@ -1,7 +1,6 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
-import Input from '../../components/UI/Input'
 import React from 'react'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
@@ -11,12 +10,12 @@ import {useAppDispatch,} from '../../store/hooks'
 import {Routes,} from '../../constants/routes'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
-import Button from '../../components/UI/Button'
 import {Api, isAxiosError,} from '../../services'
 import {setUserAuth,} from '../../store/reducers/auth'
 import {setCookie,} from 'nookies'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
 import {LoginUserDto,} from '../../services/auth/dto'
+import {Button, Input, } from '../../components/UI'
 
 const Login: NextPage = () => {
 	return (

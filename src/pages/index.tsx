@@ -1,16 +1,21 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import Header from '../layout/Header'
-import IconButton from '../components/UI/IconButton'
-import Title from '../components/UI/Title'
 import {useRouter,} from 'next/router'
 import {Routes,} from '../constants/routes'
 import SearchIcon from '../../public/assets/icons/search.svg'
 import MyAvatar from '../components/MyAvatar'
 import React from 'react'
 import {DialogsContainer,} from '../containers/Dialogs'
+import {Button, IconButton, Popup, Title,} from '../components/UI'
 
 const Home: NextPage = () => {
+	const [visible, setVisible,] = React.useState(false)
+
+	const onClose = () => {
+		setVisible(false)
+	}
+
 	return (
 		<div>
 			<Head>
@@ -19,6 +24,10 @@ const Home: NextPage = () => {
 			</Head>
 			<HomeHeader/>
 			<DialogsContainer/>
+			<Button onClick={() => setVisible(v => !v)}>open</Button>
+			<Popup title='Hello' onClose={onClose} isOpened={visible}>
+				modal
+			</Popup>
 		</div>
 	)
 }

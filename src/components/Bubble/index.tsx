@@ -1,8 +1,6 @@
 import React from 'react'
+import {Typography, withUITheme, WithUIThemeProps,} from '../UI'
 import styles from './Bubble.module.css'
-import Typography from '../UI/Typography'
-import {withUITheme,} from '../UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../UI/@types/Theme'
 
 interface Bubble extends WithUIThemeProps {
 	text: string;

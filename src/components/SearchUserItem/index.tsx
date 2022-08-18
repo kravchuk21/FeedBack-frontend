@@ -1,8 +1,7 @@
 import React from 'react'
 import Avatar, {IAvatar,} from '../Avatar'
+import {Title, Typography,} from '../UI'
 import styles from './SearchUserItem.module.css'
-import Typography from '../UI/Typography'
-import Title from '../UI/Title'
 
 interface SearchUserItem extends IAvatar {
 	_id: string;

@@ -1,9 +1,7 @@
 import React from 'react'
 import styles from './Avatar.module.css'
 import Image from 'next/image'
-import Title from '../UI/Title'
-import {withUITheme,} from '../UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../UI/@types/Theme'
+import {Title, withUITheme, WithUIThemeProps,} from '../UI'
 
 export interface IAvatar {
 	fullName: string;

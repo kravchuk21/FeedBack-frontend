@@ -6,12 +6,12 @@ import {AppProps,} from 'next/app'
 import {selectUserId, setUserData,} from '../store/reducers/user'
 import {ThemeProvider,} from 'next-themes'
 import {Routes,} from '../constants/routes'
-import {UIProvider,} from '../components/UI'
 import {Theme,} from '../../theme'
 import {Api,} from '../services'
 import {UserInterface,} from '../interfaces/user.interface'
 import {useAppSelector,} from '../store/hooks'
 import {socket,} from '../store/socket'
+import {UIProvider,} from '../components/UI'
 
 const App = ({Component, pageProps,}: AppProps) => {
 	const userId = useAppSelector(selectUserId)
@@ -25,7 +25,7 @@ const App = ({Component, pageProps,}: AppProps) => {
 			}
 		}
 	}, [userId,])
-	
+
 	return <ThemeProvider defaultTheme="system" themes={['dark', 'light',]}>
 		<UIProvider value={Theme}>
 			<div className="container">

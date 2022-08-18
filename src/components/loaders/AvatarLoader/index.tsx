@@ -1,7 +1,6 @@
 import React from 'react'
-import {withUITheme,} from '../../UI/core/withThemeHOC'
+import {withUITheme, WithUIThemeProps,} from '../../UI'
 import styles from './AvatarLoader.module.css'
-import {WithUIThemeProps,} from '../../UI/@types/Theme'
 
 const AvatarLoader: React.FC<WithUIThemeProps> = ({theme,}) => {
 	const LoaderStyle = {

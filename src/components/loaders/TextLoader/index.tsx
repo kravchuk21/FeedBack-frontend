@@ -1,7 +1,6 @@
 import React from 'react'
-import {withUITheme,} from '../../UI/core/withThemeHOC'
+import {withUITheme, WithUIThemeProps,} from '../../UI'
 import styles from './TextLoader.module.css'
-import {WithUIThemeProps,} from '../../UI/@types/Theme'
 
 const TextLoader: React.FC<WithUIThemeProps> = ({theme,}) => {
 	const LoaderStyle = {

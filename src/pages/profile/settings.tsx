@@ -4,10 +4,10 @@ import React from 'react'
 import ThemeChanger from '../../components/ThemeChanger'
 import GoBack from '../../components/GoBack'
 import Header from '../../layout/Header'
-import Button from '../../components/UI/Button'
 import {useAppDispatch,} from '../../store/hooks'
 import {logout,} from '../../store/reducers/auth'
 import {useRouter,} from 'next/router'
+import {Button,} from '../../components/UI'
 
 const Settings: NextPage = () => {
 	const dispatch = useAppDispatch()

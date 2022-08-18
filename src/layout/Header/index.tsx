@@ -1,6 +1,5 @@
 import React from 'react'
-import {WithUIThemeProps,} from '../../components/UI/@types/Theme'
-import {withUITheme,} from '../../components/UI/core/withThemeHOC'
+import {withUITheme, WithUIThemeProps,} from '../../components/UI'
 
 interface Header {
 	children: React.ReactNode

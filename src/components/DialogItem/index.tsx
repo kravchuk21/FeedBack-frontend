@@ -1,9 +1,8 @@
 import React from 'react'
 import styles from './DialogItem.module.css'
-import Typography from '../UI/Typography'
-import Title from '../UI/Title'
 import {dateFormat,} from '../../utils/dateFormat'
 import Avatar, {IAvatar,} from '../Avatar'
+import {Title, Typography,} from '../UI'
 
 interface DialogItem extends IAvatar {
 	_id: string;

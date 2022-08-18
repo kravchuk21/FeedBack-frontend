@@ -1,8 +1,6 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
-import Button from '../../components/UI/Button'
-import Input from '../../components/UI/Input'
 import React from 'react'
 import {useRouter,} from 'next/router'
 import {useForm,} from 'react-hook-form'
@@ -14,6 +12,7 @@ import {Routes,} from '../../constants/routes'
 import CodeIcon from '../../../public/assets/icons/key.svg'
 import {Api, isAxiosError,} from '../../services'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
+import {Button, Input, } from '../../components/UI'
 
 const Verify: NextPage = () => (
 	<div>

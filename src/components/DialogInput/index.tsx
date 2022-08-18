@@ -1,9 +1,6 @@
 import React from 'react'
-import Input from '../UI/Input'
-import IconButton from '../UI/IconButton'
 import SendIcon from '../../../public/assets/icons/send.svg'
-import {withUITheme,} from '../UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../UI/@types/Theme'
+import {IconButton, Input, withUITheme, WithUIThemeProps, } from '../UI'
 
 interface DialogInput {
 	value: string;

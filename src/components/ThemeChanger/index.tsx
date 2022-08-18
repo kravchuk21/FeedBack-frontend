@@ -1,10 +1,8 @@
 import {useTheme,} from 'next-themes'
 import React from 'react'
-import IconButton from '../UI/IconButton'
 import LightIcon from '../../../public/assets/icons/sun.svg'
 import DarkIcon from '../../../public/assets/icons/moon.svg'
-import {withUITheme,} from '../UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../UI/@types/Theme'
+import {IconButton, withUITheme, WithUIThemeProps, } from '../UI'
 
 const icons = {
 	light: LightIcon,

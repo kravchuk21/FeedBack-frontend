@@ -1,5 +1,5 @@
 import React from 'react'
-import Typography from '../UI/Typography'
+import {Typography,} from '../UI'
 
 const Empty = () => {
 	return (

@@ -6,11 +6,11 @@ import DialogItemLoader from '../components/loaders/DialogItemLoader'
 import Empty from '../components/Empty'
 import SearchUserItems from '../components/SearchUserItems'
 import Header from '../layout/Header'
-import Title from '../components/UI/Title'
 import GoBack from '../components/GoBack'
 import MyAvatar from '../components/MyAvatar'
 import {Api,} from '../services'
 import {UserInterface,} from '../interfaces/user.interface'
+import {Title,} from '../components/UI'
 
 const Search: NextPage = () => {
 	return <div>
@@ -46,7 +46,7 @@ const SearchContent: React.FC = () => {
 
 	return (
 		<div className="m-3.5">
-			<div className="mb-3.5">
+			<div className="mb-3.5 flex justify-between">
 				<SearchUserInput onSearch={handleSearch}/>
 			</div>
 			{loading && <SearchLoading/>}

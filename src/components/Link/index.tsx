@@ -1,8 +1,6 @@
 import React from 'react'
 import NextLink from 'next/link'
-import Typography from '../UI/Typography'
-import {withUITheme,} from '../UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../UI/@types/Theme'
+import {Typography, withUITheme, WithUIThemeProps,} from '../UI'
 
 interface Link extends WithUIThemeProps {
 	children: string;

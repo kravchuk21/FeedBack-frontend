@@ -1,8 +1,6 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
-import Button from '../../components/UI/Button'
-import Input from '../../components/UI/Input'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {RegisterFormSchema,} from '../../utils/validation'
 import {useForm,} from 'react-hook-form'
@@ -15,6 +13,7 @@ import PasswordIcon from '../../../public/assets/icons/password.svg'
 import {Api, isAxiosError,} from '../../services'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
 import {CreateUserDto,} from '../../services/auth/dto'
+import { Button, Input, } from '../../components/UI'
 
 const Register: NextPage = () => (
 	<div>

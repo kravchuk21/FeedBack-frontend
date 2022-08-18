@@ -3,15 +3,11 @@ import styles from './AuthLayout.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 import {Routes,} from '../../constants/routes'
-import Typography from '../../components/UI/Typography'
-import Title from '../../components/UI/Title'
-import Toast from '../../components/UI/Toast'
 import {SOMETHING_WENT_WRONG,} from '../../constants/api'
 import Loading from '../../components/loaders/Loading'
-import {withUITheme,} from '../../components/UI/core/withThemeHOC'
-import {WithUIThemeProps,} from '../../components/UI/@types/Theme'
+import {Title, Toast, Typography, withUITheme, WithUIThemeProps,} from '../../components/UI'
 
-interface AuthLayout extends WithUIThemeProps {
+interface AuthLayout {
 	title: string;
 	children: React.ReactNode;
 	link: {
@@ -21,7 +17,7 @@ interface AuthLayout extends WithUIThemeProps {
 	};
 }
 
-const AuthLayout: React.FC<AuthLayout> = ({children, title, link, theme,}) => (
+const AuthLayout: React.FC<AuthLayout & WithUIThemeProps> = ({children, title, link, theme,}) => (
 	<div className={styles.authLayout}>
 		<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpg" width={400} height={400}
 			   alt={'auth bg'}/>
@@ -62,4 +58,4 @@ export const ErrorMessage: React.FC<ErrorMessage> = ({message,}) => {
 	return <Toast type="error" message={message} delay={8000}/>
 }
 
-export default withUITheme<AuthLayout>(React.memo(AuthLayout))
+export default React.memo(withUITheme(AuthLayout))
