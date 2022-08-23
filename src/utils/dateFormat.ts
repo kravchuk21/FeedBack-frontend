@@ -8,7 +8,7 @@ export const dateFormat = (date: Date): string => {
 	if (isToday(date)) {
 		return format(date, 'HH:mm')
 	} else if (isThisYear(date)) {
-		return format(date, 'Mo MMM HH:mm')
+		return format(date, 'dd MMM HH:mm')
 	} else {
 		return format(date, 'YYYY.MM.dd HH:mm')
 	}

@@ -1,20 +1,16 @@
 import {AnyAction, CombinedState, combineReducers, configureStore,} from '@reduxjs/toolkit'
-import {Context, createWrapper, HYDRATE,} from 'next-redux-wrapper'
+import {createWrapper, HYDRATE,} from 'next-redux-wrapper'
 
 import {userReducer,} from './reducers/user'
+import {dialogsReducer,} from './reducers/dialogs'
+import {dialogReducer,} from './reducers/dialog'
 import {authReducer,} from './reducers/auth'
-import {AuthAPI,} from './services/AuthService'
-import {UserAPI,} from './services/UserService'
-import {DialogAPI,} from './services/DialogService'
-import {dialogsReducer,} from './reducers/dialog'
 
 const combinedReducer = combineReducers({
 	'user': userReducer,
 	'auth': authReducer,
-	'dialog': dialogsReducer,
-	[AuthAPI.reducerPath]: AuthAPI.reducer,
-	[UserAPI.reducerPath]: UserAPI.reducer,
-	[DialogAPI.reducerPath]: DialogAPI.reducer,
+	'dialogs': dialogsReducer,
+	'dialog': dialogReducer,
 })
 
 const reducer = (state: CombinedState<ReturnType<typeof combinedReducer>> | undefined, action: AnyAction) => {
@@ -28,20 +24,9 @@ const reducer = (state: CombinedState<ReturnType<typeof combinedReducer>> | unde
 	}
 }
 
-export const makeStore = (ctx: Context) => {
+export const makeStore = () => {
 	return configureStore({
 		reducer: reducer,
-		middleware: (getDefaultMiddleware) =>
-			getDefaultMiddleware({
-				thunk: {
-					extraArgument: ctx,
-				},
-			})
-				.concat(
-					AuthAPI.middleware,
-					UserAPI.middleware,
-					DialogAPI.middleware
-				),
 	})
 }
 

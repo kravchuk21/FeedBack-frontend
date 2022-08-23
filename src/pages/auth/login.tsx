@@ -1,22 +1,21 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
-import Input from '../../components/UI/Input'
 import React from 'react'
 import {useForm,} from 'react-hook-form'
 import {yupResolver,} from '@hookform/resolvers/yup'
 import {LoginFormSchema,} from '../../utils/validation'
 import {useRouter,} from 'next/router'
 import {useAppDispatch,} from '../../store/hooks'
-import {setUserAuth,} from '../../store/reducers/auth'
 import {Routes,} from '../../constants/routes'
-import {LoginUserDto,} from '../../store/services/types.dto'
 import MailIcon from '../../../public/assets/icons/mail.svg'
 import PasswordIcon from '../../../public/assets/icons/password.svg'
-import {AuthAPI,} from '../../store/services/AuthService'
-import Button from '../../components/UI/Button'
-import {ResponseError,} from '../../store/services/types'
+import {Api, isAxiosError,} from '../../services'
+import {setUserAuth,} from '../../store/reducers/auth'
 import {setCookie,} from 'nookies'
+import {SOMETHING_WENT_WRONG,} from '../../constants/api'
+import {LoginUserDto,} from '../../services/auth/dto'
+import {Button, Input, } from '../../components/UI'
 
 const Login: NextPage = () => {
 	return (
@@ -42,37 +41,51 @@ type IFormInputs = LoginUserDto
 const LoginForm = () => {
 	const {push,} = useRouter()
 	const dispatch = useAppDispatch()
-	const {register, handleSubmit, formState: {errors, isValid, isSubmitting,}, reset,} = useForm<IFormInputs>({
-		mode: 'onChange',
-		resolver: yupResolver(LoginFormSchema),
-	})
-	const [login, {error, isLoading, isError,},] = AuthAPI.useLoginMutation()
-
-	const errorMessage = (error as ResponseError)?.data?.message
+	const {
+		register,
+		handleSubmit,
+		formState: {errors, isValid, isSubmitting,},
+		reset,
+	} = useForm<IFormInputs>({mode: 'onChange', resolver: yupResolver(LoginFormSchema),})
+	const [loading, setLoading,] = React.useState(false)
+	const [error, setError,] = React.useState<string | string[]>('')
 
 	const onSubmit = async (dto: IFormInputs) => {
-		await login(dto).unwrap().then(async (user) => {
-			dispatch(setUserAuth(user))
+		setLoading(true)
+		try {
 
-			if ('access_token' in user) {
-				setCookie(null, 'feedBackAuthToken', user.access_token, {
+			const {data,} = await Api().auth.login(dto)
+
+			await dispatch(setUserAuth(data))
+
+			if ('access_token' in data) {
+				setCookie(null, 'feedBackAuthToken', data.access_token, {
 					maxAge: 30 * 24 * 60 * 60,
 					path: '/',
 				})
 			}
 
-			if (user.verify === false) {
+			if (data.verify === false) {
 				await push(Routes.VERIFY)
 				return
 			}
 
 			await push(Routes.HOME)
-		}).catch(() => {
-			reset()
-		})
+		} catch (err) {
+			let error
+			if (isAxiosError(err)) {
+				error = err.response?.data?.message || SOMETHING_WENT_WRONG
+			} else {
+				error = SOMETHING_WENT_WRONG
+			}
+			setError(error)
+		}
+
+		setLoading(false)
+		reset()
 	}
 
-	if (isLoading) {
+	if (loading) {
 		return <AuthLoader/>
 	}
 
@@ -97,9 +110,9 @@ const LoginForm = () => {
 			<div className="mt-3.5 text-center">
 				<Button type="submit" disabled={!isValid || isSubmitting}>Sign In</Button>
 			</div>
-			{isError && (
+			{!!error && (
 				<div className="mt-3.5">
-					<ErrorMessage message={errorMessage}/>
+					<ErrorMessage message={error}/>
 				</div>
 			)}
 		</form>

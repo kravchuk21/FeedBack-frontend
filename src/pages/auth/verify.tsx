@@ -1,8 +1,6 @@
 import type {NextPage,} from 'next'
 import Head from 'next/head'
 import AuthLayout, {AuthLoader, ErrorMessage,} from '../../layout/AuthLayout'
-import Button from '../../components/UI/Button'
-import Input from '../../components/UI/Input'
 import React from 'react'
 import {useRouter,} from 'next/router'
 import {useForm,} from 'react-hook-form'
@@ -12,8 +10,9 @@ import {selectUserEmail, setUserVerify,} from '../../store/reducers/auth'
 import {useAppDispatch, useAppSelector,} from '../../store/hooks'
 import {Routes,} from '../../constants/routes'
 import CodeIcon from '../../../public/assets/icons/key.svg'
-import {AuthAPI,} from '../../store/services/AuthService'
-import { ResponseError, } from '../../store/services/types'
+import {Api, isAxiosError,} from '../../services'
+import {SOMETHING_WENT_WRONG,} from '../../constants/api'
+import {Button, Input, } from '../../components/UI'
 
 const Verify: NextPage = () => (
 	<div>
@@ -25,7 +24,7 @@ const Verify: NextPage = () => (
 		<AuthLayout title="Verify" link={{
 			path: Routes.REGISTER,
 			linkText: 'Login here',
-			text: 'Want to create an account?',
+			text: 'Do you have a account?',
 		}}>
 			<VerifyForm/>
 		</AuthLayout>
@@ -39,14 +38,17 @@ interface IFormInputs {
 
 const VerifyForm = () => {
 	const {push,} = useRouter()
-	const {register, handleSubmit, formState: {errors, isSubmitting, isValid,}, reset,} = useForm<IFormInputs>({
-		mode: 'onChange',
-		resolver: yupResolver(VerifyFormSchema),
-	})
 	const dispatch = useAppDispatch()
+	const {
+		register,
+		handleSubmit,
+		formState: {errors, isSubmitting, isValid,},
+		reset,
+	} = useForm<IFormInputs>({mode: 'onChange', resolver: yupResolver(VerifyFormSchema),})
 	const email = useAppSelector(selectUserEmail)
-	const [verify,] = AuthAPI.useVerifyMutation()
-	const [getVerifyCode, {isLoading, error, isError,},] = AuthAPI.useGetVerifyCodeMutation()
+	const [loading, setLoading,] = React.useState(false)
+	const [error, setError,] = React.useState<string | string[]>('')
+
 
 	React.useEffect(() => {
 		if (!email) {
@@ -54,27 +56,48 @@ const VerifyForm = () => {
 		}
 	}, [email, push,])
 
-	const errorMessage = (error as ResponseError)?.data.message
-
 	const onSubmit = async (dto: IFormInputs) => {
+		setLoading(true)
 		if (email) {
-			await verify({email, verificationCode: dto.verificationCode,}).unwrap().then(async () => {
-				dispatch(setUserVerify(true))
+			try {
+				await Api().auth.verify({email, ...dto,})
+				await dispatch(setUserVerify(true))
 				await push(Routes.HOME)
-			}).catch(() => {
-				reset()
-			})
+			} catch (err) {
+				let error
+				if (isAxiosError(err)) {
+					error = err.response?.data?.message || SOMETHING_WENT_WRONG
+				} else {
+					error = SOMETHING_WENT_WRONG
+				}
+				setError(error)
+			}
 		}
-	}
 
+		setLoading(false)
+		reset()
+	}
 	const onGetNewVerificationCode = async () => {
+		setLoading(true)
 		if (email) {
-			await getVerifyCode({email,}).unwrap()
-			reset()
+			try {
+				await Api().auth.getNewVerificationCode({email,})
+			} catch (err) {
+				let error
+				if (isAxiosError(err)) {
+					error = err.response?.data?.message || SOMETHING_WENT_WRONG
+				} else {
+					error = SOMETHING_WENT_WRONG
+				}
+				setError(error)
+			}
 		}
+
+		setLoading(false)
+		reset()
 	}
 
-	if (isLoading) {
+	if (loading) {
 		return <AuthLoader/>
 	}
 
@@ -93,9 +116,9 @@ const VerifyForm = () => {
 			<div className="mt-3.5">
 				<Button onClick={onGetNewVerificationCode}>Get a new code</Button>
 			</div>
-			{isError && (
+			{!!error && (
 				<div className="mt-3.5">
-					<ErrorMessage message={errorMessage}/>
+					<ErrorMessage message={error}/>
 				</div>
 			)}
 		</form>

@@ -3,8 +3,9 @@ import styles from './Title.module.css'
 import {FontStyles,} from '../@types/styles'
 import {withUITheme,} from '../core/withThemeHOC'
 import {WithUIThemeProps,} from '../@types/Theme'
+import {HTMLTag,} from '../@types/HTMLTag'
 
-interface Title extends FontStyles, WithUIThemeProps {
+interface Title extends FontStyles, WithUIThemeProps, HTMLTag<HTMLHeadingElement> {
 	tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 	children: React.ReactNode;
 }
@@ -19,21 +20,23 @@ const Title: React.FC<Title> = ({children, tag = 'h1', theme, ...props}) => {
 		textAlign: props.textAlign,
 	}
 
+	const HTagProps = {className: styles.title, style: TitleStyles, ...props,}
+
 	switch (tag) {
 		case 'h1':
-			return <h1 className={styles.title} style={TitleStyles}>{children}</h1>
+			return <h1 {...HTagProps} >{children}</h1>
 		case 'h2':
-			return <h2 className={styles.title} style={TitleStyles}>{children}</h2>
+			return <h2 {...HTagProps}>{children}</h2>
 		case 'h3':
-			return <h3 className={styles.title} style={TitleStyles}>{children}</h3>
+			return <h3 {...HTagProps}>{children}</h3>
 		case 'h4':
-			return <h4 className={styles.title} style={TitleStyles}>{children}</h4>
+			return <h4 {...HTagProps}>{children}</h4>
 		case 'h5':
-			return <h5 className={styles.title} style={TitleStyles}>{children}</h5>
+			return <h5 {...HTagProps}>{children}</h5>
 		case 'h6':
-			return <h6 className={styles.title} style={TitleStyles}>{children}</h6>
+			return <h6 {...HTagProps}>{children}</h6>
 		default:
-			return <h1 className={styles.title} style={TitleStyles}>{children}</h1>
+			return <h1 {...HTagProps}>{children}</h1>
 	}
 }
 

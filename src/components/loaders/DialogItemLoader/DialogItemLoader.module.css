@@ -1,26 +1,5 @@
-.dialogItemLoader {
-    display: flex;
-    background: var(--bg);
-    padding: 10px 15px;
-    align-items: flex-start;
-}
-
-.dialogItemLoaderAvatar {
-    background: var(--bg-light);
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-}
-
 .dialogItemLoaderInfo {
     margin: 0 12px;
     flex: 1;
 }
 
-.dialogItemLoaderLine {
-    background: var(--bg-light);
-    height: 14px;
-    width: 200px;
-    margin-bottom: 10px;
-    border-radius: var(--radius);
-}

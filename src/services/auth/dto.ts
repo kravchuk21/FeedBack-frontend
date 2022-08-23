@@ -11,11 +11,3 @@ export type VerifyUserDto = {
 	email: string;
 	verificationCode: string;
 };
-
-export type SearchUserDto = {
-	text: string;
-};
-
-export type GetUserDto = {
-	userId: string;
-};

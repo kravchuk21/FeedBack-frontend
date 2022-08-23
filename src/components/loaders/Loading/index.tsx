@@ -1,7 +1,6 @@
 import React, {CSSProperties,} from 'react'
-import {withUITheme,} from '../../UI/core/withThemeHOC'
 import styles from './Loading.module.css'
-import {WithUIThemeProps,} from '../../UI/@types/Theme'
+import {withUITheme, WithUIThemeProps,} from '../../UI'
 
 const Loading: React.FC<WithUIThemeProps> = ({theme,}) => {
 

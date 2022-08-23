@@ -1,39 +1,35 @@
-import React from 'react'
+import React, {RefObject,} from 'react'
 import styles from '../../styles/Dialog.module.css'
 import Bubble from '../Bubble'
+import {MessageInterface,} from '../../interfaces/messsge.interfaxe'
+import Empty from '../Empty'
+import {UserInterface,} from '../../interfaces/user.interface'
+import BubbleItemLoader from '../loaders/BubbleItemLoader'
 
-const Messages = () => {
-	const bottomRef = React.useRef<HTMLDivElement | null>(null)
-
-	React.useEffect(() => {
-		if (bottomRef.current) {
-			bottomRef.current.scrollIntoView({behavior: 'smooth',})
-		}
-	}, [])
-
-	return (
-		<div className={styles.bubbleBlock}>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<Bubble text="Hello" isMe/>
-			<Bubble text="Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam" isMe/>
-			<Bubble text="How are you?" isMe={false}/>
-			<div ref={bottomRef}/>
-		</div>
-	)
+interface Messages {
+	isLoading: boolean;
+	items: MessageInterface[] | null;
+	messagesBottomRef: RefObject<HTMLDivElement>;
+	userId: UserInterface['_id'] | undefined;
 }
+
+const Messages: React.FC<Messages> = ({items, isLoading, messagesBottomRef, userId,}) => (
+	<div className={styles.bubbleBlock}>
+		{isLoading && <MessagesLoader/>}
+		{!isLoading && items && items.length === 0 && <Empty/>}
+		{!isLoading && items && items.map(message => {
+			return (
+				<Bubble
+					key={message._id}
+					text={message.text}
+					createdAt={message.createdAt}
+					isMe={message.author._id === userId}/>
+			)
+		})}
+		<div ref={messagesBottomRef}/>
+	</div>
+)
+
+const MessagesLoader: React.FC = () => <>{Array(10).fill(null).map((_, i) => <BubbleItemLoader key={i}/>)}</>
 
 export default Messages

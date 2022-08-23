@@ -4,29 +4,40 @@
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  min-height: 100vh;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    min-height: 100vh;
 }
 
 html[data-theme='dark'] body {
-  background: var(--bg);
+    background: var(--bg);
+}
+
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--base-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--base);
 }
 
 * {
-  box-sizing: border-box;
-  outline-color: var(--primary);
+    box-sizing: border-box;
 }
 
 input::placeholder {
-  color: var(--base);
+    color: var(--base);
 }
 
 .container {
-  max-width: 1000px;
-  width: 100%;
-  margin: 0 auto;
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
 }
