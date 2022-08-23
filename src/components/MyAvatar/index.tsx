@@ -13,7 +13,7 @@ const MyAvatar: React.FC = () => {
 	}
 
 	return (
-		<Link href={Routes.PROFILE + user._id}>
+		<Link href={Routes.PROFILE + user._id}					>
 			<a>
 				<Avatar fullName={user.fullName}
 						avatarUrl={user?.avatar}/>

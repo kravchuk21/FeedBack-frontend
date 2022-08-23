@@ -8,7 +8,7 @@ const AvatarLoader: React.FC<WithUIThemeProps> = ({theme,}) => {
 	}
 
 	return (
-		<div className={styles.avatarLoader} style={LoaderStyle}/>
+		<div className={`${styles.avatarLoader} animate-pulse`} style={LoaderStyle}/>
 	)
 }
 

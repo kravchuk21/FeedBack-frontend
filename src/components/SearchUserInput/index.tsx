@@ -1,5 +1,6 @@
 import React from 'react'
 import {Input,} from '../UI'
+import SearchIcon from '../../../public/assets/icons/search.svg'
 
 interface SearchUserInput {
 	onSearch: (query: string) => void,
@@ -18,11 +19,12 @@ const SearchUserInput: React.FC<SearchUserInput> = ({onSearch,}) => {
 	}, [onSearch, searchQuery,])
 
 	const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const query = e.currentTarget.value.trim()
+		const query = e.currentTarget.value
 		setSearchQuery(query)
 	}
 
-	return <Input placeholder="Enter to find" onChange={onChangeHandler} value={searchQuery}/>
+	return <Input Icon={SearchIcon} autoFocus placeholder="Enter to find" onChange={onChangeHandler}
+				  value={searchQuery}/>
 }
 
 export default SearchUserInput

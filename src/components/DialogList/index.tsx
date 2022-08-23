@@ -14,7 +14,7 @@ interface DialogsList {
 }
 
 const DialogsList: React.FC<DialogsList> = ({items, userId, isLoading,}) => (
-	<div>
+	<div className='container'>
 		{!isLoading && !items && <DialogListLoader/>}
 		{items && isLoading && items.length === 0 && <Empty/>}
 		{isLoading && items && items.map((dialog) => (

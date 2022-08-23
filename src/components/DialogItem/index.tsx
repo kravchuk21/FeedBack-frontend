@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './DialogItem.module.css'
-import {dateFormat,} from '../../utils/dateFormat'
 import Avatar, {IAvatar,} from '../Avatar'
-import {Title, Typography,} from '../UI'
+import {Title, Typography, withUITheme, WithUIThemeProps,} from '../UI'
+import Time from '../Time'
 
 interface DialogItem extends IAvatar {
 	_id: string;
@@ -10,15 +10,24 @@ interface DialogItem extends IAvatar {
 	lastMessageTime: Date;
 }
 
-const DialogItem: React.FC<DialogItem> = (props) => (
-	<div className={styles.dialogItem}>
-		<Avatar fullName={props.fullName} avatarUrl={props.avatarUrl}/>
-		<div className={styles.dialogItemInfo}>
-			<Title>{props.fullName}</Title>
-			<Typography>{props.lastMessageText}</Typography>
-		</div>
-		<Typography>{dateFormat(props.lastMessageTime)}</Typography>
-	</div>
-)
+const DialogItem: React.FC<DialogItem & WithUIThemeProps> = ({theme, ...props}) => {
 
-export default DialogItem
+	const DialogItemStyles = {
+		borderRadius: theme.borderRadius,
+	}
+
+	return (
+		<div className={styles.dialogItem} style={DialogItemStyles}>
+			<Avatar fullName={props.fullName} avatarUrl={props.avatarUrl}/>
+			<div className={styles.dialogItemInfo}>
+				<Title>{props.fullName}</Title>
+				<div className="flex">
+					<Typography>{props.lastMessageText}</Typography>
+				</div>
+			</div>
+			<Time time={props.lastMessageTime}/>
+		</div>
+	)
+}
+
+export default React.memo(withUITheme(DialogItem))

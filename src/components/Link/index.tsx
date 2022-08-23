@@ -11,7 +11,7 @@ const TextLink: React.FC<Link> = ({children, href, theme,}) => {
 	return (
 		<NextLink href={href}>
 			<a>
-				<Typography color={theme.primaryLight}>
+				<Typography color={theme.primary}>
 					{children}
 				</Typography>
 			</a>

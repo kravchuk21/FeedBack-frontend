@@ -6,15 +6,16 @@
 }
 
 .input {
-    padding-top: 16px;
-    padding-bottom: 16px;
+    --padding: 12px;
+    padding-top: var(--padding);
+    padding-bottom: var(--padding);
     border: none;
     width: 100%;
 }
 
 .inputIcon {
     position: absolute;
-    left: 20px;
+    left: 14px;
     top: 50%;
     transform: translateY(-50%);
 }

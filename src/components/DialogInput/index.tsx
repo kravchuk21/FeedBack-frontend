@@ -1,30 +1,27 @@
 import React from 'react'
 import SendIcon from '../../../public/assets/icons/send.svg'
-import {IconButton, Input, withUITheme, WithUIThemeProps, } from '../UI'
+import {IconButton, Input, withUITheme, WithUIThemeProps,} from '../UI'
 
 interface DialogInput {
 	value: string;
-	setValue: (value: string) => void;
+	onChange: (value: string) => void;
 	handleSend: () => void;
 	disabled: boolean;
 }
 
-const DialogInput: React.FC<DialogInput & WithUIThemeProps> = ({setValue, value, handleSend, disabled, theme,}) => {
+const DialogInput: React.FC<DialogInput> = ({onChange, value, handleSend, disabled,}) => {
 	const handleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setValue(e.currentTarget.value)
+		onChange(e.currentTarget.value)
 	}
 
-	const DialogInputStyles = {
-		background: theme.bg,
-	}
 
 	return (
-		<div style={DialogInputStyles} className="flex justify-between items-center p-3.5">
+		<form className="flex justify-between items-center p-3.5">
 			<div className="flex-1 mr-2.5">
-				<Input placeholder="Type something..." value={value} onChange={handleChangeInput}/>
+				<Input autoFocus placeholder="Type something..." value={value} onChange={handleChangeInput}/>
 			</div>
 			<SendButton onClick={handleSend} disabled={disabled}/>
-		</div>
+		</form>
 	)
 }
 
@@ -40,9 +37,10 @@ const SendButton: React.FC<SendButton> = React.memo(withUITheme<SendButton & Wit
 				Icon={SendIcon}
 				onClick={onClick}
 				disabled={disabled}
+				type="submit"
 				color={disabled ? theme.base : theme.primary}/>
 		)
 	}
 ))
 
-export default withUITheme(DialogInput)
+export default DialogInput

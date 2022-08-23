@@ -28,7 +28,7 @@ const Button: React.FC<Button> = ({disabled = false, children, theme, ...props})
 
 	return (
 		<button disabled={disabled} className={styles.button} {...props} style={ButtonStyles}>
-			<Typography size={18} {...TypographyStyles}>{children}</Typography>
+			<Typography size={16} {...TypographyStyles}>{children}</Typography>
 		</button>
 	)
 }

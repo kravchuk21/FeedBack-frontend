@@ -22,8 +22,8 @@ const AuthLayout: React.FC<AuthLayout & WithUIThemeProps> = ({children, title, l
 		<Image className={styles.authLayoutImage} src="/assets/auth_bg.jpg" width={400} height={400}
 			   alt={'auth bg'}/>
 		<div className={styles.authLayoutBlock}>
-			<div className="mb-5">
-				<Title textAlign="center" fontWeight={700} size={36} color={theme.primary}>{title}</Title>
+			<div className="mb-5 flex flex-col items-center">
+				<Title fontWeight={700} size={36} color={theme.primary}>{title}</Title>
 			</div>
 			{children}
 			<div className="mt-3.5 flex justify-center">

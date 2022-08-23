@@ -7,7 +7,7 @@
 }
 
 .searchUserItem:hover, .searchUserItem:focus {
-    background: var(--bg-light);
+    background: var(--base-light);
 }
 
 .searchUserItemInfo {

@@ -16,9 +16,20 @@ html[data-theme='dark'] body {
     background: var(--bg);
 }
 
+::-webkit-scrollbar {
+    width: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--base-light);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--base);
+}
+
 * {
     box-sizing: border-box;
-    outline-color: var(--primary);
 }
 
 input::placeholder {

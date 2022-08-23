@@ -9,12 +9,12 @@ import BubbleItemLoader from '../loaders/BubbleItemLoader'
 interface Messages {
 	isLoading: boolean;
 	items: MessageInterface[] | null;
-	messagesRef: RefObject<HTMLDivElement>;
+	messagesBottomRef: RefObject<HTMLDivElement>;
 	userId: UserInterface['_id'] | undefined;
 }
 
-const Messages: React.FC<Messages> = ({items, isLoading, messagesRef, userId,}) => (
-	<div className={styles.bubbleBlock} ref={messagesRef}>
+const Messages: React.FC<Messages> = ({items, isLoading, messagesBottomRef, userId,}) => (
+	<div className={styles.bubbleBlock}>
 		{isLoading && <MessagesLoader/>}
 		{!isLoading && items && items.length === 0 && <Empty/>}
 		{!isLoading && items && items.map(message => {
@@ -22,9 +22,11 @@ const Messages: React.FC<Messages> = ({items, isLoading, messagesRef, userId,}) 
 				<Bubble
 					key={message._id}
 					text={message.text}
+					createdAt={message.createdAt}
 					isMe={message.author._id === userId}/>
 			)
 		})}
+		<div ref={messagesBottomRef}/>
 	</div>
 )
 

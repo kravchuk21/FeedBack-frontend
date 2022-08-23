@@ -20,7 +20,8 @@ interface InputWithRef extends Input,
 
 const Input = withUITheme<InputWithRef>(({Icon, error, inputRef, theme, ...props}) => {
 	const inputStyle = {
-		paddingLeft: !!Icon ? 60 : 20,
+		paddingLeft: !!Icon ? 50 : 16,
+		paddingRight: 16,
 		background: error ? theme.dangerLight : theme.baseLight,
 		borderRadius: theme.borderRadius,
 		color: theme.typography,

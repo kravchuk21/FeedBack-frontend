@@ -9,9 +9,8 @@ import {socket,} from '../store/socket'
 
 export const MessagesContainer = () => {
 	const dispatch = useAppDispatch()
+	const messagesBottomRef = React.createRef<HTMLDivElement>()
 	const [isLoading, setIsLoading,] = React.useState(true)
-
-	const messagesRef = React.useRef<HTMLDivElement | null>(null)
 
 	const userId = useAppSelector(selectUserId)
 	const dialogId = useAppSelector(selectDialogId)
@@ -47,9 +46,8 @@ export const MessagesContainer = () => {
 	}, [dispatch,])
 
 	React.useEffect(() => {
-		messagesRef.current?.scrollTo(0, 9999)
-	}, [messages,])
+		messagesBottomRef.current?.scrollIntoView()
+	}, [messages, messagesBottomRef,])
 
-
-	return <Messages messagesRef={messagesRef} items={messages} isLoading={isLoading} userId={userId}/>
+	return <Messages messagesBottomRef={messagesBottomRef} items={messages} isLoading={isLoading} userId={userId}/>
 }

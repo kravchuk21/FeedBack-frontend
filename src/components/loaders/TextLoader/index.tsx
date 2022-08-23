@@ -9,7 +9,7 @@ const TextLoader: React.FC<WithUIThemeProps> = ({theme,}) => {
 	}
 
 	return (
-		<div className={styles.textLoader} style={LoaderStyle}/>
+		<div className={`${styles.textLoader} animate-pulse`} style={LoaderStyle}/>
 	)
 }
 

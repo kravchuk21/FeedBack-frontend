@@ -8,6 +8,8 @@ export const DialogsApi = (instance: AxiosInstance) => ({
 	},
 	async getMate(dialogId: string) {
 		return await instance.post<UserInterface>('/dialog/getMate/' + dialogId)
-
+	},
+	async getByUser(userId: string) {
+		return await instance.get<string | null>('/dialog/getByUser/' + userId)
 	},
 })

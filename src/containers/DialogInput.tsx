@@ -16,5 +16,9 @@ export const DialogInputContainer = () => {
 		}
 	}, [dialogId, mateId, value,])
 
-	return <DialogInput value={value} setValue={setValue} handleSend={handleClick} disabled={!mateId || !value}/>
+	const handleChangeInput = (value: string): void => {
+		setValue(value)
+	}
+
+	return <DialogInput value={value} onChange={handleChangeInput} handleSend={handleClick} disabled={!mateId || !value}/>
 }
